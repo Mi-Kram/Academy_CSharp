@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS_AdvancedLINQToObjects", "CS_AdvancedLINQToObjects\CS_AdvancedLINQToObjects.csproj", "{C1E6265F-ABAB-4C02-8679-C47AFB4A3CDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1E6265F-ABAB-4C02-8679-C47AFB4A3CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1E6265F-ABAB-4C02-8679-C47AFB4A3CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1E6265F-ABAB-4C02-8679-C47AFB4A3CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1E6265F-ABAB-4C02-8679-C47AFB4A3CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {939061D3-B57C-43A2-A407-0EBCDE9D8330}
+	EndGlobalSection
+EndGlobal

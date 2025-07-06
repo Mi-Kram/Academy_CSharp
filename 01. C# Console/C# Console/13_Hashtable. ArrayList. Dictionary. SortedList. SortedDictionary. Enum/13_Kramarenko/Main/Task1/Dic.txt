@@ -1,0 +1,5 @@
+hello&привет
+ball&мяч
+play&играть
+world&мир
+fire&огонь

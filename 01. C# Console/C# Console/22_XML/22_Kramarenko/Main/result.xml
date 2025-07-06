@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<StartFolder fullName="C:\Users\Михаил\source\repos\22_Kramarenko\Main\Folder">
+  <folder name="Dir1">
+    <folder name="Empty" />
+    <folder name="Test1">
+      <file name="C#pictures.png" size="129221" />
+      <file name="Text1.txt" size="14" />
+      <file name="Text2.txt" size="17" />
+    </folder>
+    <folder name="Test2">
+      <file name="C#pictures.png" size="129221" />
+      <file name="Text1.txt" size="14" />
+      <file name="Text2.txt" size="17" />
+    </folder>
+    <file name="C#pictures.png" size="129221" />
+    <file name="Text1.txt" size="14" />
+    <file name="Text2.txt" size="17" />
+  </folder>
+  <folder name="Dir2">
+    <folder name="Empty" />
+    <folder name="Test1">
+      <file name="C#pictures.png" size="129221" />
+      <file name="Text1.txt" size="14" />
+      <file name="Text2.txt" size="17" />
+    </folder>
+    <folder name="Test2">
+      <file name="C#pictures.png" size="129221" />
+      <file name="Text1.txt" size="14" />
+      <file name="Text2.txt" size="17" />
+    </folder>
+    <file name="C#pictures.png" size="129221" />
+    <file name="Text1.txt" size="14" />
+    <file name="Text2.txt" size="17" />
+  </folder>
+  <folder name="Dir3">
+    <folder name="Empty" />
+    <folder name="Test1">
+      <file name="C#pictures.png" size="129221" />
+      <file name="Text1.txt" size="14" />
+      <file name="Text2.txt" size="17" />
+    </folder>
+    <folder name="Test2">
+      <file name="C#pictures.png" size="129221" />
+      <file name="Text1.txt" size="14" />
+      <file name="Text2.txt" size="17" />
+    </folder>
+    <file name="C#pictures.png" size="129221" />
+    <file name="Text1.txt" size="14" />
+    <file name="Text2.txt" size="17" />
+  </folder>
+  <folder name="Empty" />
+  <file name="C#pictures.png" size="129221" />
+  <file name="Text1.txt" size="14" />
+  <file name="Text2.txt" size="17" />
+</StartFolder>

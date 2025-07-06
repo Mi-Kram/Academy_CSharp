@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="windows-1251"?>
+<PhoneBook>
+  <Categories
+    title1="Children"
+    title2="Family"
+    title3="Friend"
+    title4="Man"
+    title5="Woomen"
+    title6="Work" />
+  <Contacts>
+    <contact
+      name="Alex"
+      number="0713652478"
+      adress="qwerty123">
+      <category
+        title1="Family"
+        title2="Man" />Hello World! I'm Paul. And I'm fifteen!!!</contact>
+    <contact
+      name="Ali"
+      number="0713134928"
+      adress="second place">
+      <category
+        title1="Woomen" /></contact>
+    <contact
+      name="Ben"
+      number="0713612568"
+      adress="awds">
+      <category
+        title1="Friend"
+        title2="Children" />larm man</contact>
+    <contact
+      name="Denis"
+      number="0713112568"
+      adress="first place">
+      <category
+        title1="Children" /></contact>
+    <contact
+      name="Peter"
+      number="0716982478"
+      adress="qwerty98">
+      <category
+        title1="Work"
+        title2="Friend" />handsam man</contact>
+    <contact
+      name="Stephan"
+      number="0713112654"
+      adress="third place">
+      <category
+        title1="Man" /></contact>
+    <contact
+      name="test"
+      number="132456"
+      adress="test">
+      <category
+        title1="Children"
+        title2="Family"
+        title3="Friend" />test</contact>
+  </Contacts>
+</PhoneBook>

@@ -1,0 +1,6 @@
+1. Переделать класс LinkedList в двусвязный список и назвать его DoubleLinkedList
+
+2. В класс DoubleLinkedList добавить следующие методы:
+- DeleteFirst(object val) - удаление первого вхождения значения в списке
+- DeleteAll(object val) - удаление всех вхождений значения в списке
+- AddList(DoubleLinkedList lst) - добавление другого списка в конец текущего
