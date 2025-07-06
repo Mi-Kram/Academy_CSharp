@@ -1,0 +1,16 @@
+﻿<Window x:Class="TrafficLight.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrafficLight"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="610.8" Width="579.2">
+    <Grid>
+        <Button Content="Включить" Margin="273,10,9.8,515.6" Click="Button_Click" RenderTransformOrigin="0.634,1.443"/>
+        <Ellipse  x:Name="redEllipse" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="144" Margin="20,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="144"/>
+        <Ellipse  x:Name="YellowEllipse" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="144" Margin="20,159,0,0" Stroke="Black" VerticalAlignment="Top" Width="144"/>
+        <Ellipse  x:Name="GreenEllipse" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="144" Margin="20,308,0,0" Stroke="Black" VerticalAlignment="Top" Width="144"/>
+
+    </Grid>
+</Window>

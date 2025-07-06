@@ -1,0 +1,24 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="140" Width="500">
+    
+    <Grid>
+        <TextBlock Text="Folder:" FontWeight="Bold" FontSize="12" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"/>
+        <TextBox x:Name="FolderPathTextBox" Height="20" Margin="60,10,10,0" VerticalAlignment="Top" TextWrapping="NoWrap" BorderThickness="2,2,1,1" Padding="3,0,3,0"/>
+
+        <Button x:Name="CS_Btn" Width="70" Height="30" Content="C#" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,35" Click="CSharp_Click"/>
+        <Border BorderThickness="2,2,1,1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" BorderBrush="#FF797979">
+            <TextBlock x:Name="CSharpTime" Padding="3,0,3,0" Text="00:00:00.000" FontSize="11"/>
+        </Border>
+
+        <Button x:Name="CPlus_Btn" Width="70" Height="30" Content="C++" FontSize="15" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,35" Click="CPlusPlus_Click"/>
+        <Border BorderThickness="2,2,1,1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" BorderBrush="#FF797979">
+            <TextBlock x:Name="CPlusTime" Padding="3,0,3,0" Text="00:00:00.000" FontSize="11"/>
+        </Border>
+    </Grid>
+</Window>

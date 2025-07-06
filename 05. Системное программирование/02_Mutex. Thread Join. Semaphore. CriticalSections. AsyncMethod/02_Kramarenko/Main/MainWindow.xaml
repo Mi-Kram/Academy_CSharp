@@ -1,0 +1,27 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="300" WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="greenOFF" Color="#173017"/>
+        <SolidColorBrush x:Key="greenON" Color="#FF0fd41c"/>
+
+        <SolidColorBrush x:Key="yellowOFF" Color="#FF635d12"/>
+        <SolidColorBrush x:Key="yellowON" Color="#FFf0dc05"/>
+
+        <SolidColorBrush x:Key="redOFF" Color="#421a1a"/>
+        <SolidColorBrush x:Key="redON" Color="#FFf00505"/>
+    </Window.Resources>
+    
+    <Grid Background="Black">
+        <Ellipse x:Name="green" Width="140" Height="140" Fill="{StaticResource greenOFF}" Margin="0,280,0,0"/>
+        <Ellipse x:Name="yellow" Width="140" Height="140" Fill="{StaticResource yellowOFF}" Margin="0"/>
+        <Ellipse x:Name="red" Width="140" Height="140" Fill="{StaticResource redOFF}" Margin="0,0,0,280"/>
+    </Grid>
+</Window>

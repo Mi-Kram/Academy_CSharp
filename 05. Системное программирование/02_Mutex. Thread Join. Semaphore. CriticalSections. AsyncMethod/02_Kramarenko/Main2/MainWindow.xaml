@@ -1,0 +1,54 @@
+﻿<Window x:Class="Main2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="170" Width="360" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+
+    <Grid x:Name="mainGrid" Background="Transparent">
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Text="Result:" Margin="10,10,0,0">
+            <TextBlock.ToolTip>
+                <TextBlock x:Name="toolTipV1" TextWrapping="Wrap" MaxWidth="150" Text="Best: 00:00:00.000"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Text="Result:" Margin="10,50,0,0">
+            <TextBlock.ToolTip>
+                <TextBlock x:Name="toolTipV2" TextWrapping="Wrap" MaxWidth="150" Text="Best: 00:00:00.000"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Text="Result:" Margin="10,90,0,0">
+            <TextBlock.ToolTip>
+                <TextBlock x:Name="toolTipV3" TextWrapping="Wrap" MaxWidth="150" Text="Best: 00:00:00.000"/>
+            </TextBlock.ToolTip>
+        </TextBlock>
+
+        <Border Padding="10,0,10,0" BorderThickness="2,2,1,1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="90,10,0,0" BorderBrush="#FF4B4B4B">
+            <TextBlock x:Name="result1" Text="00:00:00.000" FontSize="20"/>
+        </Border>
+        <Border Padding="10,0,10,0" BorderThickness="2,2,1,1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="90,50,0,0" BorderBrush="#FF4B4B4B">
+            <TextBlock x:Name="result2" Text="00:00:00.000" FontSize="20"/>
+        </Border>
+        <Border Padding="10,0,10,0" BorderThickness="2,2,1,1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="90,90,0,0" BorderBrush="#FF4B4B4B">
+            <TextBlock x:Name="result3" Text="00:00:00.000" FontSize="20"/>
+        </Border>
+
+        <Button x:Name="BtnV1" Width="100" Height="30" Content="Variant1" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="240,10,0,0" Click="Variant1_Click">
+            <Button.ToolTip>
+                <TextBlock Text="Работа в одном потоке"/>
+            </Button.ToolTip>
+        </Button>
+        <Button x:Name="BtnV2" Width="100" Height="30" Content="Variant2" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="240,50,0,0" Click="Variant2_Click">
+            <Button.ToolTip>
+                <TextBlock Width="200" TextWrapping="Wrap" Text="Работа в 2 потоках с независимыми словарями, которые в конце объединяются"/>
+            </Button.ToolTip>
+        </Button>
+        <Button x:Name="BtnV3" Width="100" Height="30" Content="Variant3" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="240,90,0,0" Click="Variant3_Click">
+            <Button.ToolTip>
+                <TextBlock Width="200" TextWrapping="Wrap" Text="Работа в 2 потоках с одним словарём, обращение к которому производится при помощи критических секций"/>
+            </Button.ToolTip>
+        </Button>
+    </Grid>
+</Window>

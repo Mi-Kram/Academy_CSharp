@@ -1,0 +1,16 @@
+﻿<Window x:Class="SP_Unsafe_DLL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SP_Unsafe_DLL"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Statically loaded DLL" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click"/>
+        <Button Content="Dynamically loaded DLL" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click_1"/>
+        <Button Content="C# sort" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click_3"/>
+        <Button Content="C++ sort" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="170" Click="Button_Click_2"/>
+
+    </Grid>
+</Window>

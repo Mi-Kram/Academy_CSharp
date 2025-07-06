@@ -1,0 +1,54 @@
+﻿<Window x:Class="Main.ControlProcess"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d" Icon="icon.png"
+        Title="Thread HomeWork02" Height="450" Width="800" 
+        Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
+
+    <Window.Resources>
+        <Style x:Key="dataGridStyle" TargetType="DataGrid">
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="DarkGray"/>
+            <Setter Property="RowBackground" Value="LightGray"/>
+            <Setter Property="AlternatingRowBackground" Value="White"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="Gray">
+        <DataGrid BeginningEdit="dataGrid_BeginningEdit" Style="{StaticResource dataGridStyle}" x:Name="dataGrid" Margin="20,10,20,10">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Is work" Binding="{Binding IsWorking, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Process name" Binding="{Binding ProcessName, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridCheckBoxColumn Header="Destroy" Binding="{Binding IsStart, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTemplateColumn Header="" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Content="Start/Stop" Margin="2" Click="StartStop_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Content="Start" Margin="2" Click="Start_Click"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

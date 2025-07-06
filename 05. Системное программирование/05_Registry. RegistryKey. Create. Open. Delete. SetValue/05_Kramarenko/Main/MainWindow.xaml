@@ -1,0 +1,104 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="My Registry Editor" Height="450" Width="800"
+        MinHeight="200" MinWidth="400" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="DarkGray"/>
+            <Setter Property="RowBackground" Value="LightGray"/>
+            <Setter Property="AlternatingRowBackground" Value="White"/>
+        </Style>
+
+        <ContextMenu x:Key="NEWContextMenu">
+            <MenuItem Header="New">
+                <MenuItem Header="Key" Click="CreateKey_Click" />
+                <MenuItem Header="Value" Click="CreateValue_Click"/>
+            </MenuItem>
+        </ContextMenu>
+
+        <ContextMenu x:Key="DataGridItemContextMenu">
+            <MenuItem Header="Modify..." FontWeight="Bold" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItem, TargetNullValue=false}" Click="Modify_Click"/>
+            <Separator Margin="0,3,0,3" BorderThickness="0.5" BorderBrush="#FF717171"/>
+            <MenuItem Header="Delete" Click="DeleteValue_Click"/>
+            <Separator Margin="0,3,0,3" BorderThickness="0.5" BorderBrush="#FF717171"/>
+            <MenuItem Header="New">
+                <MenuItem Header="Key" Click="CreateKey_Click" />
+                <MenuItem Header="Value" Click="CreateValue_Click"/>
+            </MenuItem>
+        </ContextMenu>
+
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+            <Setter Property="ContextMenu" Value="{StaticResource DataGridItemContextMenu}"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF898989">
+            <Menu Background="Transparent" Margin="0,2,0,2">
+                <MenuItem Header="File" FontSize="15">
+                    <Separator Margin="0,3,0,3"/>
+                    <MenuItem Header="Exit" Click="Exit_Click"/>
+                </MenuItem>
+                <MenuItem Header="Edit" FontSize="15">
+                    <MenuItem Name="modifyMenuItem" Header="Modify..." FontSize="15" FontWeight="Bold" Visibility="Visible" IsEnabled="{Binding ElementName=dataGrid, Path=SelectedItem, TargetNullValue=false}" Click="Modify_Click"/>
+                    <Separator Margin="0,3,0,3" BorderThickness="0.5" BorderBrush="#FF717171" Visibility="{Binding ElementName=modifyMenuItem, Path=Visibility}"/>
+                    <MenuItem Header="New">
+                        <MenuItem Header="Key" Click="CreateKey_Click" />
+                        <MenuItem Header="Value" Click="CreateValue_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Delete">
+                        <MenuItem Header="Delete Key" Click="DeleteKey_Click" />
+                        <MenuItem Header="Delete Value" Click="DeleteValue_Click" />
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="View" FontSize="15">
+                    <MenuItem Header="Refresh" Click="Refresh_Click"/>
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+        <Grid Grid.Row="1" Background="#FFC3C3C3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="#FFEEEEEE">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <TreeView Background="Transparent" FontSize="15" x:Name="treeView" SelectedItemChanged="SelectedItemChanged_TreeView"/>
+                </ScrollViewer>
+            </Grid>
+
+            <GridSplitter HorizontalAlignment="Stretch" Background="Transparent" Grid.Column="1" Width="3"/>
+
+            <Grid Grid.Column="2" Background="#FFEEEEEE" ContextMenu="{StaticResource NEWContextMenu}">
+                <DataGrid RowStyle="{StaticResource DataGridRowStyle}" BeginningEdit="dataGrid_BeginningEdit" x:Name="dataGrid" Style="{StaticResource DataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Key"   Binding="{Binding Key, UpdateSourceTrigger=PropertyChanged}"   MaxWidth="250"/>
+                        <DataGridTextColumn Header="Type"  Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}"  MaxWidth="250"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value, UpdateSourceTrigger=PropertyChanged}" MaxWidth="250"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

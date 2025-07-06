@@ -1,0 +1,40 @@
+﻿<Window x:Class="Main.ModifyValueDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="ModifyValueDialog" Height="250" Width="400"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Loaded="Window_Loaded" Closing="Window_Closing">
+    
+    <Grid>
+        <TextBlock Text="Parent:" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Margin="10,10,0,0"/>
+        <Border Padding="5,1,5,1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="55,9,0,0"
+                BorderThickness="2,2,1,1" BorderBrush="#FF7A7A7A">
+            <TextBlock Width="315" TextWrapping="Wrap" Name="pathTxtBlock"/>
+        </Border>
+
+        <TextBlock Text="Value name:" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Margin="10,70,0,0"/>
+        <Border Padding="5,1,5,1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="80,70,0,0"
+                BorderThickness="2,2,1,1" BorderBrush="#FF7A7A7A">
+            <TextBlock Width="290" TextWrapping="NoWrap" Name="ValueNameTextBlock"/>
+        </Border>
+
+        <TextBlock Text="Value:" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Margin="10,100,0,0"/>
+        <TextBox Padding="5,1,5,1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,99,0,0"
+                BorderThickness="2,2,1,1" BorderBrush="#FF7A7A7A" Width="333" Name="valueTxtBox">
+        </TextBox>
+
+        <Button Width="90" Height="50" Content="OK" FontSize="35" FontWeight="Bold"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,110,10"
+                Name="OK_Button" Click="OK_Button_Click"/>
+        <Button Width="90" Height="50" Content="Cancel" FontSize="25" FontWeight="Bold"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10"
+                Name="Cancel_Button" Click="Cancel_Button_Click"/>
+    </Grid>
+</Window>

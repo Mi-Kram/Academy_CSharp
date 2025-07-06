@@ -1,0 +1,130 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="greenBrush" Color="#FF049409"/>
+        <SolidColorBrush x:Key="redBrush" Color="#FFAD0505"/>
+
+        <Style x:Key="rectStyle" TargetType="Rectangle">
+            <Setter Property="Fill" Value="{DynamicResource redBrush}"/>
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Height}"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+        
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="IsEnabled" Value="False"/>
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+            <Setter Property="ToolTipService.ShowDuration" Value="3600000"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid Background="#FFFFCCA0">
+
+        <StackPanel x:Name="BtnStackPanel" HorizontalAlignment="Left" Margin="50,10,0,10">
+            <Button Style="{StaticResource BtnStyle}" IsEnabled="True"
+                Content="ШАГ 1" Click="Step1_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Получатель генерирует пару открытый и закрытый ключ" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}"
+                Content="ШАГ 2" Click="Step2_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Получатель шлёт отправителю открытый ключ" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}" 
+                Content="ШАГ 3" Click="Step3_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Оправитель шифрует файл алгоритмом AES с паролем" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}"
+                Content="ШАГ 4" Click="Step4_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Пароль для алгоритма AES шифруется полученным открытым ключом" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}" 
+                Content="ШАГ 5" Click="Step5_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Зашифрованный пароль отправляется получателю" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}"
+                Content="ШАГ 6" Click="Step6_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Зашифрованный файл отправляется получателю" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}"
+                Content="ШАГ 7" Click="Step7_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Получатель расшифровывает пароль закрытым ключом" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}"
+                Content="ШАГ 8" Click="Step8_Click">
+                <Button.ToolTip>
+                    <StackPanel Width="250">
+                        <TextBlock Text="Получатель расшифровывает файл паролем к симметричному алгоритму AES" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+
+        <StackPanel x:Name="BoxesStackPanel" Background="Transparent" Margin="180,10,0,10" HorizontalAlignment="Left">
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+            <Rectangle Style="{StaticResource rectStyle}"/>
+        </StackPanel>
+
+        <TextBlock Text="Message:" VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Margin="250,20,0,0" FontSize="20" FontWeight="Bold"/>
+        <Border BorderThickness="2,2,1,1" BorderBrush="#FF6F6F6F" Margin="250,50,10,70" Background="White">
+            <ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <TextBlock Padding="5" x:Name="msgTextBlock" Background="#FFE7E7E7" 
+                       TextWrapping="NoWrap"/>
+            </ScrollViewer>
+        </Border>
+
+        <Button Width="100" Height="50" Content="Restart" FontSize="20" FontWeight="Bold" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                Margin="0,0,10,10" Click="Restart_Click"/>
+    </Grid>
+</Window>

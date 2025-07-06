@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main\Main.csproj", "{C768C7CE-7C7A-4115-BC58-4B3D7C335F57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderItemsSearcher", "FileSearcher\FolderItemsSearcher.csproj", "{36C487EC-8941-43F1-93C6-B5DD68850EE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FolderItem", "FolderItem\FolderItem.csproj", "{4C9C0E6C-6C7C-4E42-AAA5-6383AFA08236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultColorPlugIn", "DefaultColorPlugIn\DefaultColorPlugIn.csproj", "{4067830F-DFA8-4D70-8018-839F3290B641}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedColorPlugIn", "RedColorPlugIn\RedColorPlugIn.csproj", "{E09E30CE-48AC-45CA-95D4-4368B7EC21DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenColorPlugIn", "GreenColorPlugIn\GreenColorPlugIn.csproj", "{D5A3A980-689E-46AD-B042-65812DA49A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueColorPlugIn", "BlueColorPlugIn\BlueColorPlugIn.csproj", "{5629C9CC-FAC3-467B-9C8A-489FB999764B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowColorPlugIn", "WindowColorPlugIn", "{5BBC12FD-DA4F-46EA-9F5D-42D6C91B31B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C768C7CE-7C7A-4115-BC58-4B3D7C335F57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C768C7CE-7C7A-4115-BC58-4B3D7C335F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C768C7CE-7C7A-4115-BC58-4B3D7C335F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C768C7CE-7C7A-4115-BC58-4B3D7C335F57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C487EC-8941-43F1-93C6-B5DD68850EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C487EC-8941-43F1-93C6-B5DD68850EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C487EC-8941-43F1-93C6-B5DD68850EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C487EC-8941-43F1-93C6-B5DD68850EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9C0E6C-6C7C-4E42-AAA5-6383AFA08236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9C0E6C-6C7C-4E42-AAA5-6383AFA08236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9C0E6C-6C7C-4E42-AAA5-6383AFA08236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9C0E6C-6C7C-4E42-AAA5-6383AFA08236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4067830F-DFA8-4D70-8018-839F3290B641}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4067830F-DFA8-4D70-8018-839F3290B641}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4067830F-DFA8-4D70-8018-839F3290B641}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4067830F-DFA8-4D70-8018-839F3290B641}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09E30CE-48AC-45CA-95D4-4368B7EC21DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09E30CE-48AC-45CA-95D4-4368B7EC21DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09E30CE-48AC-45CA-95D4-4368B7EC21DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09E30CE-48AC-45CA-95D4-4368B7EC21DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5A3A980-689E-46AD-B042-65812DA49A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5A3A980-689E-46AD-B042-65812DA49A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5A3A980-689E-46AD-B042-65812DA49A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5A3A980-689E-46AD-B042-65812DA49A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5629C9CC-FAC3-467B-9C8A-489FB999764B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5629C9CC-FAC3-467B-9C8A-489FB999764B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5629C9CC-FAC3-467B-9C8A-489FB999764B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5629C9CC-FAC3-467B-9C8A-489FB999764B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4067830F-DFA8-4D70-8018-839F3290B641} = {5BBC12FD-DA4F-46EA-9F5D-42D6C91B31B8}
+		{E09E30CE-48AC-45CA-95D4-4368B7EC21DC} = {5BBC12FD-DA4F-46EA-9F5D-42D6C91B31B8}
+		{D5A3A980-689E-46AD-B042-65812DA49A5C} = {5BBC12FD-DA4F-46EA-9F5D-42D6C91B31B8}
+		{5629C9CC-FAC3-467B-9C8A-489FB999764B} = {5BBC12FD-DA4F-46EA-9F5D-42D6C91B31B8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EFC976B2-352B-4DD6-82B5-137AC8F56C17}
+	EndGlobalSection
+EndGlobal
