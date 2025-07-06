@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="pubs" Class="pubsDB" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MIKHAIL\SQLEXPRESS;Initial Catalog=pubs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="Main.Properties.Settings" SettingsPropertyName="pubsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.owners" Member="owners">
+    <Type Name="owners">
+      <Column Name="own_id" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pathImg" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="phone" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.cars" Member="cars">
+    <Type Name="cars">
+      <Column Name="car_id" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pathImg" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="brand" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="body_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="registrDate" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="own_id" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetCars" Method="GetCars" IsComposable="true">
+    <Parameter Name="own_id" Type="System.String" DbType="VarChar(MAX)" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.GetColumns" Method="GetColumns">
+    <Parameter Name="table_catalog" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="table_name" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="GetColumnsResult">
+      <Column Name="COLUMN_NAME" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTables" Method="GetTables">
+    <Parameter Name="table_catalog" Type="System.String" DbType="VarChar(MAX)" />
+    <ElementType Name="GetTablesResult">
+      <Column Name="TABLE_NAME" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

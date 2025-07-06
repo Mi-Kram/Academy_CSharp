@@ -1,0 +1,68 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="ADO. Examen. Part1" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Background" Value="Azure"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="DarkGray"/>
+            <Setter Property="RowBackground" Value="LightGray"/>
+            <Setter Property="AlternatingRowBackground" Value="White"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserResizeColumns" Value="True"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#FF9C9C9C">
+            <ComboBox Panel.ZIndex="999" Name="tables_cmbBox" SelectedIndex="0" Width="140" FontSize="12" 
+                      HorizontalAlignment="Left" Margin="0,2,0,2" SelectionChanged="tables_cmbBox_SelectionChanged">
+                <TextBlock Text="Manufactures"/>
+                <TextBlock Text="Planes"/>
+            </ComboBox>
+            <Menu Background="Transparent">
+                <MenuItem Margin="140,0,0,0" Header="Edit" FontSize="20">
+                    <MenuItem Header="Add" Click="AddRow_Click"/>
+                    <MenuItem Header="Edit" Click="EditRow_Click" />
+                    <MenuItem Header="Remove" Click="RemoveRows_Click" />
+                </MenuItem>
+            </Menu>
+        </Grid>
+
+        <DataGrid Visibility="Visible" x:Name="ManufsDataGrid" Style="{StaticResource DataGridStyle}" CellEditEnding="CellEditEnding" PreviewKeyDown="PreviewKeyDown" BeginningEdit="DataGrid_BeginningEdit">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название фирмы" Binding="{Binding BrandTitle}"/>
+                <DataGridTextColumn Header="Адрес фирмы" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header="Телефон фирмы" Binding="{Binding Phone}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Visibility="Hidden" x:Name="PlanesDataGrid" Style="{StaticResource DataGridStyle}" CellEditEnding="CellEditEnding" PreviewKeyDown="PreviewKeyDown" BeginningEdit="DataGrid_BeginningEdit">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Скорость" Binding="{Binding Speed}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2" Background="#FF9C9C9C"/>
+    </Grid>
+</Window>

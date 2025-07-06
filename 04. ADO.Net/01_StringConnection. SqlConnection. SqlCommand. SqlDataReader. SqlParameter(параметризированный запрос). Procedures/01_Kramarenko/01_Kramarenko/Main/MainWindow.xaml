@@ -1,0 +1,43 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        MinHeight="300" MinWidth="400" Loaded="Window_Loaded" Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Background="#FFCECECE">
+            <ComboBox Name="tables_cmbBox" SelectedIndex="0" Width="200" FontSize="12" HorizontalAlignment="Left" Margin="0,2,0,2" SelectionChanged="tables_cmbBox_SelectionChanged">
+                <TextBlock Text="owners"/>
+                <TextBlock Text="cars"/>
+            </ComboBox>
+            <MenuItem Header="Edit" FontSize="20">
+                <MenuItem Header="Add" Click="AddRow_Click"/>
+                <MenuItem Header="Edit" Click="EditRow_Click" />
+                <MenuItem Header="Remove" Click="RemoveRows_Click" />
+            </MenuItem>
+
+            <Button x:Name="ShowAllCarsBtn" Content="Show All Cars" FontSize="15" Width="150" Click="ShowAllCars_Click" />
+            <Button x:Name="ShowCarsBtn" Content="Show Cars" FontSize="15" Width="120" Click="ShowCars_Click" />
+        </Menu>
+
+        <Grid Grid.Row="1">
+            <ListView x:Name="lstView" Margin="0"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Background="#FFCECECE">
+            <Button Content="Сохранить" Width="100" HorizontalAlignment="Right" Margin="0,2,4.6,1.4"   Click="Save_Click"/>
+            <Button Content="Отменить"  Width="100" HorizontalAlignment="Right" Margin="0,2,110,1" Click="Cancel_Click"/>
+        </Grid>
+    </Grid>
+</Window>

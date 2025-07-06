@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="pubs" Class="MyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=pubs;Integrated Security=True" SettingsObjectName="ADO_WF_LinqToSQL_Queries.Properties.Settings" SettingsPropertyName="pubsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.authors" Member="authors">
+    <Type Name="author">
+      <Column Name="au_id" Type="System.String" DbType="VarChar(11) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="au_lname" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="au_fname" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="Char(12) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="zip" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="contract" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.titles" Member="titles">
+    <Type Name="title">
+      <Column Name="title_id" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="title" Member="title1" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="Char(12) NOT NULL" CanBeNull="false" />
+      <Column Name="pub_id" Type="System.String" DbType="Char(4)" CanBeNull="true" />
+      <Column Name="price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="advance" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="royalty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ytd_sales" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="notes" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="pubdate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.titleauthor" Member="titleauthors">
+    <Type Name="titleauthor">
+      <Column Name="au_id" Type="System.String" DbType="VarChar(11) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="title_id" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="au_ord" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="royaltyper" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.publishers" Member="publishers">
+    <Type Name="publisher">
+      <Column Name="pub_id" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="pub_name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="country" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.stores" Member="stores">
+    <Type Name="store">
+      <Column Name="stor_id" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="stor_name" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="stor_address" Type="System.String" DbType="VarChar(40)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="zip" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Association Name="store_sale" Member="sales" ThisKey="stor_id" OtherKey="stor_id" Type="sale" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sales" Member="sales">
+    <Type Name="sale">
+      <Column Name="stor_id" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ord_num" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ord_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="qty" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="payterms" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="title_id" Type="System.String" DbType="VarChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="store_sale" Member="store" ThisKey="stor_id" OtherKey="stor_id" Type="store" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,24 @@
+CodeFirst
+Seed data (datetime)
+
+1. 
+Sql(@"
+	insert ... (date, ...)
+	values
+		(CAST(N'2015-06-24 07:36:20.000' AS DateTime), ...)
+");
+
+2. 
+Sql(@"
+	insert ... (date, ...)
+	values
+		(convert(datetime,'2014-11-01T00:00:00.000'), ...)
+");
+
+3. 
+Sql(@"
+	set language english;
+	insert ... (date, ...)
+	values
+		(N'2021-07-23 11:50:16', ...)
+");
