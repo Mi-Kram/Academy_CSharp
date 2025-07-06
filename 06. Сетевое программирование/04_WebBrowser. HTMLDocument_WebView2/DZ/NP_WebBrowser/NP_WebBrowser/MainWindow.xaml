@@ -1,0 +1,16 @@
+﻿<Window x:Class="NP_WebBrowser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NP_WebBrowser"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="584.569" Width="1072.368">
+    <Grid>
+        <WebBrowser x:Name="mainBrowser" Margin="10,38,264,10"/>
+        <ComboBox x:Name="addressComboBox" Height="23" Margin="10,10,264,0" Text="korrespondent.net" VerticalAlignment="Top" IsEditable="True"/>
+        <Button Content="Navigate" Margin="0,10,10,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="240"/>
+        <ListBox Name="listBox1" HorizontalAlignment="Right" Margin="0,38,10,10" Width="240"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="NP_WebView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:local="clr-namespace:NP_WebView"
+        mc:Ignorable="d"
+        Title="WebView test app. Zoom factor: 1.0" Height="600" Width="1100">
+    <Grid>
+        <wv2:WebView2 Name="webView" Source="https://ya.ru" Margin="10,38,264,10" />
+        <ComboBox x:Name="addressBar" Height="23" Margin="10,10,264,0" SelectionChanged="addressBar_SelectionChanged" PreviewTextInput="addressBar_PreviewTextInput" Text="korrespondent.net" VerticalAlignment="Top" IsEditable="True"/>
+        <Button Content="Navigate" Margin="0,10,10,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Go back" Margin="0,119,10,0" VerticalAlignment="Top" Click="Button_Click_1" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Go forward" Margin="0,146,10,0" VerticalAlignment="Top" Click="Button_Click_2" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Increase zoom" Margin="0,173,10,0" VerticalAlignment="Top" Click="Button_Click_3" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Decrease zoom" Margin="0,200,10,0" VerticalAlignment="Top" Click="Button_Click_4" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Stop" Margin="0,65,10,0" VerticalAlignment="Top" Click="Button_Click_5" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Reload" Margin="0,92,10,0" VerticalAlignment="Top" Click="Button_Click_6" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Inject script" Margin="0,255,10,0" VerticalAlignment="Top" Click="Button_Click_7" HorizontalAlignment="Right" Width="240"/>
+        <TextBox Name="tbScript" Height="23" Margin="0,227,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="NavigateToString" Margin="0,282,10,0" VerticalAlignment="Top" Click="Button_Click_8" HorizontalAlignment="Right" Width="240"/>
+        <Button Content="Navigate to local file" Margin="0,37,10,0" VerticalAlignment="Top" Click="Button_Click_9" HorizontalAlignment="Right" Width="240"/>
+    </Grid>
+</Window>

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="NP_WCF_Auth_Service.Service1" CodeBehind="Service1.svc.cs" %>

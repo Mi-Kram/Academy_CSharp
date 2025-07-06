@@ -1,0 +1,98 @@
+﻿<Window x:Class="Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="Server" Height="250" Width="500"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner"
+        Background="#FFE8E8F0" Closing="Window_Closing">
+
+    
+    <Window.Resources>
+        <SolidColorBrush x:Key="StopServer" Color="#FFE51C1C"/>
+        <SolidColorBrush x:Key="RunServer" Color="#FF18B107"/>
+
+        <Style x:Key="BtnStyle" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="BtnBorder" Background="#FF5c85ed" BorderBrush="#FF051d59" BorderThickness="2">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BtnBorder" Property="Background" Value="#728ed6"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="BtnBorder" Property="BorderThickness" Value="3,3,2,2"/>
+                                <Setter TargetName="BtnBorder" Property="Background" Value="#FF5071c7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="WatermarkTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="BorderThickness" Value="2,2,1,1"/>
+            <Setter Property="Padding" Value="3,0,3,0"/>
+            <Setter Property="Text" Value=""/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Background" Value="#FFccd5ed"/>
+            <Setter Property="BorderBrush" Value="#FF303b57"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border x:Name="TextBoxBorder" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <Label HorizontalAlignment="Center" x:Name="TextBoxWaterMark" Content="{TemplateBinding Tag}" Foreground="#FF7a7a7a" Visibility="Hidden" Focusable="False"/>
+                            </Border>
+                            <ScrollViewer Margin="3" x:Name="PART_ContentHost" Foreground="Black"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsFocused" Value="False"/>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="TextBoxWaterMark" Value="Visible" />
+                            </MultiTrigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="TextBoxBorder" Value="#FF264799"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="#FF333333" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    
+    <Grid>
+        <Image VerticalAlignment="Top" Margin="20,10,20,0" Source="bin/Debug/Resources/MyMessengerLogo.png" />
+
+        <Button Content="Start" Style="{StaticResource BtnStyle}" HorizontalAlignment="Center" Margin="0,120,0,0" Click="Start_Click"/>
+
+        <TextBox x:Name="PortTextBox" Style="{StaticResource WatermarkTextBoxStyle}" Tag="Port" MaxLength="4" Width="45" FontSize="13" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,140,30,0" PreviewKeyDown="PortTextBox_PreviewKeyDown"/>
+
+        <Rectangle x:Name="IsServerWorking" Fill="{StaticResource StopServer}" Margin="30,180,30,0" VerticalAlignment="Top" Height="20"/>
+    </Grid>
+</Window>
