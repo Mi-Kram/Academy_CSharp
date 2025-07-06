@@ -1,0 +1,44 @@
+﻿@model CoreMVC_Helpers.ViewModels.BooksIndexViewModel
+@using CoreMVC_Helpers.App_Code
+
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+
+<table id="books" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Pubdate</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@Html.ActionLink(book.Title, "Details", "Books", new { @id = book.Id }, null)</td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.PubDate</td>
+                <td>@book.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+
+<div class="btn-group">
+    <!--Html.PagingButtons(Model.PageInfo, x => { return "Hello"; })-->
+    <!--Html.PagingButtons(Model.PageInfo, x => { return Url.Action("Index", new { pageNumber = x }); })-->
+    @Html.PagingButtons(Model.PageInfo, x => Url.Action("Index", new { pageNumber = x }))
+</div>
+
+<div style="margin-top: 50px">
+    <button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("New", "Books") + "'");">New book</button>
+</div>

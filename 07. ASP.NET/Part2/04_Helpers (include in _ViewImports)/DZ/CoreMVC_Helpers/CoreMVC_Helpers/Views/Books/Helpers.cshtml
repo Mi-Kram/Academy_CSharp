@@ -1,0 +1,25 @@
+﻿@model CoreMVC_Helpers.Models.Books
+@using CoreMVC_Helpers.App_Code
+
+@{
+    ViewBag.Title = "Helpers";
+}
+
+<h2>Helpers</h2>
+
+
+@Html.CreateList(new string[] { "Тургенев", "Пушкин", "Лермонтов", "Толстой", "Бунин" })
+
+<br>
+
+@ListHelper.CreateList(Html, new string[] { "BMW", "Mercedes", "VW", "Audi", "Opel" })
+
+<br>
+
+@Html.CustomButton("Test", "Test button name", "btn btn-primary")
+
+<br>
+
+<date-timer show-time="false" color="Blue"></date-timer>
+
+<random-number color="Red" from="0" to="100"/>

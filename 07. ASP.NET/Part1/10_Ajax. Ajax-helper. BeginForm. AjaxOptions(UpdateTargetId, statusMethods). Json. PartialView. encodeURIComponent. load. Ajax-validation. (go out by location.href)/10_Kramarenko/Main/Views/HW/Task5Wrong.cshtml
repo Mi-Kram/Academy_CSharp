@@ -1,0 +1,21 @@
+﻿@model Main.Models.person
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "")
+
+<div style="margin-top: 10px;">
+	@Html.LabelFor(m => m.FirsName)
+	@Html.TextBoxFor(m => m.FirsName)
+	@Html.ValidationMessageFor(m => m.FirsName)
+</div>
+<div style="margin-top: 10px;">
+	@Html.LabelFor(m => m.LastName)
+	@Html.TextBoxFor(m => m.LastName)
+	@Html.ValidationMessageFor(m => m.LastName)
+</div>
+<div style="margin-top: 10px;">
+	@Html.LabelFor(m => m.Age)
+	@Html.TextBoxFor(m => m.Age)
+	@Html.ValidationMessageFor(m => m.Age)
+</div>
+<button class="btn btn-primary" style="margin-top: 20px;">SHOW</button>

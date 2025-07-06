@@ -1,0 +1,37 @@
+﻿@page "{handler?}"
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Books";
+}
+
+<h2>Books</h2>
+
+@if (Model.Name != null)
+{
+    <h4>Hello, @Model.Name</h4>
+}
+
+<table id="books" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Pubdate</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td><a class="nav-link" asp-area="" asp-page="/Details" asp-route-id="@book.Id">@book.Title</a></td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.PubDate</td>
+                <td>@book.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

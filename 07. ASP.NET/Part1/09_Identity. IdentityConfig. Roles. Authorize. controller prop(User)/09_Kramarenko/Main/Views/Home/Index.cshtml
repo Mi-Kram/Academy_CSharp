@@ -1,0 +1,17 @@
+﻿@*@using Microsoft.AspNet.Identity*@
+@{
+	ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+	<p>Сайт для работы с работниками и проектами</p>
+	@if (User.Identity.IsAuthenticated)
+	{
+		<p>Вы авторизованны под логином <span style="font-weight: 700; text-decoration: underline; color: #33bb2a;">@User.Identity.Name</span></p>
+	}
+	else
+	{
+		<p>Для того, чтобы начать работу @Html.ActionLink("авторизируйтесь", "Login", "Account") или @Html.ActionLink("зарегистрируйтесь", "Register", "Account")!</p>
+	}
+</div>
+

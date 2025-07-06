@@ -1,0 +1,35 @@
+﻿@model Dictionary<string, List<BookModel>>
+
+@{
+    ViewData["Title"] = "Books";
+}
+
+<section class="Books">
+	@{
+		var iter = Model.GetEnumerator();
+		int i = 0;
+
+		while (iter.MoveNext())
+		{
+			i++;
+
+			<div class="BooksGroup">
+				<input class="BooksGroupInput" id="@($"btg{i}")" type="checkbox" onchange="OnInputChanged()" />
+				<label class="BooksGroupLabel" for="@($"btg{i}")">@iter.Current.Key<span>(@iter.Current.Value.Count)</span></label>
+				
+				<div class="BooksGroupContent">
+					@foreach (var book in iter.Current.Value)
+					{
+						<div class="BookItem">
+							<div class="BookPropTitle">@book.Title</div>
+							<div class="BookPropPrice">@book.Price</div>
+							<div class="BookPropAuthor">@book.Author</div>
+							<div class="BookPropPubDate">@book.PubDate.ToString(@"dd.MM.yyyy")</div>
+						</div>
+					}
+				</div>
+			</div>
+		}
+	}
+</section>
+

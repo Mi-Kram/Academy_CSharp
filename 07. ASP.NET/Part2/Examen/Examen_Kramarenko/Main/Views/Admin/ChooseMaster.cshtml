@@ -1,0 +1,44 @@
+﻿@model List<Main.Areas.Identity.Data.ApplicationUser>
+@section SiteLinks{
+	<link href="/css/ChooseMasterStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/ChooseMasterScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+	var SaveUrl = Url.Action("ChooseMaster", "Admin");
+	var FormType = ViewBag.OrderFormType ?? "create";
+	var BackUrl = FormType == "create" ? Url.Action("AddOrder", "Admin", new { isNotFirst = true }) : Url.Action("EditOrder", "Admin");
+	var SortUrl = Url.Action("ChooseMasterSort", "Admin");
+}
+
+<h3 class="ChooseTitle">Выберите мастера</h3>
+<table class="MasterTable" token="@AF_TOKEN" saveurl="@SaveUrl" backurl="@BackUrl" sorturl="@SortUrl">
+	<thead>
+		<tr>
+			<th class="MasterTableCell Photo"></th>
+			<th onclick="OnTableHeadCellClick(1)"><p>Мастер</p></th>
+			<th class="MasterTableCell Button"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var m in Model)
+		{
+			<tr>
+				<td class="MasterTableCell Photo"><div><img src="@m.PhotoPath" alt="photo" /></div></td>
+				<td>@m.UserName</td>
+				<td class="MasterTableCell Button"><button class="ChooseButton" onclick="OnChooseButtonClick('@m.Id')">Выбрать</button></td>
+			</tr>
+		}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3">
+				<button class="BackButton" onclick="OnBackButtonClick()">Назад</button>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+

@@ -1,0 +1,101 @@
+﻿@page "{handler?}"
+
+@model Main.Pages.Pictures.DetailPictureModel
+
+@{
+	ViewData["Title"] = "Photo";
+}
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+	public string GetAntiXsrfRequestToken()
+	{
+		return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
+	}
+}
+
+<input id="picID" type="hidden" value="@Model.Picture.ID" />
+
+<div class="DetailPhoto">
+	<div id="DP-Caption">
+		<p>@Model.Picture.Caption</p>
+	</div>
+	<div id="DP-Photo">
+		<img src="@Model.Picture.ImgSrc" alt="photo" />
+	</div>
+	<div class="DP-Info">
+		<div id="DP-Category">
+			<p>Категория:<span>@Model.Picture.Category.Value</span></p>
+		</div>
+		<div id="DP-PubDate">
+			<p>Дата публикации:<span>@Model.Picture.CreationDate.ToString("dd.MM.yyyy")</span></p>
+		</div>
+		<div id="DP-Description">
+			<p>@Model.Picture.Description</p>
+		</div>
+	</div>
+	<div id="DP-Comments">
+		<h2>Комментарии</h2>
+
+		@if (User.Identity.IsAuthenticated)
+		{
+			<div class="SendCommentContainer">
+				<textarea maxlength="200"></textarea>
+				<input type="button" value="Отправить" onclick="SendComment()" />
+			</div>
+		}
+
+		<div class="CommentList">
+			@foreach (var cmt in Model.Picture.Comments)
+			{
+				<div class="Comment">
+					<p class="CommentDate">@cmt.Date.ToString("dd.MM.yyyy HH:mm")</p>
+					<p class="CommentContent">@cmt.Content</p>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	function SendComment() {
+		var msg = $('.SendCommentContainer > textarea').val().trim();
+		$('.SendCommentContainer > textarea').val('');
+		if (msg.length == 0) return;
+		var picID = $('#picID').prop('value');
+
+		var data = new FormData();
+		data.append("pictureID", picID);
+		data.append("msg", msg);
+
+		$.ajax({
+			url: '@Url.Page("/Pictures/DetailPicture", "AddComment")',
+			type: "POST",
+			headers: {
+				"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+			},
+			processData: false,
+			contentType: false,
+			data: data,
+			success: function (data) {
+				if (data) {
+					if (data.isOk === true) {
+						var container = $('.CommentList');
+
+						container.html(
+`<div class="Comment">
+	<p class="CommentDate">${data.comment.date}</p>
+	<p class="CommentContent">${data.comment.msg}</p>
+</div>` + container.html());
+
+						return;
+					}
+				}
+				alert('Ошибка!');
+			},
+			error: function (data) {
+				alert('Ошибка! Ajax error');
+			}
+		});
+	}
+</script>

@@ -1,0 +1,33 @@
+﻿@model Main.Models.Car
+
+@{
+    ViewBag.Title = "Car";
+}
+
+<h2>Car @Model.Brand</h2>
+
+<img class="DetailImg" src="/@Model.ImgSrc" />
+<table class="CarDetailTable">
+    <tbody>
+        <tr><td>Brand</td><td>@Model.Brand</td></tr>
+        <tr><td>Model</td><td>@Model.Model</td></tr>
+        <tr><td>Speed</td><td>@Model.Speed</td></tr>
+        <tr><td>Price</td><td>@Model.Price</td></tr>
+        <tr><td>Year</td><td>@Model.Date.Year</td></tr>
+        <tr><td>Type</td><td>@Model.Type.Value</td></tr>
+    </tbody>
+</table>
+
+<div style="margin-top: 20px;">
+    <style>
+        .btn + .btn {
+            margin-left: 10px;
+        }
+    </style>
+
+
+    <input class="btn btn-primary" type="button" value="Back" onclick="location.href='/HW/ShowCurentList'" />
+    <input class="btn btn-primary" type="button" value="Remove" onclick="@("location.href='/HW/Remove?IDsStr="+Model.ID.ToString()+"&isGoBack=true'")" />
+    <input class="btn btn-primary" type="button" value="Edit" onclick="@("location.href='/HW/Edit?id="+Model.ID+"'")" />
+</div>
+

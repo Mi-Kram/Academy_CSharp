@@ -1,0 +1,413 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	outline: none;
+}
+
+body {
+	min-height: 100vh;
+	background: rgb(255, 255, 255);
+	background: url(/Images/ChatMsgBackground.jpg);
+	background-size: 300px;
+	display: flex;
+	flex-direction: column;
+}
+
+.LeftMenu {
+	position: fixed;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	background: rgb(25, 26, 32);
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 10;
+	width: 0px;
+	display: none;
+}
+
+.TopMenu {
+	width: 100%;
+	height: 50px;
+	background: rgb(25, 26, 32);
+	display: flex;
+	align-items: stretch;
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.OpenMenuButton {
+	display: flex;
+	align-items: center;
+	padding-inline: 10px;
+	display: block;
+	width: max-content;
+	background: transparent;
+	border: none;
+	position: relative;
+	cursor: default;
+}
+
+.CloseMenuButton {
+	display: flex;
+	align-items: center;
+	padding: 5px 10px;
+	margin-left: auto;
+	display: block;
+	width: max-content;
+	background: transparent;
+	border: none;
+	position: relative;
+	cursor: default;
+}
+
+	.CloseMenuButton:focus::before,
+	.CloseMenuButton:hover::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(255,255,255,0.2);
+	}
+
+	.CloseMenuButton ion-icon {
+		color: white;
+		font-size: 35px;
+		pointer-events: none;
+	}
+
+
+
+.OpenMenuButton:focus::before,
+.OpenMenuButton:hover::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255,255,255,0.2);
+}
+
+.OpenMenuButton ion-icon {
+	color: white;
+	font-size: 35px;
+	pointer-events: none;
+}
+
+.LeftMenuItem {
+	padding: 10px 20px;
+	font-size: 25px;
+	color: #fff;
+	user-select: none;
+	max-width: 100%;
+	overflow: hidden;
+	display: block;
+	white-space: nowrap;
+	text-decoration: none;
+	display: flex;
+}
+
+	.LeftMenuItem p {
+		margin-left: 15px;
+		flex-shrink: 0;
+	}
+
+	.LeftMenuItem ion-icon {
+		color: white;
+		flex-shrink: 0;
+	}
+
+	.LeftMenuItem:focus,
+	.LeftMenuItem:hover {
+		background: rgba(255,255,255,0.2);
+	}
+
+.ChatContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+.ChatItem {
+	background: rgb(224, 190, 144);
+	width: 100%;
+	overflow: hidden;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: black;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+	.ChatItem:nth-child(2n) {
+		background: rgb(214, 164, 93);
+	}
+
+	.ChatItem:focus,
+	.ChatItem:hover {
+		background: rgb(211, 149, 3);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.MessageContainer {
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.MessageBox {
+	display: flex;
+	margin: 10px;
+	max-width: 60%;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	padding: 10px 20px;
+}
+
+.MyMessage {
+	margin-left: auto;
+	background: rgb(117, 235, 117);
+	border-radius: 20px 20px 0px 20px
+}
+
+.FriendMessage {
+	margin-right: auto;
+	background: rgb(151, 173, 233);
+	border-radius: 20px 20px 20px 0px
+}
+
+.SenderLogin {
+	width: max-content;
+	overflow: hidden;
+	color: rgb(102, 102, 102);
+	font-weight: 700;
+	font-size: 15px;
+}
+
+.MyMessage .SenderLogin {
+	margin-left: auto;
+}
+
+.FriendMessage .SenderLogin {
+	margin-right: auto;
+}
+
+.ContentMsg {
+	text-align: justify;
+	word-wrap: break-word;
+	font-size: 20px;
+}*/
+
+
+
+.MessageContainer {
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.MessageBox {
+	display: flex;
+	margin: 10px;
+	max-width: 60%;
+	width: max-content;
+	display: flex;
+	padding: 10px 20px;
+}
+
+.MyMessage {
+	flex-direction: row-reverse;
+	margin-left: auto;
+	background: rgb(117, 235, 117);
+	border-radius: 20px 20px 0px 20px
+}
+
+.FriendMessage {
+	margin-right: auto;
+	background: rgb(151, 173, 233);
+	border-radius: 20px 20px 20px 0px
+}
+
+.MessageBoxDiv1 {
+	width: max-content;
+	flex-shrink: 0;
+}
+
+	.MessageBoxDiv1 > div {
+		width: 60px;
+		height: 60px;
+		overflow: hidden;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+		.MessageBoxDiv1 > div > img {
+			object-fit: cover;
+			height: 100%;
+			width: 100%;
+		}
+
+.MessageBoxDiv2 {
+	margin-inline: 10px;
+}
+
+	.MessageBoxDiv2 > div {
+		display: flex;
+		flex-direction: row;
+	}
+
+.SenderLogin {
+	width: max-content;
+	color: rgb(102, 102, 102);
+	font-weight: 700;
+	font-size: 15px;
+	display: block;
+	justify-self: flex-end;
+}
+
+.SendTime {
+	justify-self: flex-start;
+	display: block;
+}
+
+.MyMessage .SenderLogin {
+	margin-left: auto;
+}
+
+.FriendMessage .SenderLogin {
+	margin-right: auto;
+}
+
+.ContentMsg {
+	text-align: justify;
+	word-wrap: break-word;
+	font-size: 20px;
+	margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.MessageSenderDiv {
+	width: 100%;
+	min-height: 60px;
+	left: 0;
+	bottom: 0;
+	position: fixed;
+	background: rgb(98, 148, 212);
+	display: flex;
+	overflow: hidden;
+}
+
+.MessageSenderBox {
+	width: 100%;
+	background: white;
+	margin: 10px;
+	border-radius: 20px;
+	overflow: hidden;
+	padding: 10px 20px;
+}
+
+	.MessageSenderBox input {
+		width: 100%;
+		border: none;
+		font-size: 20px;
+	}
+
+.SendMessageButton {
+	align-self: stretch;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.SendMessageButton > div {
+	width: 40px;
+	height: 40px;
+	background: rgb(255, 255, 255);
+	flex-shrink: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	margin: 5px;
+	margin-right: 10px;
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.1s;
+}
+
+.SendMessageButton > div:active{
+	transform: scale(1.1);
+	box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.SendMessageButton > div::before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 0;
+	bottom: 0;
+	left: 0;
+	background: #0b1caa;
+	transition: height 0.3s;
+}
+
+.SendMessageButton ion-icon {
+	font-size: 25px;
+	margin-left: 5px;
+	color: #00f;
+	pointer-events: none;
+	z-index: 2;
+	overflow: hidden;
+	transition: color 0.3s;
+}
+
+.SendMessageButton > div:hover::before{
+	height: 100%;
+}
+
+.SendMessageButton > div:hover ion-icon {
+	color: #b5cbe8;
+}
+
+
+
+

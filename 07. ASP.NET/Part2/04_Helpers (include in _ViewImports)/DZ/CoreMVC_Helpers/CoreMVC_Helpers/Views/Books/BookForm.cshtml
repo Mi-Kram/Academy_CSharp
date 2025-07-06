@@ -1,0 +1,46 @@
+﻿@model CoreMVC_Helpers.ViewModels.BookFormViewModel
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<h2>@Model.Book.Title</h2>
+
+@using (Html.BeginForm("Save", "Books"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Title)
+        @Html.TextBox("Book.Title", Model.Book.Title, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Author)
+        @Html.TextBoxFor(m => m.Book.Author, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Genre)
+        @Html.DropDownListFor(m => m.Book.Genre, new SelectList(Model.Genres, "Name", "Name"), "Select genre", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.PubDate)
+        @Html.TextBoxFor(m => m.Book.PubDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Price)
+        @Html.TextBoxFor(m => m.Book.Price, new { @class = "form-control" })
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Book.hasAudioBook) Has audio book provided?
+        </label>
+    </div>
+
+    @Html.HiddenFor(m => m.Book.Id)
+
+    <button class="btn btn-primary">Save</button>
+    <input class="btn" type="button" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Books") + "'");" />
+}

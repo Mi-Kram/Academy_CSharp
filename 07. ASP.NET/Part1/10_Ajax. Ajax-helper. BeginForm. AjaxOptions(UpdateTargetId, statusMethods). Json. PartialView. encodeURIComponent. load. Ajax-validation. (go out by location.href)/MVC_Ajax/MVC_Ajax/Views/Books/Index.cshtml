@@ -1,0 +1,67 @@
+﻿@model MVC_Ajax.ViewModels.BooksViewModel
+
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+
+<script type="text/javascript">
+    function OnBegin() {
+        console.log("Происходит отправка запроса");
+    }
+    function OnSuccess(data) {
+        console.log("Data received: \n" + data);
+    }
+    function OnFailure(request, error) {
+        $("#results").html("Книги указанного автора не содержатся в базе данных.");
+    }
+    function OnComplete(request, status) {
+        console.log("Статус запроса : " + status);
+    }
+</script>
+
+@using (Ajax.BeginForm("BooksList", new AjaxOptions { UpdateTargetId = "results",
+    //Confirm = "Выполнить AJAX-запрос?",
+    OnBegin = "OnBegin",
+    OnFailure = "OnFailure",
+    OnSuccess = "OnSuccess",
+    OnComplete = "OnComplete"
+}))
+{
+    <input type="text" name="genre" />
+    <input type="submit" value="Поиск" />
+}
+
+<br />
+
+<div id="results">
+    <table id="booksTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Pubdate</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Books)
+            {
+                <tr>
+                    <td>@Html.ActionLink(book.Title, "Details", "Books", new { @id = book.Id }, null)</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@book.PubDate</td>
+                    <td>@book.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br/>
+
+
+<button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("New", "Books") + "'")">New book</button>

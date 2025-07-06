@@ -1,0 +1,66 @@
+﻿@model MVC_Ajax.ViewModels.BooksViewModel
+
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+
+<script type="text/javascript">
+    function OnJsonSuccess(data) {
+        console.log(data);
+
+        // получить ссылку на таблицу с результатами
+        var table = $('#booksTable');
+
+        // удалить все старые строки
+        table.find("tbody tr").remove();
+
+        // перебрать коллекцию в Json и создать новые строки таблицы на их основе
+        data.forEach(function (book) {
+            table.append("<tr><td>" + book.Title + "</td><td>" + book.Author + "</td><td>" + book.Genre + "</td><td>" + book.Pubdate + "</td><td>" + book.Price + "</td></tr>");
+        });
+    }
+</script>
+
+@using (Ajax.BeginForm("BooksListJson", new AjaxOptions
+{
+    OnSuccess = "OnJsonSuccess"
+}))
+{
+    <input type="text" name="genre" />
+    <input type="submit" value="Поиск" />
+}
+
+<br />
+
+<div id="results">
+    <table id="booksTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Pubdate</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Books)
+            {
+                <tr>
+                    <td>@Html.ActionLink(book.Title, "Details", "Books", new { @id = book.Id }, null)</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@book.PubDate</td>
+                    <td>@book.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+
+
+<button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("New", "Books") + "'")">New book</button>

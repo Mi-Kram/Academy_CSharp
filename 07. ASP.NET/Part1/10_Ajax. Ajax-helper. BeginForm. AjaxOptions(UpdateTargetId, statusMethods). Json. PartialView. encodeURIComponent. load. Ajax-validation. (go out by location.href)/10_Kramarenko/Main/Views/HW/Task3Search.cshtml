@@ -1,0 +1,27 @@
+﻿@model List<Main.Models.authors>
+<table>
+	<thead>
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Address</th>
+			<th>Phone</th>
+			<th>State</th>
+			<th>City</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var au in Model)
+		{
+			<tr>
+				<td>@au.au_fname</td>
+				<td>@au.au_lname</td>
+				<td>@au.address</td>
+				<td>@au.phone</td>
+				<td>@au.state</td>
+				<td>@au.city</td>
+			</tr>
+		}
+	</tbody>
+</table>

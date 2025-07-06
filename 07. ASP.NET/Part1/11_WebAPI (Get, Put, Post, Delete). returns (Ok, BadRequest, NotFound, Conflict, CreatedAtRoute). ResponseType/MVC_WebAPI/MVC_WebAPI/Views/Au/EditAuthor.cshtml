@@ -1,0 +1,143 @@
+﻿@model MVC_WebAPI.Models.author
+
+@{
+    ViewBag.Title = "AuthorForm";
+}
+
+<h2>@Model.au_fname @Model.au_lname</h2>
+
+<form id="validForm" action="" method="post">
+
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.au_fname)
+        @Html.TextBoxFor(m => m.au_fname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.au_fname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.au_lname)
+        @Html.TextBoxFor(m => m.au_lname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.au_lname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.phone)
+        @Html.TextBoxFor(m => m.phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.phone)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.city)
+        @Html.TextBoxFor(m => m.city, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.city)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.address)
+        @Html.TextBoxFor(m => m.address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.address)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.state)
+        @Html.TextBoxFor(m => m.state, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.state)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.zip)
+        @Html.TextBoxFor(m => m.zip, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.zip)
+    </div>
+
+    <div class="checkbox">
+        @if (Model.contract.HasValue)
+        {
+            <label>
+                @Html.CheckBoxFor(m => m.contract.Value) Is this author on contract?
+            </label>
+        }
+    </div>
+
+    @Html.HiddenFor(m => m.au_id)
+
+    <button class="btn btn-primary">Save</button>
+    <input class="btn" type="button" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Au") + "'");" />
+
+</form>
+
+<script>
+
+    function onError(data) {
+        console.log(data);
+
+        // скрыть все ошибки, показанные на предыдущем шаге валидации
+        $("input").removeClass('input-validation-error');
+        $("select").removeClass('input-validation-error');
+        $("span[data-valmsg-for]").removeClass('field-validation-error');
+        $("span[data-valmsg-for]").addClass('field-validation-valid');
+        $("span[data-valmsg-for]").text("");
+
+        // если есть статус ошибки валидации
+        if (data.status == 400) {
+            //alert("400")
+
+            // перебрать все полученные ошибки валидации
+            $.each(data.responseJSON.ModelState, function (key, value) {
+                key = key.split('.')[1];
+                //console.log(key);
+                //console.log(value);
+
+                // выделить текстовое поле с ошибкой
+                var filter = "input[name='" + key + "']";
+                $(filter).addClass('input-validation-error');
+
+                // показать сообщение об ошибке для каждого текстового поля с ошибкой
+                var validationMessageElement = $('span[data-valmsg-for="' + key + '"]');
+                validationMessageElement.removeClass('field-validation-valid');
+                validationMessageElement.addClass('field-validation-error');
+                validationMessageElement.text(value[0]);
+            });
+        }
+    }
+
+    $('#validForm').submit(function (e) {
+
+        e.preventDefault();
+
+        //alert("send");
+
+        var form = $(this);
+
+            // подача Ajax-запроса на сервер при помощи JQuery
+            $.ajax({
+                url: '/api/authors/' + $('#au_id').val(),
+                method: "PUT",
+                data: JSON.stringify({
+                    au_id: $('#au_id').val(),
+                    au_fname: $('#au_fname').val(),
+                    au_lname: $('#au_lname').val(),
+                    city: $('#city').val(),
+                    state: $('#state').val(),
+                    phone: $('#phone').val(),
+                    address: $('#address').val(),
+                    zip: $('#zip').val(),
+                    contract: $('#contract').val()
+                }),
+                dataType: 'JSON',
+                contentType: 'application/json',
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    //alert("Success!!!");
+                    window.location.href = 'http://localhost:49349/Au';
+                },
+                error: function (data) {
+                    onError(data);
+                }
+            })
+    });
+
+</script>

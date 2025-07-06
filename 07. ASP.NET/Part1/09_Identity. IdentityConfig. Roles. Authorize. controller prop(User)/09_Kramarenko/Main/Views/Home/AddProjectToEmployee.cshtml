@@ -1,0 +1,44 @@
+﻿@model Main.Models.AddProjectToEmployeeViewModel
+@{
+	ViewBag.Title = "Add Project";
+}
+
+@if (Model.Projects.Count == 0)
+{
+<p style="display: block; margin-top: 20px; font-size: 16pt;">Нет новых проэктов. @Html.ActionLink("Обратно", "EmployeeDetail", new { employeeLogin = Model.UserLogin })</p>
+}
+else
+{
+	<style>
+		table {
+			margin-top: 30px;
+		}
+
+		table td{
+			border: 2px solid black;
+			padding: 5px 10px;
+		}
+
+		.AddBtn {
+			background: #19750d;
+			color: white;
+			padding: 5px 10px;
+			font-weight: 600;
+			border-radius: 10px;
+		}
+	</style>
+
+	<table>
+		<tbody>
+			@foreach (var project in Model.Projects)
+			{
+				<tr>
+					<td>@project.Caption</td>
+					<td>@Html.ActionLink("Добавить", "AddProjectToEmployeeValue", new { employeeLogin = Model.UserLogin, projectID = project.ID }, new { @class = "btn btn-primary" })</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	@Html.ActionLink("Обратно", "EmployeeDetail", new { employeeLogin = Model.UserLogin }, new { @style="margin-top: 20px; display: block; width: max-content;" })
+}
+

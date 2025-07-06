@@ -1,0 +1,62 @@
+﻿@model MasterIndexViewModel
+@section SiteLinks{
+	<link rel="stylesheet" href="~/css/MasterIndexStyle.css">
+}
+@section SiteScripts{
+	<script src="~/js/MasterIndexJS.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_Token = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<input id="AntiForgeryToken" type="hidden" value="@AF_Token" />
+<div class="MainButtons">
+	<a class="MainAddButton" href="@Url.Action("CreateOrder", "Home")">Добавить</a>
+	<select size="1" url="@Url.Action("OrderByCategory", "Home")" class="MainCategoryFilterList" onchange="OnCategoryListChange()">
+		<option value="0">Все</option>
+		@foreach (var category in Model.Categories)
+		{
+			<option value="@category.ID">@category.Value</option>
+		}
+
+	</select>
+</div>
+<div class="MainData">
+	<div class="MainTable" sortlink="@Url.Action("SortOrders", "Home")">
+		<div class="MainTableHeader">
+			<button sortcolumn="1" onclick="OnTableHeadCellClick()" class="MainTableHeadCell"><p>Категория</p></button>
+			<button sortcolumn="2" onclick="OnTableHeadCellClick()" class="MainTableHeadCell"><p>Клиент</p></button>
+			<button sortcolumn="3" onclick="OnTableHeadCellClick()" class="MainTableHeadCell"><p>Зарплата</p></button>
+			<button sortcolumn="4" onclick="OnTableHeadCellClick()" class="MainTableHeadCell"><p>Дата начала</p></button>
+		</div>
+		<div class="MainTableBody">
+
+			@foreach (var order in Model.Orders)
+			{
+				<div class="TableOrderItem">
+					<input value="@order.ID" id="@($"order{order.ID}")" type="checkbox" class="OrderItemCheckbox" onchange="OrderItemChange()">
+					<label class="OrderItemLabel" for="@($"order{order.ID}")">
+						<div class="MainTableBodyCell">@order.Product.Category.Value</div>
+						<div class="MainTableBodyCell">@($"{order.Client.FirstName} {order.Client.LastName}")</div>
+						<div class="MainTableBodyCell">@order.Salary</div>
+						<div class="MainTableBodyCell">@order.StartDate.ToString(@"dd.MM.yyyy HH:mm")</div>
+					</label>
+					<div class="OrderItemData">
+						<div class="OrderItemDataInnerDiv">
+							<div class="OrderItemDataHeader">
+								<p>Brand: <span>@order.Product.Brand</span></p>
+								<p>Model: <span>@order.Product.Model</span></p>
+								<p>Year issue: <span>@order.Product.YearIssue</span></p>
+							</div>
+							<div class="OrderItemDataButtons">
+								<button onclick="CompleteOrderClick()" url="@Url.Action("CompleteOrder", "Home")" orderid="@order.ID">Завершить</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+

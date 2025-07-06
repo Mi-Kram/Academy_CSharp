@@ -1,0 +1,67 @@
+﻿@model Main.Models.LoginViewModel
+@{
+	ViewBag.Title = "Авторизация";
+	ViewBag.IsLogin = true;
+}
+
+<div class="container">
+	<script>
+		function OnSuccessForm(data) {
+			var url = $('#urlPathForm').val();
+			if (url) location.href = url;
+		}
+	</script>
+
+	@using (Ajax.BeginForm("TryLogin", "Account", null, new AjaxOptions
+	{
+		UpdateTargetId = "LoginFormContent",
+		HttpMethod = "POST",
+		OnSuccess = "OnSuccessForm"
+	}, new { @enctype = "multipart/form-data" }))
+	{
+		<h2>Авторизация</h2>
+
+		<div id="LoginFormContent">
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "")
+			@Html.HiddenFor(x => x.url, new { id="urlPathForm" })
+
+			<div class="FormInput">
+				<ion-icon name="person-outline"></ion-icon>
+				@Html.TextBoxFor(m => m.Login, new { @maxlength = "15", @placeholder = "login", @autocomplete = "off" })
+			</div>
+			@Html.ValidationMessageFor(m => m.Login, "", new { @class = "ErrorMessage" })
+
+			<div class="FormInput">
+				<ion-icon name="key-outline"></ion-icon>
+				@Html.TextBoxFor(m => m.Password, new { @type = "password", @maxlength = "15", @placeholder = "password", @autocomplete = "off" })
+				<div style="cursor: pointer;" onclick="ShowPassword()"><ion-icon name="eye-outline"></ion-icon></div>
+			</div>
+			@Html.ValidationMessageFor(m => m.Password, "", new { @class = "ErrorMessage" })
+		</div>
+
+		<button class="FormButton" onclick="event.target.blur()">Login</button>
+	}
+
+	<script>
+		$('.FormInput').click(function (e) {
+			$(this).find('input').focus();
+		});
+	</script>
+
+	<script>
+		function ShowPassword() {
+			$(event.target).find('ion-icon').attr('name', 'eye-off-outline');
+			$(event.target).closest('.FormInput').find('input').attr('type', 'text');
+			event.target.onclick = HidePassword;
+		}
+
+		function HidePassword() {
+			$(event.target).find('ion-icon').attr('name', 'eye-outline');
+			$(event.target).closest('.FormInput').find('input').attr('type', 'password');
+			event.target.onclick = ShowPassword;
+		}
+	</script>
+</div>
+
+

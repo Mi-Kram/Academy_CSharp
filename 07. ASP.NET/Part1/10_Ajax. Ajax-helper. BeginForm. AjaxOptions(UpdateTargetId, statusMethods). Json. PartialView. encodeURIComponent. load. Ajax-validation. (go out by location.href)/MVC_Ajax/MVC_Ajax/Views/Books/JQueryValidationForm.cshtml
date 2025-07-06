@@ -1,0 +1,111 @@
+﻿@model MVC_Ajax.ViewModels.BookFormViewModel
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<h2>@Model.Book.Title</h2>
+
+<script type="text/javascript">
+    function onSuccess(data) {
+        console.log(data);
+
+        // скрыть все ошибки, показанные на предыдущем шаге валидации
+        $("input").removeClass('input-validation-error');
+        $("select").removeClass('input-validation-error');
+        $("span[data-valmsg-for]").removeClass('field-validation-error');
+        $("span[data-valmsg-for]").addClass('field-validation-valid');
+        $("span[data-valmsg-for]").text("");
+
+        // перебрать все полученные ошибки валидации
+        $.each(data.errors, function (index, value) {
+            console.log(index);
+            console.log(value);
+
+            // сделать первую букву заглавной в ключе ошибки
+            var _id = value.key.charAt(0).toUpperCase() + value.key.substring(1);
+            id = _id.replace('.', '_');
+
+            //console.log(id);
+
+            // вариант для vanilla JS
+            //var element = document.getElementById(id);
+            //element.classList.add('input-validation-error');
+
+            // выделить текстовое поле с ошибкой (вариант для jQuery)
+            var filter = "input[name='" + _id + "']";
+            $(filter).addClass('input-validation-error');
+
+            // показать сообщение об ошибке для каждого текстового поля с ошибкой
+            var validationMessageElement = $('span[data-valmsg-for="' + _id + '"]');
+            validationMessageElement.removeClass('field-validation-valid');
+            validationMessageElement.addClass('field-validation-error');
+            validationMessageElement.text(value.errors[0]);
+
+            // вариант для vanilla JS
+            /*var pattern = "span[data-valmsg-for='" + _id + "']";
+            console.log(pattern);
+            var validationElement = document.querySelectorAll(pattern)[0];
+            console.log(validationElement);
+            validationElement.classList.remove('field-validation-valid');
+            validationElement.classList.add('field-validation-error');
+            validationElement.innerHTML = value.errors[0];*/
+        });
+    }
+</script>
+
+@using (Ajax.BeginForm("Save2", "Books", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "onSuccess"
+}))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+        <!-- втроенная защита от CSRF - атаки -->
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Title)
+        @Html.TextBoxFor(m => m.Book.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.Title)
+    </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.Author)
+            @Html.TextBoxFor(m => m.Book.Author, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Author)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Genres)
+            @Html.DropDownListFor(m => m.Book.Genre, new SelectList(Model.Genres, "Name", "Name"), "Select genre", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Genre)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.PubDate)
+            @Html.TextBoxFor(m => m.Book.PubDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.PubDate)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.Price)
+            @Html.TextBoxFor(m => m.Book.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Price)
+        </div>
+
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(m => m.Book.hasAudioBook) Is audio book provided?
+            </label>
+        </div>
+
+        @Html.HiddenFor(m => m.Book.Id)
+
+        <button class="btn btn-primary">Save</button>
+        <input class="btn" type="button" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Books") + "'");" />
+}
+
+<div id="results">
+</div>

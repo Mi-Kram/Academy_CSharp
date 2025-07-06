@@ -1,0 +1,45 @@
+﻿@model List<Main.Areas.Identity.Data.Product>
+@section SiteLinks{
+	<link href="/css/AdminProductsStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminProductsScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<div class="ProductContainer">
+	<div class="CRUDButtons">
+		<a class="CRUDButton Create" href="@Url.Action("AddProduct", "Admin")">Добавить</a>
+		<button class="CRUDButton Edit" url="@Url.Action("EditProduct", "Admin")" onclick="OnProductEditCkick()">Изменить</button>
+		<button class="CRUDButton Delete" token="@AF_TOKEN" url="@Url.Action("DeleteProduct", "Admin")" onclick="OnProductDeleteClick()">Удалить</button>
+	</div>
+
+	<table class="ProductTable" sorturl="@Url.Action("SortProducts", "Admin")">
+		<thead>
+			<tr>
+				<th class="ProductCheckboxColumn"><div class="ProductTableCheckCell"><input id="ProductSelectAllCheckBox" onchange="OnProductTableMainCheckboxChange()" type="checkbox"></div></th>
+				<th onclick="OnProductTableHeadCellClick(1)"><p>Товар</p></th>
+				<th onclick="OnProductTableHeadCellClick(2)"><p>Цена</p></th>
+				<th onclick="OnProductTableHeadCellClick(3)"><p>Год выпуска</p></th>
+				<th onclick="OnProductTableHeadCellClick(4)"><p>Серийный номер</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var p in Model)
+			{
+				<tr>
+					<td><div class="ProductTableCheckCell"><input id="@p.ID" onchange="OnProductTableRowChange()" class="ProductCheckBox" type="checkbox"></div></td>
+					<td>@p.Category.Value @p.Brand @p.Model</td>
+					<td>@p.Price</td>
+					<td>@p.YearIssue</td>
+					<td>@p.SerialNumber</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+

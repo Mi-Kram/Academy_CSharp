@@ -1,0 +1,42 @@
+﻿@model List<Main.Areas.Identity.Data.ApplicationClient>
+@section SiteLinks{
+	<link href="/css/AdminClientsStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminClientsScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<div class="ClientContainer">
+	<div class="CRUDButtons">
+		<a class="CRUDButton Create" href="@Url.Action("AddClient", "Admin")">Добавить</a>
+		<button class="CRUDButton Edit" url="@Url.Action("EditClient", "Admin")" onclick="OnClientEditCkick()">Изменить</button>
+		<button class="CRUDButton Delete" token="@AF_TOKEN" url="@Url.Action("DeleteClient", "Admin")" onclick="OnClientDeleteClick()">Удалить</button>
+	</div>
+
+	<table class="ClientTable" sorturl="@Url.Action("SortClients", "Admin")">
+		<thead>
+			<tr>
+				<th class="ClientCheckboxColumn"><div class="ClientTableCheckCell"><input id="ClientSelectAllCheckBox" onchange="OnClientTableMainCheckboxChange()" type="checkbox"></div></th>
+				<th onclick="OnClientTableHeadCellClick(1)"><p>Клиент</p></th>
+				<th onclick="OnClientTableHeadCellClick(2)"><p>Адрес</p></th>
+				<th onclick="OnClientTableHeadCellClick(3)"><p>Дата рождения</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var c in Model)
+			{
+				<tr>
+					<td><div class="ClientTableCheckCell"><input id="@c.ID" onchange="OnClientTableRowChange()" class="ClientCheckBox" type="checkbox"></div></td>
+					<td>@c.FirstName @c.LastName</td>
+					<td>@c.Address</td>
+					<td>@c.Birthday.Value.ToString(@"dd.MM.yyyy")</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+

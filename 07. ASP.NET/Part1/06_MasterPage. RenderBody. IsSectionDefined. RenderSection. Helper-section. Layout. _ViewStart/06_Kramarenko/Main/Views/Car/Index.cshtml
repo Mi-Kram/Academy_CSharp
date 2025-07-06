@@ -1,0 +1,27 @@
+﻿@model Main.ViewModel.MainCarPageViewModel
+@{
+	ViewBag.Title = "Car";
+	ViewBag.UserLogin = Model.User.Login;
+	ViewBag.IsAdmin = Model.User.IsAdmin;
+	ViewBag.IsAdminToggle = Model.IsAdminToggle;
+}
+
+@CarHelpers.CreateCarTable(Model.Cars)
+
+@{
+	if (Model.User.IsAdmin && Model.IsAdminToggle)
+	{
+	<div style="margin-top: 20px;">
+		<style>
+			.btn + .btn {
+				margin-left: 10px;
+			}
+		</style>
+
+		<input class="btn btn-primary" type="button" value="Add" onclick="location.href='/Car/Add'" />
+		<input class="btn btn-primary" type="button" value="Remove" onclick="RemoveClick()" />
+		<input class="btn btn-primary" type="button" value="Edit" onclick="EditClick()" />
+		<input class="btn btn-primary" type="button" value="Detail" onclick="DetailClick()" />
+	</div>
+	}
+}

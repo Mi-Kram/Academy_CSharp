@@ -1,0 +1,42 @@
+﻿@model List<Main.Areas.Identity.Data.Product>
+@section SiteLinks{
+	<link href="/css/ChooseProductStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/ChooseProductScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+	var SaveUrl = Url.Action("ChooseProduct", "Admin");
+	var FormType = ViewBag.OrderFormType ?? "create";
+	var BackUrl = FormType == "create" ? Url.Action("AddOrder", "Admin", new { isNotFirst = true }) : Url.Action("EditOrder", "Admin");
+	var SortUrl = Url.Action("ChooseProductSort", "Admin");
+}
+
+<h3 class="ChooseTitle">Выберите товар</h3>
+<table class="ProductTable" token="@AF_TOKEN" saveurl="@SaveUrl" backurl="@BackUrl" sorturl="@SortUrl">
+	<thead>
+		<tr>
+			<th onclick="OnTableHeadCellClick(1)"><p>Товар</p></th>
+			<th onclick="OnTableHeadCellClick(2)"><p>Год выпуска</p></th>
+			<th onclick="OnTableHeadCellClick(3)"><p>Цена</p></th>
+			<th onclick="OnTableHeadCellClick(4)"><p>Серийный номер</p></th>
+			<th class="ProductTableCell Button"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var p in Model)
+		{
+			<tr>
+				<td>@p.Category.Value @p.Brand @p.Model</td>
+				<td>@p.YearIssue</td>
+				<td>@p.Price</td>
+				<td class="SerialNumber">#@p.SerialNumber</td>
+				<td class="ProductTableCell Button"><button class="ChooseButton" onclick="OnChooseButtonClick('@p.ID')">Выбрать</button></td>
+			</tr>
+		}
+	</tbody>
+</table>
+<button class="BackButton" onclick="OnBackButtonClick()">Назад</button>
+

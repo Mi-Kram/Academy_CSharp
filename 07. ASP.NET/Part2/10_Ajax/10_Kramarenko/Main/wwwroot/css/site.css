@@ -1,0 +1,558 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+/* ============================== */
+
+.Galery {
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    min-height: 80vh;
+}
+
+
+.GaleryLeftMenu {
+    width: 200px;
+    background: #9cbb89;
+    flex-shrink: 0;
+}
+
+.GaleryMain {
+    width: 100%;
+}
+
+.GaleryPhotosContainer {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    margin-left: 10px;
+}
+
+.PagpingButtonsContainer{
+    width: 100%;
+    overflow: hidden;
+    padding: 10px;
+    padding-left: 5px;
+}
+
+.PhotoPaggings{
+    display: flex;
+    width: max-content;
+    max-width: 100%;
+}
+
+.PhotoPaggingInput {
+    display: none;
+}
+
+.PhotoPaggingLabel {
+    margin: 0px;
+    padding: 0px;
+    width: max-content;
+    color: black;
+    text-decoration: none;
+    background: #fff;
+    transition: background 0.2s;
+    border-radius: 50%;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px #2e73db solid;
+    margin-left: 5px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.PhotoPaggingLabel:hover {
+    background: #d5e5f7;
+}
+
+.PhotoPaggingInput:checked + .PhotoPaggingLabel {
+    background: #2e73db;
+    text-decoration: none;
+}
+
+.GaleryMenuGroup {
+    width: 100%;
+}
+
+.GaleryMenuGroup > h2 {
+    margin: 20px;
+    margin-bottom: 5px;
+}
+
+.MenuTypeRadio {
+    display: none;
+}
+
+.MenuTypeLabel {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    user-select: none;
+    margin: 0px;
+}
+
+.MenuTypeRadio:checked + .MenuTypeLabel {
+    background: #c4eac4;
+}
+
+.PhotoContainer {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    display: block;
+    text-decoration: none;
+}
+
+.PhotoContainer > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.DeleteImgButtonStyle{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: max-content;
+    background: rgba(255,255,255,0.7);
+    padding: 2px 15px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    display: none;
+}
+
+.DeleteImgButtonStyle:hover{
+    text-decoration: underline;
+}
+
+.PhotoContainer:hover > .DeleteImgButtonStyle{
+    display: block;
+}
+
+.PhotoContainer:hover > img{
+    transform: scale(1.5);
+}
+
+
+
+
+.DetailPhoto {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 30px;
+}
+
+#DP-Caption {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#DP-Caption > p{
+    display: block;
+    width: max-content;
+    font-size: 30px;
+}
+
+#DP-Photo {
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    overflow: hidden;
+    max-width: 100%;
+    align-self: start;
+    justify-self: center;
+}
+
+#DP-Photo > img{
+    width: 100%;
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+#DP-Category {
+    width: max-content;
+    margin-top: -5px;
+}
+
+#DP-Category > p{
+    display: block;
+    width: max-content;
+    padding: 0px;
+    margin: 0px;
+    font-size: 25px;
+}
+#DP-Category > p > span{
+    margin-left: 10px;
+}
+
+#DP-PubDate {
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    width: max-content;
+}
+
+#DP-PubDate > p{
+    display: block;
+    width: max-content;
+    padding: 0px;
+    margin: 0px;
+    font-size: 25px;
+}
+#DP-PubDate > p > span{
+    margin-left: 10px;
+}
+
+#DP-Description {
+    margin-top: 20px;
+}
+
+#DP-Description > p{
+    display: block;
+    width: 100%;
+    text-align: justify;
+    padding: 0px;
+    margin: 0px;
+    font-size: 18px;
+    line-height: 1.4em;
+}
+
+#DP-Comments {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.CommentList{
+    width: 100%;
+}
+
+.Comment{
+    width: 100%;
+    background: #cedaef;
+    margin-top: 10px;
+    padding: 5px 20px 10px 20px;
+    border-radius: 10px;
+}
+
+.CommentDate{
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    color: #666;
+    display: block;
+    width: max-content;
+}
+
+.CommentContent {
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    text-align: justify;
+    word-break: break-word;
+    white-space: pre-line
+}
+
+#DP-Comments > h2 {
+    display: block;
+    width: max-content;
+    margin: 10px auto;
+}
+
+.SendCommentContainer{
+    width: 100%;
+    padding: 10px 20px;
+    background: #b0f0a5;
+    border-radius: 15px;
+    display: flex;
+    align-items:flex-end;
+}
+
+.SendCommentContainer > textarea{
+    resize: none;
+    width: 100%;
+    height: 60px;
+    padding: 5px 10px;
+    outline: none;
+}
+.SendCommentContainer > input{
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-left: 10px;
+}
+
+
+.AddPictureButton {
+    width: max-content;
+    margin: 0px auto;
+    display: block;
+    padding: 2px 10px;
+    border-radius: 5px;
+    margin-top: 6px;
+    outline: none;
+    border: 3px #707070 solid;
+    transition: background 0.3s;
+}
+
+.AddPictureButton:active,
+.AddPictureButton:focus {
+    outline: none;
+}
+
+.AddPictureButton:hover {
+    background: #c4cbd0;
+}
+
+.AddPictureOuterDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    display: flex;
+    display: none;
+}
+
+.AddPictureInnerDiv{
+    min-width: 800px;
+    max-width: 90%;
+    max-height: 90%;
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 50px;
+}
+
+.AddPictureInnerDiv::-webkit-scrollbar {
+    width: 7px;
+}
+
+.AddPictureInnerDiv::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.AddPictureInnerDiv::-webkit-scrollbar-thumb {
+    background: #eee;
+    border-radius: 4px;
+}
+
+.AddPictureInnerDiv::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+}
+
+.AddPictureDiv{
+    width: 100%;
+}
+
+.AddPictureDiv > h2{
+    display: block;
+    color: white;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+}
+
+#AP-Files{
+    width: max-content;
+    margin-top: 20px;
+}
+#AP-Files > input {
+    display: block;
+    border: 1px black solid;
+    outline: none;
+    background: #fff;
+}
+
+#AP-Files > input:active,
+#AP-Files > input:focus{
+    outline: none;
+}
+
+#AP-Caption {
+    width: max-content;
+    margin-top: 20px;
+}
+#AP-Caption > input {
+    display: block;
+    border: none;
+    padding: 2px 15px;
+    width: 350px;
+    outline: none;
+    background: #fff;
+}
+
+#AP-Caption > input:active,
+#AP-Caption > input:focus{
+    outline: none;
+}
+
+#AP-Description {
+    width: 100%;
+    margin-top: 20px;
+}
+#AP-Description > textarea {
+    display: block;
+    border: none;
+    padding: 2px 15px;
+    width: 100%;
+    outline: none;
+    background: #fff;
+    resize: none;
+    height: 180px;
+}
+
+#AP-Description > textarea:active,
+#AP-Description > textarea:focus{
+    outline: none;
+}
+
+#AP-Category {
+    width: max-content;
+    margin-top: 20px;
+}
+#AP-Category > div {
+    width: max-content;
+    margin-top: 5px;
+}
+#AP-Category input{
+    outline: none;
+    border: none;
+}
+#AP-Category label {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    width: max-content;
+    outline: none;
+    background: transparent;
+    color: white;
+}
+
+#AP-Buttons {
+    width: max-content;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+#AP-Buttons > input{
+    border: none;
+    outline: none;
+    display: block;
+    width: 150px;
+    padding: 5px 0;
+}
+
+#AP-Buttons > input:nth-child(2){
+    margin-left: 20px;
+}
+
+
+
+
+
+

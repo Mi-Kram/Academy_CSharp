@@ -1,0 +1,31 @@
+﻿@model Main.Models.ProjectFormViewModel
+@{
+	ViewBag.Title = "Create Project";
+}
+
+
+@using (Html.BeginForm("CreateProject", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @style="margin-top: 30px;" }))
+{
+	@Html.AntiForgeryToken();
+	@Html.ValidationSummary("", new { @class = "text-danger" })
+
+<div style="display: block;">
+	@Html.LabelFor(m => m.Caption, new { @style = "display: block;" })
+	<div style="margin-left: 10px;">
+		@Html.TextBoxFor(m => m.Caption, new { @style = "display: block; width: 400px; padding-inline: 5px;" })
+	</div>
+</div>
+	<div style="display: block; margin-top: 10px;">
+		@Html.LabelFor(m => m.Description, new { style = "display: block;" })
+		<div style="margin-left: 10px;">
+			@Html.TextAreaFor(m => m.Description, new { @style = "width: 400px; height: 300px; display: block; padding: 5px;" })
+		</div>
+	</div>
+	<div style="display: block;">
+		<div style="margin-left: 10px; margin-top: 10px;">
+			<input type="submit" class="btn btn-primary" value="Создать" />
+		</div>
+	</div>
+
+}
+

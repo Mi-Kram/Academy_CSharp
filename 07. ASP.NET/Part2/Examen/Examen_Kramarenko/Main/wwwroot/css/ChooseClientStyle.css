@@ -1,0 +1,88 @@
+﻿.ClientTable{
+	width: 100%;
+	margin-top: 30px;
+	border-collapse: collapse;
+}
+
+.ClientTable th{
+	border-bottom: 2px black solid;
+	padding: 0px 10px 1px 10px;
+}
+
+.ClientTable th p{
+	display: block;
+	font-size: 20px;
+	width: 100%;
+	text-align: start;
+	user-select: none;
+}
+
+.ClientTable tbody tr{
+	background: transparent;
+	transition: background 0.2s;
+}
+
+.ClientTable tbody tr:hover{
+	background: rgba(0, 0, 255, 0.2);
+}
+
+.ClientTable td{
+	border-bottom: 3px #999 solid;
+	padding: 0px 10px;
+	font-size: 20px;
+}
+
+.ClientTableCell.Button{
+	width: 1%;
+	padding: 0px;
+}
+
+.ChooseButton{
+	display: flex;
+	height: 40px;
+	min-width: 120px;
+	width: max-content;
+	border: none;
+	padding: 0px 10px;
+	background: transparent;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	text-decoration: underline;
+	transition: background 0.2s;
+	user-select: none;
+}
+
+.ChooseButton:focus,
+.ChooseButton:hover{
+	text-decoration: none;
+	background: #10de07;
+}
+
+.BackButton{
+	margin-top: 20px;
+	background: #fff;
+	border:2px #000 solid;
+	color: #000;
+	font-size: 25px;
+	padding: 5px 30px;
+	border-radius: 25px;
+	user-select: none;
+	transition: background 0.2s, border-color 0.2s, color 0.2s, border-radius 0.2s;
+}
+
+.BackButton:focus,
+.BackButton:hover{
+	border-color: red;
+	background: red;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.ChooseTitle {
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 50px;
+	margin-top: 20px;
+}

@@ -1,0 +1,205 @@
+﻿* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	min-height: 100vh;
+	background: white;
+}
+
+.MainPageDiv {
+	width: 100%;
+	min-width: max-content;
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	min-height: 100vh;
+	position: relative;
+	background: #565364
+}
+
+.CarHeaderStyle {
+	flex-shrink: 0;
+	height: 50px;
+	background: #111;
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.HeaderLoginDiv {
+	display: block;
+	align-self: center;
+	margin-left: 20px;
+	height: max-content;
+}
+
+.HeaderLoginDiv p {
+	display: block;
+	color: yellow;
+	font-size: 17pt;
+	font-weight: 600;
+	padding: 0px;
+	margin: 0px;
+}
+
+.HeaderAdminToggleDiv {
+	display: block;
+	width: max-content;
+	align-self: flex-end;
+	width: max-content;
+	align-self: center;
+	margin-inline: auto 20px;
+}
+
+.HeaderAdminToggleDiv a {
+	color: white;
+	text-decoration: none;
+	display: block;
+	width: max-content;
+	margin-left: auto;
+	margin-top: auto;
+	align-self: flex-end;
+	font-size: 15pt;
+	font-weight: 600;
+}
+
+.CarMainStyle {
+	width: 100%;
+	min-width: max-content;
+	display: block;
+	padding-inline: 100px;
+}
+
+.MainContainer {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	min-width: 800px;
+}
+
+
+
+
+
+
+.CarTableStyle {
+	margin: 0px;
+	border-collapse: collapse;
+}
+
+	.CarTableStyle thead tr {
+		background: #6296e9;
+	}
+
+	.CarTableStyle tbody tr {
+		background: #ebebeb;
+	}
+
+	/*.CarTableStyle tbody tr:hover {
+    background: #a9a9a9;
+}*/
+
+	.CarTableStyle td {
+		height: 60px;
+		user-select: none;
+	}
+
+	.CarTableStyle th, .CarTableStyle td {
+		border: 1px black solid;
+		padding: 5px 15px;
+	}
+
+	.CarTableStyle tr td:first-child {
+		padding: 5px;
+	}
+
+	.CarTableStyle img {
+		max-width: 120px;
+		max-height: 100%;
+	}
+
+
+
+
+
+
+
+
+.CarDetailTable {
+	margin-top: 20px;
+	font-size: 17pt;
+}
+
+	.CarDetailTable td {
+		padding: 15px 15px 0px;
+	}
+
+	.CarDetailTable tr > td:first-child {
+		padding-right: 50px;
+	}
+
+	.CarDetailTable tr {
+		border-bottom: 2px black solid;
+	}
+
+		.CarDetailTable tr:hover {
+			background: #b9b9b9;
+		}
+
+
+.DetailImg {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+
+
+
+
+
+.TCB {
+	display: none;
+}
+
+.CarEditFormStyle {
+	width: max-content;
+	color: white;
+	font-weight: 500;
+	font-size: 12pt;
+}
+
+.AddFormDivGroup {
+	border-bottom: 2px black solid;
+	padding: 10px 30px 5px;
+}
+
+.CarEditFormStyle button, .CarEditFormStyle input[type="button"] {
+	font-size: 15pt;
+}
+
+.CarEditFormStyle input[type="button"] {
+	margin-left: 20px;
+}
+
+.AddFormDivGroup > p {
+	margin: 0px;
+	padding: 0px;
+	margin-right: 15px;
+}
+
+.DivImageViewerStyle {
+	width: max-content;
+	height: max-content;
+}
+
+.ViewerImageStyle {
+	width: 100%;
+	height: 100%;
+	max-height: 300px;
+	max-width: 300px;
+	border: 0px;
+	border-radius: 5px;
+}

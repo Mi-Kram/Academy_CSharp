@@ -1,0 +1,130 @@
+﻿.ProductContainer{
+	width: 100%;
+}
+
+.CRUDButtons{
+	width: 100%;
+	display: flex;
+	margin-top: 30px;
+}
+
+.CRUDButton{
+	text-decoration: none;
+	width: max-content;
+	background: white;
+	border: 3px black solid;
+	color: black;
+	padding: 5px 0px;
+	min-width: 130px;
+	display: flex;
+	justify-content: center;
+	border-radius: 20px;
+	font-size: 20px;
+	user-select: none;
+	transition: background 0.2s, color 0.2s;
+}
+
+.CRUDButton + .CRUDButton{
+	margin-left: 20px;
+}
+
+.CRUDButton:focus,
+.CRUDButton:hover{
+	background: black;
+	color: white;
+}
+
+.CRUDButton.Create{
+	color: #000;
+	border-color: #000;
+}
+
+.CRUDButton.Create:focus,
+.CRUDButton.Create:hover{
+	background: #000;
+	color: #fff;
+}
+
+.CRUDButton.Edit{
+	color: rgb(9, 12, 185);
+	border-color: rgb(9, 12, 185);
+}
+
+.CRUDButton.Edit:focus,
+.CRUDButton.Edit:hover{
+	background: rgb(9, 12, 185);
+	color: #fff;
+}
+
+.CRUDButton.Delete{
+	color: rgb(243, 18, 18);
+	border-color: rgb(243, 18, 18);
+}
+
+.CRUDButton.Delete:focus,
+.CRUDButton.Delete:hover{
+	background: rgb(243, 18, 18);
+	color: #fff;
+}
+
+.ProductTable{
+	width: 100%;
+	margin-top: 20px;
+	border-collapse: collapse;
+}
+
+.ProductTable > thead > tr{
+	border-bottom: 2px black solid;
+}
+
+.ProductTable > thead th {
+	padding-bottom: 2px;
+}
+
+.ProductTable th p{
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 20px;
+	padding: 0px 10px;
+	user-select: none;
+}
+
+#ProductSelectAllCheckBox{
+	transform: scale(2);
+}
+
+.ProductTable > tbody{
+	font-size: 20px;
+}
+
+.ProductTable > tbody tr{
+	border-bottom: 3px #888 solid;
+	height: 40px;
+	background: transparent;
+	transition: background 0.2s;
+}
+
+.ProductTable > tbody td{
+	padding: 0px 10px;
+}
+
+.ProductCheckBox{
+	transform-origin: 50% 50%;
+	transform: scale(1.6);
+}
+
+.ProductCheckboxColumn{
+	width: 1%;
+	min-width: 30px;
+}
+.ProductTableCheckCell{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.ProductTable > tbody tr:hover {
+	background: rgba(0, 0, 255, 0.2);
+}

@@ -1,0 +1,172 @@
+﻿* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+}
+
+body {
+	min-height: 100vh;
+	background: white;
+}
+
+.LoginFormMainOuterDiv {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	min-width: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.LofinFormBlurDiv {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(/Images/AuthBG.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	filter: blur(5px);
+	z-index: 0;
+}
+
+.LoginFormMainInnerDiv {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+	min-width: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: url(/Images/AuthBG.jpeg);
+	background-repeat: no-repeat;
+	background-size: auto 100%;
+	background-position: center;
+	z-index: 1;
+}
+
+.AuthHeadDiv {
+	width: 100%;
+	height: max-content;
+}
+
+.AuthTitleStyle {
+	width: max-content;
+	margin-inline: auto;
+	font-size: 40pt;
+	font-weight: 900;
+	margin-top: 50px;
+	color: rgb(16, 30, 153);
+	text-shadow: 3px 3px 0px white;
+}
+
+.AuthMainContentDiv {
+	width: 100%;
+	min-width: max-content;
+	height: max-content;
+}
+
+.AuthFormDiv {
+	width: max-content;
+	height: max-content;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 50px;
+	padding-bottom: 10px;
+	border-radius: 20px;
+	margin: 80px auto;
+	margin-bottom: 20px;
+}
+
+.AuthFormDiv form {
+	max-width: 100%;
+	width: max-content;
+	margin-inline: auto;
+}
+
+.AuthFormFieldStyle {
+	max-width: 100%;
+	display: block;
+}
+
+.AuthFormFieldStyle + .AuthFormFieldStyle {
+	margin-top: 20px;
+}
+
+.AuthFormFieldStyle input[type='password'],
+.AuthFormFieldStyle input[type='text'] {
+	max-width: 100%;
+	outline: none;
+	font-size: 15pt;
+	width: 400px;
+	border: 3px gray solid;
+	border-radius: 10px;
+	padding: 10px 20px;
+	font-weight: 600;
+	display: block;
+}
+
+.AuthFormFieldStyle input[type='password']:focus,
+.AuthFormFieldStyle input[type='text']:focus {
+	border-color: blue;
+}
+
+.AuthFormFieldStyle input[type='password']::placeholder,
+.AuthFormFieldStyle input[type='text']::placeholder {
+	user-select: none;
+}
+.AuthFormFieldStyle input[type='password']:focus::placeholder,
+.AuthFormFieldStyle input[type='text']:focus::placeholder {
+	color: blue;
+}
+
+.AuthFormButtonsFieldStyle {
+	width: max-content;
+	margin-inline: auto;
+	margin-top: 20px;
+}
+
+.AuthFormButtonsFieldStyle button {
+	display: block;
+	background: white;
+	outline: none;
+	font-size: 18pt;
+	padding: 10px 30px;
+	border: 4px rgb(14, 12, 167) solid;
+	border-radius: 30px;
+	user-select: none;
+}
+
+.AuthFormButtonsFieldStyle button:hover {
+	color: white;
+	background: rgb(14, 12, 167);
+}
+
+.AuthFormButtonsFieldStyle a {
+	display: block;
+	width: max-content;
+	margin-inline: auto;
+	margin-top: 2px;
+	font-size: 14pt;
+	text-decoration: none;
+	color: rgb(11, 9, 172);
+	font-weight: 600;
+	user-select: none;
+}
+
+.AuthFormButtonsFieldStyle a:hover {
+	text-decoration: underline;
+}
+
+.AuthErrorMsgStyle {
+	color: rgb(248, 15, 15);
+	font-weight: 600;
+	max-width: 580px;
+	text-align: justify;
+	padding: 0px;
+	margin: 2px 10px 0px;
+	display: block;
+}

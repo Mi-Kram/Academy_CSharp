@@ -1,0 +1,44 @@
+﻿@model BooksViewModel
+
+@{ 
+	ViewData["Title"] = "Books";
+}
+
+<section>
+	<div style="width: 100%;">
+		<books-by-type 
+			page="@Model.Table1Page" 
+			book-list="Model.Books" 
+			order-column="@Model.Table1SortColumn" 
+			order-asc="@Model.Table1SortAsc"
+			sort-func="@((col, asc) => Url.Action("Index", "Books", new { table1Page = Model.Table1Page, table2Page=Model.Table2Page, table1SortColumn=col, table1SortAsc=asc, table2SortColumn=Model.Table2SortColumn, table2SortAsc=Model.Table2SortAsc, s = 10 }))">
+		</books-by-type>
+		
+		<paging 
+			all-count="@(Model.Books.Where(x => x.Type.Trim(' ') == "business").Count())" 
+			one-page-count="3" 
+			current-page="Model.Table1Page" 
+			style="margin-top: 20px;"
+			url-func="@(x => Url.Action("Index", "Books", new { table1Page = x, table2Page=Model.Table2Page, table1SortColumn=Model.Table1SortColumn, table1SortAsc=Model.Table1SortAsc, table2SortColumn=Model.Table2SortColumn, table2SortAsc=Model.Table2SortAsc, s = 10 }))">
+		</paging>
+	</div>
+
+	<div style="width: 100%; margin-top: 50px;">
+		<books-by-state 
+			page="@Model.Table2Page" 
+			book-list="Model.Books" 
+			order-column="@Model.Table2SortColumn" 
+			order-asc="@Model.Table2SortAsc"
+			one-page-count="5"
+			sort-func="@((col, asc) => Url.Action("Index", "Books", new { table1Page = Model.Table1Page, table2Page=Model.Table2Page, table1SortColumn=Model.Table1SortColumn, table1SortAsc=Model.Table1SortAsc, table2SortColumn=col, table2SortAsc=asc, s = 10 }))">
+		</books-by-state>
+
+		<paging 
+			all-count="@(Model.Books.Where(x => x.Titleauthors.Select(au => au.Au.State).Contains("CA")).Count())"
+			one-page-count="5" 
+			current-page="Model.Table2Page" 
+			style="margin-top: 20px;"
+			url-func="@(x => Url.Action("Index", "Books", new { table1Page = Model.Table1Page, table2Page=x, table1SortColumn=Model.Table1SortColumn, table1SortAsc=Model.Table1SortAsc, table2SortColumn=Model.Table2SortColumn, table2SortAsc=Model.Table2SortAsc, s = 10 }))">
+		</paging>
+	</div>
+</section>

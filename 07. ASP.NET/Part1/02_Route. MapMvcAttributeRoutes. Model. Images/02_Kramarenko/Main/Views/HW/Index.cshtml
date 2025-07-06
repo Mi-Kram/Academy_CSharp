@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Main.Models.Car>
+
+@{
+    ViewBag.Title = "Cars";
+}
+
+<h2>Cars</h2>
+
+@*@foreach(var car in Model)
+    {
+    <h3>@($"{HttpRuntime.AppDomainAppPath}{car.ImgSrc}")</h3>
+    <h3>@car.ImgSrc</h3>
+    <hr/>
+    }*@
+
+<table class="CarTableStyle">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Speed</th>
+            <th>Price</th>
+            <th>Year</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr onclick="location.href = 'HW/Details/@car.ID'">
+                <td><img src="/@car.ImgSrc" /></td>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>@car.Speed</td>
+                <td>@car.Price</td>
+                <td>@car.Date.Year</td>
+                <td>@car.Type</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+

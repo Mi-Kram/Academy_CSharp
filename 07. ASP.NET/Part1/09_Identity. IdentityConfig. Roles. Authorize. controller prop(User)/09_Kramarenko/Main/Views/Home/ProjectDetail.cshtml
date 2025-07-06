@@ -1,0 +1,83 @@
+﻿@model Main.Models.Project
+@{
+	ViewBag.Title = "Project";
+}
+
+<h2>@Model.Caption</h2>
+<p>@Model.Description</p>
+<hr />
+
+<style>
+	table {
+		box-sizing: border-box;
+	}
+
+		table * {
+			box-sizing: border-box;
+		}
+
+		table tbody tr {
+			background: #e8e8e8;
+		}
+
+		table img{
+			max-height: 50px;
+			max-width: 70px;
+		}
+
+			table tbody tr:nth-child(2n) {
+				background: #b3bfef;
+			}
+
+		table td,
+		table th {
+			border: 2px solid black;
+			padding: 5px 10px;
+		}
+
+	table a {
+		color: white;
+		font-weight: 600;
+	}
+	table a:hover {
+		color: white;
+	}
+
+	.DelBtn {
+		padding: 5px 10px;
+		border-radius: 10px;
+		color: white;
+		background: #dd1d1d;
+		display: block;
+	}
+
+		table thead tr {
+			background: #288e10;
+		}
+</style>
+
+<table style="font-size: 16pt; min-width: 400px; width: max-content;">
+	<caption style="text-align: center; font-size: 20pt;">Работники</caption>
+	<thead>
+		<tr style="color: white;">
+			<th></th>
+			<th>Логин</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var person in Model.Employees)
+		{
+			<tr>
+				<td style="width: max-content;"><img src="/@person.ImgSrc" alt="photo" /></td>
+				<td style="width: 100%;">@person.UserName</td>
+				<td>@Html.ActionLink("DEL", "DeleteEmployeeByProject", new { projectID = Model.ID, employeeLogin = person.UserName }, new { @class = "DelBtn" })</td>
+			</tr>
+		}
+		<tr>
+			<td colspan="3">@Html.ActionLink("Добавить", "AddEmployeeToProject", "Home", new { projectID = Model.ID }, new { @class = "btn btn-primary", @style = "width:100%; min-width: max-content;" })</td>
+		</tr>
+	</tbody>
+</table>
+
+

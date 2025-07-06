@@ -1,0 +1,24 @@
+﻿@model Main.Models.LoginViewModel
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "")
+@Html.HiddenFor(x => x.url, new { id = "urlPathForm" })
+
+<div class="FormInput">
+	<ion-icon name="person-outline"></ion-icon>
+	@Html.TextBoxFor(m => m.Login, new { @maxlength = "15", @placeholder = "login", @autocomplete = "off" })
+</div>
+@Html.ValidationMessageFor(m => m.Login, "", new { @class = "ErrorMessage" })
+
+<div class="FormInput">
+	<ion-icon name="key-outline"></ion-icon>
+	@Html.TextBoxFor(m => m.Password, new { @type = "password", @maxlength = "15", @placeholder = "password", @autocomplete = "off" })
+	<div style="cursor: pointer;" onclick="ShowPassword()"><ion-icon name="eye-outline"></ion-icon></div>
+</div>
+@Html.ValidationMessageFor(m => m.Password, "", new { @class = "ErrorMessage" })
+
+<script>
+	$('.FormInput').click(function (e) {
+		$(this).find('input').focus();
+	});
+</script>

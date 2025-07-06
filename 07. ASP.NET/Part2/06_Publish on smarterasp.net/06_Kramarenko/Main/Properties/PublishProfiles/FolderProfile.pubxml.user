@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Михаил\Desktop\ASP.NET\Core\06\06_Kramarenko\Main\bin\Release\net5.0\publish</_PublishTargetUrl>
+    <History>True|2021-08-30T15:12:47.4038282Z;</History>
+  </PropertyGroup>
+</Project>

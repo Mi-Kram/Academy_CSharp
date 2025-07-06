@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Main.Models.Car>
+
+@{
+	ViewBag.Title = "Cars";
+}
+
+<h2>Cars</h2>
+
+@CarHelpers.CreateCarTable(Model)
+
+<div style="margin-top: 20px;">
+	<style>
+		.btn + .btn {
+			margin-left: 10px;
+		}
+	</style>
+
+	<input class="btn btn-primary" type="button" value="Show ALL" onclick="location.href='/HW/Index'" />
+	<input class="btn btn-primary" type="button" value="Remove" onclick="RemoveClick()" />
+	<input class="btn btn-primary" type="button" value="Edit" onclick="EditClick()" />
+	<input class="btn btn-primary" type="button" value="Detail" onclick="DetailClick()" />
+</div>

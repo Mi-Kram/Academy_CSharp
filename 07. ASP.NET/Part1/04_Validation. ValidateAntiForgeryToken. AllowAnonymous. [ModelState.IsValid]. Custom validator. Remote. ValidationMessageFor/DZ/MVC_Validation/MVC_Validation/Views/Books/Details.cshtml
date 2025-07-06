@@ -1,0 +1,35 @@
+﻿@model MVC_Validation.Models.Book
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<h2>@Model.Title</h2>
+
+<table id="books" class="table table-hover">
+    <tbody>
+        <tr >
+            <td style="width:150px;"><strong>Title:</strong></td>
+            <td>@Model.Title</td>
+        </tr>
+        <tr>
+            <td><strong>Author:</strong></td>
+            <td>@Model.Author</td>
+        </tr>
+        <tr>
+            <td><strong>Genre:</strong></td>
+            <td>@Model.Genre</td>
+        </tr>
+        <tr>
+            <td><strong>Pubdate:</strong></td>
+            <td>@Model.PubDate</td>
+        </tr>
+        <tr>
+            <td><strong>Price:</strong></td>
+            <td>@Model.Price</td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("Edit", "Books", new { @id = @Model.Id }) + "'");">Edit</button>
+<button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("Delete", "Books", new { @id = @Model.Id }) + "'");">Delete</button>

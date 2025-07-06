@@ -1,0 +1,54 @@
+﻿@model Main.Models.person
+@{
+	ViewBag.Title = "Task5";
+}
+
+<h2>Task5</h2>
+
+<style>
+	#ContentFormDiv * {
+		display: block;
+	}
+
+	#ContentFormDiv > div > *:nth-child(3) {
+		color: red;
+	}
+</style>
+
+<script>
+	function onSuccess(data) {
+		if (data.url) {
+			window.location.href = data.url;
+		}
+	}
+</script>
+
+@using (Ajax.BeginForm("Task5Show", "HW", null, new AjaxOptions
+{
+	OnSuccess = "onSuccess",
+	UpdateTargetId = "ContentFormDiv"
+}, new { @style = "margin-top: 20px;" }))
+{
+	<div id="ContentFormDiv">
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary(true, "")
+
+		<div style="margin-top: 10px;">
+			@Html.LabelFor(m => m.FirsName)
+			@Html.TextBoxFor(m => m.FirsName)
+			@Html.ValidationMessageFor(m => m.FirsName)
+		</div>
+		<div style="margin-top: 10px;">
+			@Html.LabelFor(m => m.LastName)
+			@Html.TextBoxFor(m => m.LastName)
+			@Html.ValidationMessageFor(m => m.LastName)
+		</div>
+		<div style="margin-top: 10px;">
+			@Html.LabelFor(m => m.Age)
+			@Html.TextBoxFor(m => m.Age)
+			@Html.ValidationMessageFor(m => m.Age)
+		</div>
+		<button class="btn btn-primary" style="margin-top: 20px;">SHOW</button>
+	</div>
+}
+

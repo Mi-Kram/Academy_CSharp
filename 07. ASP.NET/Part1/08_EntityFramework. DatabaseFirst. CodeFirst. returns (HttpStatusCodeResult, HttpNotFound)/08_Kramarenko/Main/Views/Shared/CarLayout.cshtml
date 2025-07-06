@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+
+	@Scripts.Render("~/bundles/jquery")
+	<script src="/Scripts/jquery.validate.min.js"></script>
+	<script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="~/Scripts/CarScript.js"></script>
+
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/Content/CarStyle.css" />
+</head>
+<body>
+
+	<div class="MainPageDiv">
+		<header class="CarHeaderStyle">
+			<div class="HeaderLoginDiv">
+				<p>@Session[Main.Models.SessionKeys.USER_LOGIN]</p>
+			</div>
+
+			<div class="HeaderRightContentDiv">
+				<div class="HeaderExitDiv" onclick="location.href='/Car/Exit'">
+					<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+					<ion-icon name="exit-outline"></ion-icon>
+					<p>Exit</p>
+				</div>
+				@{
+					try
+					{
+						if ((bool)ViewBag.IsAdmin == true)
+						{
+							if ((bool)ViewBag.IsAdminToggle == true)
+							{
+								<div class="HeaderAdminToggleDiv" style="background: green;">
+									@Html.ActionLink("Admin", "SetUser", "Car", null)
+								</div>
+							}
+							else
+							{
+								<div class="HeaderAdminToggleDiv" style="background: red;">
+									@Html.ActionLink("Admin", "SetAdmin", "Car")
+								</div>
+							}
+						}
+					}
+					catch { }
+				}
+			</div>
+		</header>
+		<main class="CarMainStyle">
+			<div class="MainContainer">
+				@RenderBody()
+			</div>
+		</main>
+	</div>
+</body>
+</html>

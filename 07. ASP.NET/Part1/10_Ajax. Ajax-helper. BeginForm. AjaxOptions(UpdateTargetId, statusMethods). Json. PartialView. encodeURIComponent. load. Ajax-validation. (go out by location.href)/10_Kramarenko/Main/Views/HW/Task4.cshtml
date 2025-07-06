@@ -1,0 +1,89 @@
+﻿@model List<Main.Models.authors>
+@{
+	ViewBag.Title = "Task4";
+}
+
+<h2>Task4</h2>
+
+<script>
+	function SearchAuthors() {
+		var search = $('#au_search').val();
+
+		$.ajax({
+		    url: '@Url.Action("Task4Search", "HW")',
+		    method: "POST",
+		    data: JSON.stringify({
+					au_search: search}),
+		    dataType: 'JSON',
+		    contentType: 'application/json',
+		    cache: false,
+		    processData: false,
+		    success: function (data) {
+					var tableBody = $("#table  tbody");
+					tableBody.find("tr").remove();
+					data.forEach(x => {
+						tableBody.append(`
+<tr>
+	<td>${x.au_fname}</td>
+	<td>${x.au_lname}</td>
+	<td>${x.address}</td>
+	<td>${x.phone}</td>
+	<td>${x.state}</td>
+	<td>${x.city}</td>
+</tr>`);
+					});
+		    }
+		})
+	}
+</script>
+
+@Html.TextBox("au_search", "", new { @id = "au_search" })
+<button style="padding: 5px 20px; border-radius: 5px;" onclick="SearchAuthors()">Поиск</button>
+
+<style>
+	table {
+		border-collapse: collapse;
+	}
+
+		table td,
+		table th {
+			padding: 5px 10px;
+			border: 2px black solid;
+		}
+
+		table thead tr {
+			background: #4680db;
+		}
+
+		table tbody tr:nth-child(2n) {
+			background: #7f7;
+		}
+</style>
+
+<table id="table" style="margin-top: 20px;">
+	<thead>
+		<tr>
+			<th>First name</th>
+			<th>Last name</th>
+			<th>Address</th>
+			<th>Phone</th>
+			<th>State</th>
+			<th>City</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var au in Model)
+		{
+			<tr>
+				<td>@au.au_fname</td>
+				<td>@au.au_lname</td>
+				<td>@au.address</td>
+				<td>@au.phone</td>
+				<td>@au.state</td>
+				<td>@au.city</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

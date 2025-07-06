@@ -1,0 +1,20 @@
+﻿@model Main.Models.Car
+
+@{
+    ViewBag.Title = "Car";
+}
+
+<h2>Car @Model.Brand</h2>
+
+<img class="DetailImg" src="/@Model.ImgSrc"/>  
+<table class="CarDetailTable">
+    <tbody>
+        <tr><td>Brand</td><td>@Model.Brand</td></tr>
+        <tr><td>Model</td><td>@Model.Model</td></tr>
+        <tr><td>Speed</td><td>@Model.Speed</td></tr>
+        <tr><td>Price</td><td>@Model.Price</td></tr>
+        <tr><td>Year</td><td>@Model.Date.Year</td></tr>
+        <tr><td>Type</td><td>@Model.Type</td></tr>
+    </tbody>
+</table>
+

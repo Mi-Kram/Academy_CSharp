@@ -1,0 +1,27 @@
+﻿@model Main.ViewModel.AuthViewModel
+
+@{
+	ViewBag.Title = "Register";
+}
+
+@Html.HiddenFor(m => m.IsLoginForm)
+
+<div class="AuthFormFieldStyle">
+	@Html.TextBoxFor(m => m.Login, new { @type = "text", @maxlength = 15, @placeholder = "Login" })
+	@Html.ValidationMessageFor(m => m.Login, "", new { @class = "AuthErrorMsgStyle" })
+</div>
+<div class="AuthFormFieldStyle">
+	@Html.TextBoxFor(m => m.Password, new { @type = "password", @maxlength = 15, @placeholder = "Password" })
+	@Html.ValidationMessageFor(m => m.Password, "", new { @class = "AuthErrorMsgStyle" })
+</div>
+<div class="AuthFormFieldStyle">
+	@Html.TextBoxFor(m => m.RepeatPassword, new { @type = "password", @maxlength = 15, @placeholder = "Repeat password" })
+	@Html.ValidationMessageFor(m => m.RepeatPassword, "", new { @class = "AuthErrorMsgStyle" })
+</div>
+<div class="AuthFormButtonsFieldStyle">
+	<button>Register</button>
+	@Html.ActionLink("Login", "Login", "Auth")
+</div>
+
+
+

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>@ViewBag.Title</title>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<link rel="stylesheet" href="~/Content/AuthFormStyle.css" />
+	<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	@if (ViewBag.IsLogin != null)
+	{
+		<script src="~/Scripts/AuthFormScript.js"></script>
+		<script src="~/Scripts/AuthBublesOnWindowResize.js"></script>
+	}
+	else
+	{
+		<style>
+			body {
+				background: rgb(255, 255, 255);
+				background: url(/Images/ChatMsgBackground.jpg);
+				background-size: 300px;
+			}
+		</style>
+	}
+</head>
+
+<body>
+	<div class="TopMenu">
+		<a href="/Account/Chats" class="LookChatsDiv">Посмотреть чаты</a>
+		@if (ViewBag.IsLogin == true)
+		{
+			<a href="/Account/Register" class="AuthRef">Register</a>
+		}
+		else
+		{
+			<a href="/Account/Login" class="AuthRef">Login</a>
+		}
+	</div>
+
+	@RenderBody()
+
+	@if (ViewBag.IsLogin != null)
+	{
+		<footer>
+			<div class="FooterLogo"><img src="~/Images/messangerImg.png" alt="photo"></div>
+			<div class="FooterContent">
+				<div>
+					<h3>About</h3>
+					<a href="#">About us</a>
+					<a href="#">Timeline</a>
+					<a href="#">Careers</a>
+					<a href="#">Dealer Registration</a>
+					<a href="#">Corporate Sales</a>
+				</div>
+
+				<div>
+					<h3>Support</h3>
+					<a href="#">Contact Us</a>
+					<a href="#">Returns</a>
+					<a href="#">Warranty</a>
+					<a href="#">Help / Shipping</a>
+					<a href="#">Support</a>
+				</div>
+
+				<div>
+					<h3>Other</h3>
+					<a href="#">Gift Card</a>
+					<a href="#">Blog</a>
+					<a href="#">Affiliate Program</a>
+					<a href="#">Store Locator</a>
+				</div>
+			</div>
+		</footer>
+	}
+</body>
+</html>
+
+
+

@@ -1,0 +1,64 @@
+﻿@model List<Main.Areas.Identity.Data.Category>
+@section SiteLinks{
+	<link href="/css/AdminCreateProductStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminCreateProductScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<form class="Form" action="@Url.Action("CreateProduct", "Admin")" method="post" onsubmit="OnFormSubmit()">
+	<h3 class="FormTitle">Создание товара</h3>
+	<input id="AntiForgeryToken" type="hidden" value="@AF_TOKEN" />
+	<span id="FormError" class="FormError"></span>
+
+	<div class="FormGroup">
+		<label class="FormGroupSelectTitle">Category</label>
+		<select id="CategoryID" class="FormGroupInput Select">
+			<option selected hidden disabled></option>
+			@foreach (var c in Model)
+			{
+				<option value="@c.ID">@c.Value</option>
+			}
+		</select>
+		<span id="CategoryIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Brand" maxlength="20" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">Brand</label>
+		<span id="BrandError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Model" maxlength="20" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">Model</label>
+		<span id="ModelError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="SerialNumber" maxlength="20" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">Serial Number</label>
+		<span id="SerialNumberError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Price" class="FormGroupInput" type="number" min="0" placeholder=" ">
+		<label class="FormGroupTextTitle">Price</label>
+		<span id="PriceError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="YearIssue" class="FormGroupInput" min="0" max="2021" type="number" placeholder=" ">
+		<label class="FormGroupTextTitle">Year Issue</label>
+		<span id="YearIssueError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup Buttons">
+		<button class="FormButton Submit" onclick="event.target.blur();">Создать</button>
+		<a class="FormButton Cancel" href="@Url.Action("Products", "Admin")">Отмена</a>
+	</div>
+</form>

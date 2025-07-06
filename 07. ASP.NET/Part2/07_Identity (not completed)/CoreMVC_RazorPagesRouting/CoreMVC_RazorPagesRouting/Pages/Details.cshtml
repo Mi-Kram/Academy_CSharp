@@ -1,0 +1,31 @@
+﻿@page
+@model CoreMVC_RazorPagesRouting.Pages.DetailsModel
+@{
+}
+
+<h2>@Model.book.Title</h2>
+
+<table id="books" class="table table-hover">
+    <tbody>
+        <tr>
+            <td style="width:150px;"><strong>Title:</strong></td>
+            <td>@Model.book.Title</td>
+        </tr>
+        <tr>
+            <td><strong>Author:</strong></td>
+            <td>@Model.book.Author</td>
+        </tr>
+        <tr>
+            <td><strong>Genre:</strong></td>
+            <td>@Model.book.Genre</td>
+        </tr>
+        <tr>
+            <td><strong>Pubdate:</strong></td>
+            <td>@Model.book.PubDate</td>
+        </tr>
+        <tr>
+            <td><strong>Price:</strong></td>
+            <td>@Model.book.Price</td>
+        </tr>
+    </tbody>
+</table>

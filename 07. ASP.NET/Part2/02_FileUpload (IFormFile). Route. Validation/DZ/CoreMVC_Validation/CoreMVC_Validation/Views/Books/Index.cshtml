@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CoreMVC_Validation.Models.Book>
+
+@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Books</h2>
+
+<table id="books" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Pubdate</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(book.Title, "Details", "Books", new { @id = book.Id }, null)</td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.PubDate</td>
+                <td>@book.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<button class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("New", "Books") + "'");">New book</button>

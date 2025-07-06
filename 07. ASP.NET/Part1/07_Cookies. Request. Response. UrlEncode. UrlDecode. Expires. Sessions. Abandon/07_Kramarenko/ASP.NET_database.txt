@@ -1,0 +1,138 @@
+create database ASP_NET_CAR_DB
+use ASP_NET_CAR_DB
+
+-- tables
+create table person(
+	login varchar(20) primary key, 
+	password varchar(100), 
+	isAdmin bit NOT NULL)
+
+create table car(
+	carID int identity primary key, 
+	brand varchar(50),
+	model varchar(50),
+	speed float NOT NULL,
+	price float NOT NULL,
+	date datetime NOT NULL,
+	typeID int NOT NULL,
+	imgSrc varchar(100))
+
+create table carType(
+	typeID int identity primary key, 
+	value varchar(50))
+
+
+create table person_car(
+	personLogin varchar(20),
+	carID int,
+	primary key(personLogin, carID))
+
+
+-- Constaints
+
+alter table person_car add constraint FK_person_car_person
+foreign key (personLogin) references person(login)
+
+alter table person_car add constraint FK_person_car_car
+foreign key (carID) references car(carID)
+
+
+-- functions
+
+-- 1
+create function GetCarsByLogin(@login varchar(20))
+	returns table as 
+	return select * from car
+	where carID in (select carID from person_car 
+	where personLogin = @login)
+
+-- 2
+create function IsLoginExsist(@login varchar(20))
+	returns bit as 
+	begin
+		declare @result bit
+
+		if((select count(*) from person where login = @login) = 1) select @result = 1
+		else select @result = 0
+
+		return @result
+	end
+
+
+-- insert start values
+insert into person(login, password, isAdmin)
+values
+	('Ivan', 'M/ZLkc/v4dWFNKFHQsmEQ6PKLlAaxcGMUiRo2ChXkcE+ZxJCWeFbFtgjss+Wr+NN7TI0wNZx5VA3pg7gZ1N4HA==', 1), -- qwerty
+	('Petr', 'M/ZLkc/v4dWFNKFHQsmEQ6PKLlAaxcGMUiRo2ChXkcE+ZxJCWeFbFtgjss+Wr+NN7TI0wNZx5VA3pg7gZ1N4HA==', 0), -- qwerty
+	('Anna', 'M/ZLkc/v4dWFNKFHQsmEQ6PKLlAaxcGMUiRo2ChXkcE+ZxJCWeFbFtgjss+Wr+NN7TI0wNZx5VA3pg7gZ1N4HA==', 1), -- qwerty
+	('Lisa', 'M/ZLkc/v4dWFNKFHQsmEQ6PKLlAaxcGMUiRo2ChXkcE+ZxJCWeFbFtgjss+Wr+NN7TI0wNZx5VA3pg7gZ1N4HA==', 0), -- qwerty
+	('Roma', 'M/ZLkc/v4dWFNKFHQsmEQ6PKLlAaxcGMUiRo2ChXkcE+ZxJCWeFbFtgjss+Wr+NN7TI0wNZx5VA3pg7gZ1N4HA==', 0)	 -- qwerty
+
+
+insert into car(brand, model, speed, price, date, typeID, imgSrc)
+values
+	('BMW', 'A', '310', '11000', '01.01.2010', '1', 'Images/Cars/1.jpg'),
+	('Mercedes', 'A', '300', '10000', '01.01.2006', '2', 'Images/Cars/2.jpg'),
+	('Toyota', 'A', '240', '7000', '01.01.1996', '3', 'Images/Cars/3.jpg'),
+	('Volkswagen', 'B', '215', '8000', '01.01.1995', '1', 'Images/Cars/4.jpg'),
+	('Porsche', 'B', '365', '25000', '01.01.2018', '2', 'Images/Cars/5.jpg'),
+	('Honda', 'B', '280', '12000', '01.01.2009', '3', 'Images/Cars/6.jpg'),
+	('Ford', 'C', '220', '11000', '01.01.2001', '1', 'Images/Cars/7.jpg'),
+	('Nissan', 'C', '210', '6000', '01.01.1986', '2', 'Images/Cars/8.jpg'),
+	('BMW', 'C', '330', '16000', '01.01.2014', '4', 'Images/Cars/9.jpg'),
+	('BMW', 'D', '330', '18000', '01.01.2003', '1', 'Images/Cars/10.jpg'),
+	('Ford', 'D', '190', '9000', '01.01.1999', '2', 'Images/Cars/11.jpg'),
+	('Honda', 'D', '300', '10000', '01.01.2003', '4', 'Images/Cars/12.jpg')
+
+
+insert into carType(value)
+values
+	('Sedan'), ('PickUp'),
+	('Convertible'), ('Roadster')	
+
+
+insert into person_car(personLogin, carID)
+values
+	('Ivan', '1'), ('Ivan', '2'), ('Ivan', '3'), ('Ivan', '4'),
+	('Petr', '3'), ('Petr', '5'), ('Petr', '7'), ('Petr', '9'),
+	('Petr', '11'), ('Anna', '4'), ('Anna', '7'), ('Anna', '10'),
+	('Lisa', '1'), ('Lisa', '2'), ('Lisa', '3'), ('Lisa', '4'),
+	('Lisa', '9'), ('Lisa', '10'), ('Roma', '5'), ('Roma', '6'),
+	('Roma', '7'), ('Roma', '8'), ('Roma', '9'), ('Roma', '10')
+
+
+-- drop constraints
+alter table person_car drop constraint FK_person_car_person
+alter table person_car drop constraint FK_person_car_car
+
+-- drop tables
+drop table person_car
+drop table person
+drop table car
+drop table carType
+
+-- drop functions
+drop function GetCarsByLogin
+drop function IsLoginExsist
+
+-- drop database
+drop database ASP_NET_CAR_DB
+
+
+
+
+/*==================================================*/
+
+
+select * from person
+select * from car
+select * from carType
+select * from person_car
+
+select * from dbo.GetCarsByLogin('petr')
+select dbo.IsLoginExsist('PETR')
+
+
+
+
+

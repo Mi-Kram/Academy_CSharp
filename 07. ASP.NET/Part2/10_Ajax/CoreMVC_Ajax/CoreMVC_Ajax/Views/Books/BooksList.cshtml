@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CoreMVC_Ajax.Models.Book>
+
+<table id="books" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Pubdate</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Genre</td>
+                <td>@book.PubDate</td>
+                <td>@book.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>

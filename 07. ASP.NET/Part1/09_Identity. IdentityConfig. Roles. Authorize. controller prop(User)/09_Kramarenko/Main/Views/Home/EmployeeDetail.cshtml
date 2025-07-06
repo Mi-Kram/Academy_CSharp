@@ -1,0 +1,96 @@
+﻿@model Main.Models.ApplicationUser
+@{
+	ViewBag.Title = "Employee";
+}
+
+<style>
+	.EmployeeDataTable *,
+	.EmployeeProjectsTable *{
+		box-sizing: border-box;
+		font-size: 16pt;
+	}
+
+	.EmployeeDataTable{
+		margin-top: 30px;
+	}
+
+		.EmployeeDataTable tr td:nth-child(1){
+			background: #90b2eb;
+		}
+
+		.EmployeeDataTable td,
+		.EmployeeDataTable th,
+		.EmployeeProjectsTable td,
+		.EmployeeProjectsTable th {
+			border: 2px solid black;
+			padding: 5px 10px;
+		}
+
+	.EmployeeProjectsTable a{
+		color: white;
+		font-weight: 600;
+	}
+
+	.EmployeeProjectsTable tbody tr {
+		background: #e8e8e8;
+	}
+
+	.EmployeeProjectsTable tbody tr:nth-child(2n) {
+		background: #b3bfef;
+	}
+
+	.EmployeeProjectsTable thead tr {
+		background: #288e10;
+	}
+
+	.DelBtn {
+		padding: 5px 10px;
+		border-radius: 10px;
+		color: white;
+		background: #dd1d1d;
+	}
+</style>
+
+<table class="EmployeeDataTable">
+	<tbody>
+		<tr>
+			<td>Login</td>
+			<td>@Model.UserName</td>
+		</tr>
+		<tr>
+			<td>Age</td>
+			<td>@Model.Age</td>
+		</tr>
+		<tr>
+			<td>Address</td>
+			<td>@Model.Address</td>
+		</tr>
+	</tbody>
+</table>
+
+<hr />
+
+
+<table class="EmployeeProjectsTable">
+	<caption style="text-align: center; font-size: 20pt;">Проекты</caption>
+	<thead>
+		<tr style="color: white;">
+			<th>Проект</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var project in Model.Projects)
+		{
+			<tr>
+				<td>@project.Caption</td>
+				<td>@Html.ActionLink("DEL", "DeleteProjectByEmployee", new { employeeLogin = Model.UserName, projectID = project.ID }, new { @class = "DelBtn" })</td>
+			</tr>
+		}
+
+		<tr>
+			<td colspan="2">@Html.ActionLink("Добавить", "AddProjectToEmployee", "Home", new { employeeLogin=Model.UserName }, new { @class="btn btn-primary", @style="width:100%; min-width: max-content;" })</td>
+		</tr>
+	</tbody>
+</table>
+

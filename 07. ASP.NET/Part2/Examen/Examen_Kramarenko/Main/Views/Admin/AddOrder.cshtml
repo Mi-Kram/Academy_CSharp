@@ -1,0 +1,84 @@
+﻿@model AdminCreateOrderModel
+@section SiteLinks{
+	<link href="/css/AdminAddOrderStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminAddOrderScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<form class="OrderForm" action="@Url.Action("CreateOrder", "Admin")" onsubmit="OnOrderFormSubmit()">
+	<input id="AntiForgeryToken" type="hidden" value="@AF_TOKEN">
+	<h3 class="OrderFormTitle">Создание заказа</h3>
+	<span id="FormError" class="FormError"></span>
+
+	<div class="FormGroup">
+		<input id="ProductIDValue" type="hidden" value="@(Model.ProductID.HasValue ? Model.ProductID : "")">
+		@if (Model.ProductID.HasValue)
+		{
+			<button id="ProductID" class="FormGroupInput Button" onclick="OnChooseProductClick('@Url.Action("ChooseProduct", "Admin")')">
+				<div class="ProductButtonDiv">
+					<p>@Model.Product (@Model.ProductYear)</p>
+					<p>#@Model.ProductSerialNumber</p>
+				</div>
+			</button>
+		}
+		else
+		{
+			<button id="ProductID" class="FormGroupInput Button" onclick="OnChooseProductClick('@Url.Action("ChooseProduct", "Admin")')">Товар</button>
+		}
+		<span id="ProductIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input id="ClientIDValue" type="hidden" value="@(Model.ClientID.HasValue ? Model.ClientID : "")">
+		@if (Model.ClientID.HasValue)
+		{
+			<button id="ClientID" class="FormGroupInput Button" onclick="OnChooseClientClick('@Url.Action("ChooseClient", "Admin")')">
+				<div class="ClientButtonDiv">
+					<p>@Model.Client</p>
+					<p>Год рождения: @Model.ClientBirthday</p>
+				</div>
+			</button>
+		}
+		else
+		{
+			<button id="ClientID" class="FormGroupInput Button" onclick="OnChooseClientClick('@Url.Action("ChooseClient", "Admin")')">Клиент</button>
+		}
+		<span id="ClientIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input id="MasterIDValue" type="hidden" value="@(Model.MasterID != null && Model.MasterID.Length != 0 ? Model.MasterID : "")">
+		@if (Model.MasterID != null && Model.MasterID.Length != 0)
+		{
+			<button id="MasterID" class="FormGroupInput Button" onclick="OnChooseMasterClick('@Url.Action("ChooseMaster", "Admin")')">
+				<div class="MasterButtonDiv">
+					<div class="MasterPhotoDiv">
+						<img src="@Model.MasterPhoto" alt="photo" />
+					</div>
+					<p>@Model.Master</p>
+				</div>
+			</button>
+		}
+		else
+		{
+			<button id="MasterID" class="FormGroupInput Button" onclick="OnChooseMasterClick('@Url.Action("ChooseMaster", "Admin")')">Мастер</button>
+		}
+		<span id="MasterIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Salary" type="number" value="@(Model.Salary.HasValue ? Model.Salary : "")" min="0" class="FormGroupInput" placeholder=" " />
+		<label class="FormGroupTextTitle">Оклад</label>
+		<span id="SalaryError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup Buttons">
+		<button class="FormButton Submit" onclick="event.target.blur()">Создать</button>
+		<a class="FormButton Cancel" href="@Url.Action("Index", "Admin")">Отмена</a>
+	</div>
+</form>

@@ -1,0 +1,343 @@
+﻿@model PicturesViewModel
+
+@{
+	ViewData["Title"] = "Galery";
+}
+
+<section class="Galery">
+	<div class="GaleryLeftMenu">
+		<div class="GaleryMenuGroup">
+			<h2>Тип</h2>
+			<pic-category input-class="MenuTypeRadio"
+						  category-id="0"
+						  input-id="0"
+						  onchange="ChangePhotosType()"
+						  group="glmt"
+						  is-checked="@(Model.CategoryID==0)"
+						  label-class="MenuTypeLabel"
+						  content="Все">
+			</pic-category>
+			@for (int i = 0; i < Model.Categories.Count; i++)
+			{
+				<pic-category input-class="MenuTypeRadio"
+							  category-id="@Model.Categories[i].ID"
+							  input-id="@($"glmt{i+1}")"
+							  onchange="ChangePhotosType()"
+							  group="glmt"
+							  is-checked="false"
+							  label-class="MenuTypeLabel"
+							  content="@Model.Categories[i].Value">
+				</pic-category>
+			}
+		</div>
+		<div class="GaleryMenuGroup">
+			<button onclick="AddPictureClick()" class="AddPictureButton">Добавить картинку</button>
+		</div>
+	</div>
+	<div class="GaleryMain">
+		<div class="GaleryPhotosContainer">
+			@*<pic-item container-class="PhotoContainer"
+					  show-handler="ShowPicture"
+					  img-id="@img.ID"
+					  img-src="@img.ImgSrc"
+					  delete-button-class="DeleteImgButtonStyle"
+					  delete-handler="DeletePicture">
+			</pic-item>*@
+		</div>
+	</div>
+</section>
+
+<div class="DetailPhotoOuterDiv">
+	<div class="DetailPhotoInnerDiv">
+		<div class="DetailPhoto">
+			<div id="DP-Photo">
+				<img src="#" alt="photo" />
+			</div>
+			<div id="DP-PubDate">
+				<p>Дата публикации:<span>dd.MM.yyyy</span></p>
+			</div>
+			<div id="DP-Caption">
+				<p>Caption</p>
+			</div>
+			<div id="DP-Description">
+				<p>Description</p>
+			</div>
+			<div id="DP-Category">
+				<p>Категория:<span>Category</span></p>
+			</div>
+		</div>
+		<button onclick="CloseDetailPhoto()" class="CloseDetailPhotoButton">
+			<img src="/SVGs/plus.svg" alt="close" />
+		</button>
+	</div>
+</div>
+
+<div class="AddPictureOuterDiv">
+	<div class="AddPictureInnerDiv">
+		<div class="AddPictureDiv">
+			<h2>Добавление картинки</h2>
+			<div id="AP-Files">
+				<input type="file" accept=".png, .jpg, .jpeg, .bmp" />
+			</div>
+			<div id="AP-Caption">
+				<input placeholder="Заголовок" type="text" value="" maxlength="20" />
+			</div>
+			<div id="AP-Description">
+				<textarea placeholder="Описание" maxlength="300"></textarea>
+			</div>
+			<div id="AP-Category">
+				@for (int i = 0; i < Model.Categories.Count; i++)
+				{
+					Category ct = Model.Categories[i];
+					<div>
+						<input type="radio" id="@($"aptr{i}")" value="@ct.ID" name="aptr" @(i == 0 ? "checked" : "") />
+						<label for="@($"aptr{i}")">@ct.Value</label>
+					</div>
+				}
+			</div>
+			<div id="AP-Buttons">
+				<input type="button" value="Отмена" onclick="AddPictureCancel()" />
+				<input type="button" value="Добавить" onclick="AddPictureSubmit()" />
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" charset="UTF-8">
+	class Picture {
+		constructor(imgID, imgSrc, caption, description, pubDate, category) {
+			this._imgID = imgID;
+			this._imgSrc = imgSrc;
+			this._caption = caption;
+			this._description = description;
+			this._pubDate = pubDate;
+			this._category = category;
+		}
+
+		get ImgID() {
+			return this._imgID;
+		}
+		set ImgID(val) {
+			this._imgID = val;
+		}
+
+		get ImgSrc() {
+			return this._imgSrc;
+		}
+		set ImgSrc(val) {
+			this._imgSrc = val;
+		}
+
+		get Caption() {
+			return this._caption;
+		}
+		set Caption(val) {
+			this._caption = val;
+		}
+
+		get Description() {
+			return this._description;
+		}
+		set Description(val) {
+			this._description = val;
+		}
+
+		get PubDate() {
+			return this._pubDate;
+		}
+		set PubDate(val) {
+			this._pubDate = val;
+		}
+
+		get Category() {
+			return this._category;
+		}
+		set Category(val) {
+			this._category = val;
+		}
+	}
+
+	var allPictures = [];
+
+	if ($('.MenuTypeRadio:checked').length == 0 && $('.MenuTypeRadio').length > 0) {
+		$('.MenuTypeRadio')[0].checked = true;
+	}
+	ChangePhotosType();
+
+
+	function ShowPicture(id) {
+		var items = allPictures.filter(x => x.ImgID == id);
+
+		if (items.length == 1) {
+			var item = items[0];
+
+			$('#DP-Photo img').prop('src', item.ImgSrc);
+			$('#DP-PubDate span').text(item.PubDate);
+			$('#DP-Category span').text(item.Category);
+			$('#DP-Caption p').text(item.Caption);
+			$('#DP-Description p').text(item.Description);
+
+			$('.DetailPhotoOuterDiv').css('display', 'flex');
+		}
+		else {
+			alert("Данные о картинке не найдены!");
+		}
+	}
+
+	function CloseDetailPhoto() {
+		$('.DetailPhotoOuterDiv').css('display', '');
+	}
+
+function ChangePhotosType() {
+	var radios = $('.MenuTypeRadio:checked');
+	if (radios.length == 1) {
+		var type = radios.prop('value') || 0;
+		var data = new FormData();
+		data.append("typeID", type);
+
+		$.ajax({
+			url: '@Url.Action("GetPhotosByType", "Home")',
+			type: "POST",
+			processData: false,
+			contentType: false,
+			data: data,
+			success: function (data) {
+				var container = $('.GaleryPhotosContainer');
+				container.html('');
+				allPictures.splice(0, allPictures.length);
+
+				if (data) {
+					try {
+						data.forEach(x => {
+							allPictures.push(new Picture(x.id, x.imgSrc, x.caption, x.description, x.pubDate, x.category));
+
+							container.append(`
+<div id="${x.id}" class="PhotoContainer" onclick="ShowPicture(${x.id})">
+	<img src="${x.imgSrc}" alt="photo" />
+	<input type="button" value="delete" class="DeleteImgButtonStyle" onclick="DeletePicture(${x.id})" />
+</div>`);
+						});
+					} catch (e) { }
+				}
+			},
+			error: function (data) {
+				$('.GaleryPhotosContainer').html('');
+				setTimeout(() => {
+					alert('Ошибка!');
+				}, 10);
+			}
+		});
+	}
+}
+
+	function DeletePicture(id) {
+		event.stopPropagation();
+
+	if (confirm('Удалить картинку?') == true) {
+		var data = new FormData();
+		data.append("id", id);
+
+		$.ajax(
+			{
+				url: '@Url.Action("Delete", "Home")',
+				data: data,
+				processData: false,
+				contentType: false,
+				type: "POST",
+				success: function (data) {
+					if (data === true) {
+						var photo = document.getElementById(id);
+						if (photo) photo.remove();
+						for (var i = 0; i < allPictures.length; i++)
+							if (allPictures[i].imgID == id)
+								allPictures.splice(i--, 1);
+					}
+					else {
+						alert('Ошибка!');
+					}
+				},
+				error: function (data) {
+					alert('Ошибка!');
+				}
+			}
+		);
+	}
+}
+
+	function AddPictureClick() {
+		$(".AddPictureOuterDiv").css('display', 'flex');
+	}
+
+
+	function AddPictureCancel() {
+		$("#AP-Files input").prop('value', '');
+		$("#AP-Caption input").prop('value', '');
+		$("#AP-Description textarea").prop('value', '');
+		$("#AP-Category input").first().prop('checked', true);
+		$(".AddPictureOuterDiv").css('display', '');
+	}
+
+	function AddPictureSubmit() {
+		var files = $("#AP-Files input").prop('files');
+		var caption = $("#AP-Caption input").prop('value') || "";
+		var description = $("#AP-Description textarea").prop('value') || "";
+		var categoryID = $("#AP-Category input:checked").prop('value');
+		var myCategoryID = $('.MenuTypeRadio:checked').prop('value');
+
+		try {
+			var data = new FormData();
+			for (var i = 0; i < files.length; i++) {
+				data.append('files', files[i]);
+			}
+			data.append('caption', caption);
+			data.append('description', description);
+			data.append('categoryID', categoryID);
+			data.append('myCategoryID', myCategoryID);
+
+			$.ajax(
+				{
+					url: '@Url.Action("AddPhoto", "Home")',
+					data: data,
+					processData: false,
+					contentType: false,
+					type: "POST",
+					success: function (data) {
+						if (!data) {
+							alert('Ошибка!');
+							return;
+						}
+
+						if (data.isPass == true) {
+							var container = $('.GaleryPhotosContainer');
+
+							try {
+								allPictures.push(new Picture(data.image.id, data.image.imgSrc, data.image.caption, data.image.description, data.image.pubDate, data.image.category));
+
+								container.append(`
+<div id="${data.image.id}" class="PhotoContainer" onclick="ShowPicture(${data.image.id})">
+	<img src="${data.image.imgSrc}" alt="photo" />
+	<input type="button" value="delete" class="DeleteImgButtonStyle" onclick="DeletePicture(${data.image.id})" />
+</div>`);
+							} catch (e) {  }
+						}
+						else if (data.isError) {
+							alert('Ошибка!');
+						}
+					},
+					error: function (data) {
+						alert('Ошибка!');
+					}
+				}
+			);
+		} catch (e) {
+			alert('Ошибка!\n'+e.error);
+		}
+		$("#AP-Files input").prop('value', '');
+		$("#AP-Caption input").prop('value', '');
+		$("#AP-Description textarea").prop('value', '');
+		$("#AP-Category input").first().prop('checked', true);
+		$(".AddPictureOuterDiv").css('display', '');
+	}
+
+</script>

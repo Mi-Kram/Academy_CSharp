@@ -1,0 +1,145 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.CarTableStyle {
+    margin: 0px;
+}
+
+.CarTableStyle thead tr {
+    background: #6296e9;
+}
+.CarTableStyle tbody tr {
+    background: #ebebeb;
+}
+
+/*.CarTableStyle tbody tr:hover {
+    background: #a9a9a9;
+}*/
+
+.CarTableStyle td{
+    height: 60px;
+    user-select: none;
+}
+
+.CarTableStyle th, .CarTableStyle td {
+    border: 1px black solid;
+    padding: 5px 15px;
+}
+
+.CarTableStyle tr td:first-child{
+    padding: 5px;
+}
+
+.CarTableStyle img {
+    max-width: 120px;
+    max-height: 100%;
+}
+
+
+
+
+
+
+
+
+.CarDetailTable{
+    margin-top: 20px;
+    font-size: 17pt;
+}
+.CarDetailTable td {
+    padding: 15px 15px 0px;
+}
+.CarDetailTable tr > td:first-child {
+    padding-right: 50px;
+}
+.CarDetailTable tr {
+    border-bottom: 2px black solid;
+}.CarDetailTable tr:hover {
+    background: #b9b9b9;
+}
+
+
+.DetailImg {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+
+
+
+
+
+.TCB{
+    display: none;
+}
+
+.CarEditFormStyle{
+    width: max-content;
+}
+.AddFormDivGroup {
+    border-bottom: 2px black solid;
+    padding: 10px 30px 5px;
+}
+.CarEditFormStyle button, .CarEditFormStyle input[type="button"] {
+    font-size: 15pt;
+}
+.CarEditFormStyle input[type="button"] {
+    margin-left: 20px;
+}
+
+.AddFormDivGroup > p {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 15px;
+}
+.DivImageViewerStyle{
+    width: max-content;
+    height: max-content;
+}
+.ViewerImageStyle {
+    width: 100%;
+    height: 100%;
+    max-height: 300px;
+    max-width: 300px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+
+
+

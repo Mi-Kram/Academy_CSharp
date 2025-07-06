@@ -1,0 +1,50 @@
+﻿@model List<Main.Models.ApplicationUser>
+@{
+	ViewBag.Title = "Add Admin";
+}
+
+@if (Model.Count == 0)
+{
+	<p style="display: block; margin-top: 20px; font-size: 16pt;">Нет обычных работников. @Html.ActionLink("Обратно", "Admins")</p>
+}
+else
+{
+	<style>
+		table {
+			margin-top: 30px;
+		}
+
+			table img {
+				max-height: 60px;
+				max-width: 80px;
+			}
+
+			table td {
+				border: 2px solid black;
+				padding: 5px 10px;
+			}
+
+		.AddBtn {
+			background: #19750d;
+			color: white;
+			padding: 5px 10px;
+			font-weight: 600;
+			border-radius: 10px;
+		}
+	</style>
+
+	<table>
+		<tbody>
+			@foreach (var employee in Model)
+			{
+				<tr>
+					<td><img src="/@employee.ImgSrc" alt="photo" /></td>
+					<td>@employee.UserName</td>
+					<td>@Html.ActionLink("Добавить", "AddAdminValue", new { userLogin = employee.UserName }, new { @class = "btn btn-primary" })</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	@Html.ActionLink("Обратно", "Admins", null, new { @style = "margin-top: 20px; display: block; width: max-content;" })
+}
+

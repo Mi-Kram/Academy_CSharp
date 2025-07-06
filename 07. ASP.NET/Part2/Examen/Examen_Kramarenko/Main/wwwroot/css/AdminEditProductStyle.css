@@ -1,0 +1,161 @@
+﻿.Form {
+	display: flex;
+	height: max-content;
+	flex-direction: column;
+	align-items: stretch;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin: 20px auto;
+	max-width: 100%;
+	width: 500px;
+	color: #000;
+}
+
+.FormTitle{
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 40px;
+}
+
+.FormError {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	color: #f00;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.FormGroup {
+	max-width: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.FormGroup + .FormGroup {
+	margin-top: 35px;
+}
+
+.FormGroupSelectTitle {
+	max-width: 100%;
+	display: block;
+	padding-left: 10px;
+	font-size: 20px;
+	margin-bottom: 3px;
+}
+
+.FormGroupError {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	color: rgb(238, 16, 16);
+	font-size: 17px;
+	padding: 0px 10px;
+	margin-top: 3px;
+}
+
+.FormGroupInput {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px #000 solid;
+	font-size: 20px;
+	color: #000;
+	background: #fff;
+	transition: background 0.2s;
+}
+
+.FormGroupInput.Select {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px #000 solid;
+	font-size: 20px;
+	color: #000;
+	background: #fff;
+	transition: background 0.2s;
+}
+
+.FormGroupInput.Select > option{
+	color: #000;
+	background: #fff;
+}
+
+.FormGroupInput.Error {
+	background-color: rgb(255, 164, 164);
+	border-color: rgb(240, 46, 46);
+}
+
+.FormGroupInput.Select.Error {
+	background-color: rgb(255, 164, 164);
+	border-color: rgb(240, 46, 46);
+}
+
+.FormGroupTextTitle {
+	color: #000;
+	font-size: 20px;
+	position: absolute;
+	top: -25px;
+	left: 15px;
+	display: block;
+	pointer-events: none;
+	transition: 0.5s;
+}
+
+
+.FormGroupInput:placeholder-shown + .FormGroupTextTitle {
+	top: 12px;
+	color: #666;
+}
+
+.FormGroupInput:focus + .FormGroupTextTitle {
+	top: -25px;
+	color: #000;
+}
+
+.FormGroup.Buttons{
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.FormButton {
+	width: max-content;
+	font-size: 35px;
+	padding: 5px 0px;
+	min-width: 200px;
+	background: transparent;
+	color: #000;
+	display: flex;
+	justify-content: center;
+	text-decoration: none;
+	border: 3px #000 solid;
+	border-radius: 35px;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.FormButton:focus,
+.FormButton:hover {
+	background: #000;
+	color: #fff;
+}
+
+.FormButton.Submit:focus,
+.FormButton.Submit:hover {
+	background: rgb(7, 153, 7);
+	border-color: rgb(7, 153, 7);
+}
+
+.FormButton.Cancel:focus,
+.FormButton.Cancel:hover {
+	background: rgb(238, 22, 22);
+	border-color: rgb(238, 22, 22);
+}

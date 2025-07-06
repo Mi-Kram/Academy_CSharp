@@ -1,0 +1,35 @@
+﻿@helper CreateCarTable(IEnumerable<Main.Models.CarModel> lst, string urlToSort)
+{
+	<table class="CarTableStyle">
+		<thead>
+			<tr onclick="OnCarTableHeadClick('@urlToSort')">
+				<th></th>
+
+				<th>Brand</th>
+				<th>Model</th>
+				<th>Speed</th>
+				<th>Price</th>
+				<th>Year</th>
+				<th>Type</th>
+				</tr>
+		</thead>
+		<tbody>
+			@{
+				for (int i = 0; i < lst.Count(); i++)
+				{
+					var car = lst.ElementAt(i);
+
+					<tr onclick="OnTableRowClick()">
+						<td><input id="@car.ID" type="checkbox" class="TCB" /><img src="/@car.ImgSrc" /></td>
+						<td>@car.Brand</td>
+						<td>@car.Model</td>
+						<td>@car.Speed</td>
+						<td>@car.Price</td>
+						<td>@car.Date.Year</td>
+						<td>@car.Type</td>
+					</tr>
+				}
+			}
+		</tbody>
+	</table>
+}

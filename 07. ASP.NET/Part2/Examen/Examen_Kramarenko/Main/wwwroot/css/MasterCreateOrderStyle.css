@@ -1,0 +1,1053 @@
+﻿.InnerMainDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.OrderForm {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: max-content;
+	max-width: 100%;
+	overflow: hidden;
+	margin-top: 50px;
+}
+
+.OrderFormTitle {
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 50px;
+	margin-bottom: 10px;
+}
+
+.FormButtonsGroup {
+	max-width: 100%;
+	align-items: stretch;
+	position: relative;
+	display: flex;
+	margin-top: 20px;
+	justify-content: space-around;
+}
+
+.FormGroup {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.FormGroup + .FormGroup {
+	margin-top: 35px;
+}
+
+.FormGroupTitle {
+	max-width: 100%;
+	display: block;
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+.FormGroupInput {
+	max-width: 100%;
+	width: 500px;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px black solid;
+	font-size: 20px;
+	background: white;
+	transition: background 0.2s;
+}
+
+.FormGroupInput.Error {
+	background-color: rgb(255, 164, 164);
+}
+
+.FormGroupTextTitle {
+	color: #000;
+	font-size: 20px;
+	position: absolute;
+	top: -25px;
+	left: 15px;
+	display: block;
+	pointer-events: none;
+	transition: 0.5s;
+}
+
+.FormGroupInput:placeholder-shown + .FormGroupTextTitle {
+	top: 12px;
+	color: #666;
+}
+
+.FormGroupInput:focus + .FormGroupTextTitle {
+	top: -25px;
+	color: #000;
+}
+
+.FormGroupError {
+	max-width: 100%;
+	width: 500px;
+	display: block;
+	color: #f00;
+	font-size: 17px;
+	padding: 0px 10px;
+	margin-top: 3px;
+}
+
+.FormError {
+	max-width: 100%;
+	width: 500px;
+	display: block;
+	color: #f00;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.OrderButton {
+	width: max-content;
+	margin: 0px auto;
+	font-size: 40px;
+	padding: 5px 0px;
+	background: white;
+	text-decoration: none;
+	color: black;
+	width: 200px;
+	display: flex;
+	justify-content: center;
+	border: 4px #000 solid;
+	border-radius: 35px;
+	transition: background 0.2s, color 0.2s;
+}
+
+.OrderButton:focus,
+.OrderButton:hover {
+	background: #000;
+	color: #fff;
+}
+
+.OrderButton.Submit {
+	border-color: rgb(15, 189, 24);
+}
+
+.OrderButton.Cancel {
+	border-color: rgb(250, 24, 24);
+}
+
+.OrderButton.Submit:focus,
+.OrderButton.Submit:hover {
+	background: rgb(15, 189, 24);
+	color: #fff;
+}
+
+.OrderButton.Cancel:focus,
+.OrderButton.Cancel:hover {
+	background: rgb(250, 24, 24);
+	color: #fff;
+}
+
+.ButtonChooser {
+	display: block;
+	position: relative;
+	max-width: 100%;
+	width: 500px;
+	padding: 10px 15px;
+	border-radius: 30px;
+	border: 2px black solid;
+	font-size: 20px;
+	background: white;
+	transition: background 0.2s;
+}
+
+.ButtonChooser:focus,
+.ButtonChooser:hover {
+	background: rgb(193, 215, 255);
+}
+
+.ButtonChooserLabel {
+	display: none;
+	width: max-content;
+	max-width: 100%;
+	color: #666;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.ProductData {
+	display: block;
+	width: max-content;
+}
+
+.ProductSerialData {
+	display: block;
+	width: max-content;
+	font-size: 14px;
+}
+
+.ButtonChooser.Empty {
+	border-radius: 25px;
+}
+
+.ButtonChooser.Empty > .ButtonChooserLabel {
+	display: block;
+}
+
+.ButtonChooserShortData {
+	width: max-content;
+	min-width: 100%;
+	overflow: hidden;
+}
+
+.ButtonChooser.Empty > .ButtonChooserShortData {
+	display: none;
+}
+
+.ButtonChooser.Error {
+	background-color: rgb(255, 164, 164);
+}
+
+/*.ClientButtonChooser {
+	display: block;
+	position: relative;
+	max-width: 100%;
+	width: 500px;
+	padding: 10px 15px;
+	border-radius: 30px;
+	border: 2px black solid;
+	font-size: 20px;
+	background: white;
+	transition: background 0.2s;
+}
+
+.ClientButtonChooser:focus,
+.ClientButtonChooser:hover {
+	background: rgb(193, 215, 255);
+}*/
+
+.ClientLabel {
+	display: none;
+	width: max-content;
+	max-width: 100%;
+	color: #666;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.ClientShortData {
+	width: max-content;
+	min-width: 100%;
+	overflow: hidden;
+}
+
+.ClientData {
+	display: block;
+	width: max-content;
+}
+
+.ClientPassportData {
+	display: block;
+	width: max-content;
+	font-size: 14px;
+}
+
+/*.ClientButtonChooser.Empty {
+	border-radius: 25px;
+}
+
+.ClientButtonChooser.Empty > .ClientLabel {
+	display: block;
+}
+
+.ClientButtonChooser.Empty > .ClientShortData {
+	display: none;
+}
+
+.ClientButtonChooser.Error {
+	background-color: rgb(255, 164, 164);
+}*/
+
+.ProductChooser {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	padding: 50px 100px;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	display: none;
+}
+
+.PC-InnerDiv {
+	max-width: 100%;
+	max-height: 100%;
+	width: 900px;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: stretch;
+}
+
+.PC-Dialog {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.PC-DialogHeader {
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+	flex-wrap: nowrap;
+}
+
+.PCHeaderInput {
+	display: none;
+}
+
+.PCHeaderLabel {
+	background: rgb(35, 35, 58);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px 0px;
+	font-size: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	color: white;
+}
+
+.PCHeaderInput:checked + .PCHeaderLabel {
+	background: rgb(5, 19, 68);
+}
+
+.PC-DialogBody {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+	background: rgb(5, 19, 68);
+}
+
+.PC-DialogBody::-webkit-scrollbar {
+	width: 8px;
+}
+
+.PC-DialogBody::-webkit-scrollbar-track {
+	background-color: transparent;
+	border-radius: 4px;
+}
+
+.PC-DialogBody::-webkit-scrollbar-thumb {
+	background: white;
+	border-radius: 4px;
+}
+
+.PCBody {
+	width: 100%;
+}
+
+.PC-Search {
+	display: flex;
+	position: relative;
+	margin: 20px auto 0px auto;
+	max-width: 90%;
+	overflow: hidden;
+	align-items: stretch;
+	width: 500px;
+	height: 50px;
+}
+
+.PC-SearchIcon {
+	min-width: 50px;
+	min-height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background: transparent;
+	border: none;
+	transition: background 0.3s;
+}
+
+.PC-SearchIcon:focus,
+.PC-SearchIcon:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.PC-SearchIcon > svg {
+	width: 70%;
+	height: 70%;
+	pointer-events: none;
+}
+
+.PC-SearchInput {
+	display: block;
+	width: 100%;
+	margin-left: 10px;
+	border-radius: 25px;
+	border: 3px #fff solid;
+	font-size: 20px;
+	background: transparent;
+	color: #fff;
+	padding: 0px 55px 0px 15px;
+	transition: background 0.2s;
+}
+
+.PC-SearchClearIcon {
+	display: block;
+	position: absolute;
+	height: 35px;
+	width: 35px;
+	top: 7px;
+	right: 15px;
+	border-radius: 50%;
+	border: none;
+	background: none;
+	transition: background 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.PC-SearchClearIcon:focus,
+.PC-SearchClearIcon:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.PC-SearchClearIcon > svg {
+	width: 40%;
+	height: 40%;
+	pointer-events: none;
+}
+
+.PCFoundedMsg {
+	color: #fff;
+	display: block;
+	width: max-content;
+	margin: 50px auto;
+	margin-top: 50px;
+	max-width: 90%;
+	font-size: 30px;
+}
+
+.PC-FoundedDiv {
+	width: 100%;
+	overflow: hidden;
+	padding: 0px 20px;
+}
+
+.PC-FoundedTable {
+	width: 100%;
+	color: white;
+	font-size: 18px;
+	border-collapse: collapse;
+}
+
+.PC-FoundedTable tr {
+	background: transparent;
+	transition: background 0.2s;
+}
+
+.PC-FoundedTable tr:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.PC-FoundedTable td {
+	border-bottom: 1px white solid;
+	padding: 5px 10px;
+}
+
+.PC-FoundedTable td:last-child {
+	width: 100px;
+	padding: 0px;
+}
+
+.PC-FoundedTable button {
+	width: 100%;
+	display: block;
+	background: transparent;
+	border: none;
+	color: white;
+	text-decoration: underline;
+	transition: background 0.2s;
+	padding: 7px 0px;
+	font-size: 16px;
+}
+
+.PC-FoundedTable button:focus,
+.PC-FoundedTable button:hover {
+	background: rgb(4, 206, 4);
+	text-decoration: none;
+}
+
+.PC-DialogFooter {
+	width: 100%;
+	overflow: hidden;
+	padding: 20px 20px;
+	background: rgb(3, 10, 41);
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+.PCFooterCancelButton {
+	margin-left: 10px;
+	width: max-content;
+	font-size: 20px;
+	padding: 5px 0px;
+	background: transparent;
+	text-decoration: none;
+	color: #fff;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	border: 3px #fff solid;
+	border-radius: 35px;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.PCFooterCancelButton:focus,
+.PCFooterCancelButton:hover {
+	border-color: rgb(250, 24, 24);
+	background: rgb(250, 24, 24);
+	color: #fff;
+}
+
+.Hidden {
+	display: none;
+}
+
+.PCForm {
+	display: flex;
+	height: max-content;
+	flex-direction: column;
+	align-items: stretch;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin: 20px auto;
+	max-width: 100%;
+	width: 500px;
+	color: #fff;
+}
+
+.PCFormError {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	color: #f00;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.PCFormGroup {
+	max-width: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.PCFormGroup + .PCFormGroup {
+	margin-top: 35px;
+}
+
+.PCFormGroupSelectTitle {
+	max-width: 100%;
+	display: block;
+	padding-left: 10px;
+	font-size: 20px;
+	margin-bottom: 3px;
+}
+
+.PCFormGroupError {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	color: rgb(238, 16, 16);
+	font-size: 17px;
+	padding: 0px 10px;
+	margin-top: 3px;
+}
+
+.PCFormGroupInput {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px #fff solid;
+	font-size: 20px;
+	color: #fff;
+	background: transparent;
+	transition: background 0.2s;
+}
+
+.PCFormGroupInput.Select {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px #fff solid;
+	font-size: 20px;
+	color: #fff;
+	background: rgb(5, 19, 68);
+	transition: background 0.2s;
+}
+
+.PCFormGroupInput.Select > option{
+	color: white;
+	background: rgb(5, 19, 68);
+}
+
+.PCFormGroupInput.Error {
+	background-color: rgb(240, 46, 46);
+	border-color: rgb(240, 46, 46);
+}
+
+.PCFormGroupInput.Select.Error {
+	background-color: rgb(240, 46, 46);
+	border-color: rgb(240, 46, 46);
+	border-width: 3px;
+}
+
+.PCFormGroupTextTitle {
+	color: #fff;
+	font-size: 20px;
+	position: absolute;
+	top: -25px;
+	left: 15px;
+	display: block;
+	pointer-events: none;
+	transition: 0.5s;
+}
+
+
+.PCFormGroupInput:placeholder-shown + .PCFormGroupTextTitle {
+	top: 12px;
+	color: #bbb;
+}
+
+.PCFormGroupInput:focus + .PCFormGroupTextTitle {
+	top: -25px;
+	color: #fff;
+}
+
+.PCFormSubmitButton {
+	width: max-content;
+	margin: 0px auto;
+	font-size: 40px;
+	padding: 5px 30px;
+	background: transparent;
+	color: white;
+	border: 3px #fff solid;
+	border-radius: 35px;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.PCFormSubmitButton:focus,
+.PCFormSubmitButton:hover {
+	background: rgb(11, 184, 11);
+	border-color: rgb(11, 184, 11);
+}
+
+.ClientChooser {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	padding: 50px 100px;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	display: none;
+}
+
+.CC-InnerDiv {
+	max-width: 100%;
+	max-height: 100%;
+	width: 900px;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: stretch;
+}
+
+.CC-Dialog {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.CC-DialogHeader {
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+	flex-wrap: nowrap;
+}
+
+.CCHeaderInput {
+	display: none;
+}
+
+.CCHeaderLabel {
+	background: rgb(35, 35, 58);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 10px 0px;
+	font-size: 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	color: white;
+}
+
+.CCHeaderInput:checked + .CCHeaderLabel {
+	background: rgb(5, 19, 68);
+}
+
+.CC-DialogBody {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	overflow-y: auto;
+	background: rgb(5, 19, 68);
+}
+
+.CC-DialogBody::-webkit-scrollbar {
+	width: 8px;
+}
+
+.CC-DialogBody::-webkit-scrollbar-track {
+	background-color: transparent;
+	border-radius: 4px;
+}
+
+.CC-DialogBody::-webkit-scrollbar-thumb {
+	background: white;
+	border-radius: 4px;
+}
+
+.CCBody {
+	width: 100%;
+}
+
+.CC-Search {
+	display: flex;
+	position: relative;
+	margin: 20px auto 0px auto;
+	max-width: 90%;
+	overflow: hidden;
+	align-items: stretch;
+	width: 500px;
+	height: 50px;
+}
+
+.CC-SearchIcon {
+	min-width: 50px;
+	min-height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background: transparent;
+	border: none;
+	transition: background 0.3s;
+}
+
+.CC-SearchIcon:focus,
+.CC-SearchIcon:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.CC-SearchIcon > svg {
+	width: 70%;
+	height: 70%;
+	pointer-events: none;
+}
+
+.CC-SearchInput {
+	display: block;
+	width: 100%;
+	margin-left: 10px;
+	border-radius: 25px;
+	border: 3px #fff solid;
+	font-size: 20px;
+	background: transparent;
+	color: #fff;
+	padding: 0px 55px 0px 15px;
+	transition: background 0.2s;
+}
+
+.CC-SearchClearIcon {
+	display: block;
+	position: absolute;
+	height: 35px;
+	width: 35px;
+	top: 7px;
+	right: 15px;
+	border-radius: 50%;
+	border: none;
+	background: none;
+	transition: background 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.CC-SearchClearIcon:focus,
+.CC-SearchClearIcon:hover {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.CC-SearchClearIcon > svg {
+	width: 40%;
+	height: 40%;
+	pointer-events: none;
+}
+
+.CCFoundedMsg {
+	color: #fff;
+	display: block;
+	width: max-content;
+	margin: 50px auto;
+	margin-top: 50px;
+	max-width: 90%;
+	font-size: 30px;
+}
+
+.CC-FoundedClientsDiv {
+	width: 100%;
+	overflow: hidden;
+	padding: 0px 20px;
+}
+
+.CC-FoundedClientsTable {
+	width: 100%;
+	color: white;
+	font-size: 18px;
+	border-collapse: collapse;
+}
+
+.CC-FoundedClientsTable tr {
+	background: transparent;
+	transition: background 0.2s;
+}
+
+.CC-FoundedClientsTable tr:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.CC-FoundedClientsTable td {
+	border-bottom: 1px white solid;
+	padding: 5px 10px;
+}
+
+.CC-FoundedClientsTable td:last-child {
+	width: 100px;
+	padding: 0px;
+}
+
+.CC-FoundedClientsTable button {
+	width: 100%;
+	display: block;
+	background: transparent;
+	border: none;
+	color: white;
+	text-decoration: underline;
+	transition: background 0.2s;
+	padding: 7px 0px;
+	font-size: 16px;
+}
+
+.CC-FoundedClientsTable button:focus,
+.CC-FoundedClientsTable button:hover {
+	background: rgb(4, 206, 4);
+	text-decoration: none;
+}
+
+.CC-DialogFooter {
+	width: 100%;
+	overflow: hidden;
+	padding: 20px 20px;
+	background: rgb(3, 10, 41);
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+}
+
+.CCFooterCancelButton {
+	margin-left: 10px;
+	width: max-content;
+	font-size: 20px;
+	padding: 5px 0px;
+	background: transparent;
+	text-decoration: none;
+	color: #fff;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	border: 3px #fff solid;
+	border-radius: 35px;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.CCFooterCancelButton:focus,
+.CCFooterCancelButton:hover {
+	border-color: rgb(250, 24, 24);
+	background: rgb(250, 24, 24);
+	color: #fff;
+}
+
+.Hidden {
+	display: none;
+}
+
+.CCForm {
+	display: flex;
+	height: max-content;
+	flex-direction: column;
+	align-items: stretch;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin: 20px auto;
+	max-width: 100%;
+	width: 500px;
+	color: #fff;
+	margin-top: 30px;
+}
+
+.CCFormError {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	color: #f00;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.CCFormGroup {
+	max-width: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.CCFormGroup + .CCFormGroup {
+	margin-top: 35px;
+}
+
+.CCFormGroupSelectTitle {
+	max-width: 100%;
+	display: block;
+	padding-left: 10px;
+	font-size: 20px;
+	margin-bottom: 3px;
+}
+
+.CCFormGroupError {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	color: rgb(238, 16, 16);
+	font-size: 17px;
+	padding: 0px 10px;
+	margin-top: 3px;
+}
+
+.CCFormGroupInput {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px #fff solid;
+	font-size: 20px;
+	color: #fff;
+	background: transparent;
+	transition: background 0.2s;
+}
+
+.CCFormGroupInput[type='date']::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+}
+
+.CCFormGroupInput.Error {
+	background-color: rgb(240, 46, 46);
+	border-color: rgb(240, 46, 46);
+}
+
+.CCFormGroupInput.Select {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	padding: 10px 15px;
+	border-radius: 25px;
+	border: 2px #fff solid;
+	font-size: 20px;
+	color: #fff;
+	background: rgb(5, 19, 68);
+	transition: background 0.2s;
+}
+
+.CCFormGroupInput.Select > option{
+	color: white;
+	background: rgb(5, 19, 68);
+}
+
+.CCFormGroupInput.Select.Error {
+	background-color: rgb(240, 46, 46);
+	border-color: rgb(240, 46, 46);
+	border-width: 3px;
+}
+
+.CCFormGroupTextTitle {
+	color: #fff;
+	font-size: 20px;
+	position: absolute;
+	top: -25px;
+	left: 15px;
+	display: block;
+	pointer-events: none;
+	transition: 0.5s;
+}
+
+.CCFormGroupInput:placeholder-shown + .CCFormGroupTextTitle {
+	top: 12px;
+	color: #bbb;
+}
+
+.CCFormGroupInput:focus + .CCFormGroupTextTitle {
+	top: -25px;
+	color: #fff;
+}
+
+.CCFormSubmitButton {
+	width: max-content;
+	margin: 0px auto;
+	font-size: 40px;
+	padding: 5px 30px;
+	background: transparent;
+	color: white;
+	border: 3px #fff solid;
+	border-radius: 35px;
+	transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.CCFormSubmitButton:focus,
+.CCFormSubmitButton:hover {
+	background: rgb(11, 184, 11);
+	border-color: rgb(11, 184, 11);
+}

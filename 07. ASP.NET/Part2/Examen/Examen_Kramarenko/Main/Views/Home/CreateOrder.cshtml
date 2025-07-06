@@ -1,0 +1,230 @@
+﻿@model MasterCreateOrderViewModel
+@section SiteLinks{
+	<link rel="stylesheet" href="~/css/MasterCreateOrderStyle.css">
+}
+@section SiteScripts{
+	<script src="~/js/MasterCreateOrder.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_Token = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<form class="OrderForm" action="@Url.Action("CreateOrder", "Home")" method="post" onsubmit="OnOrderFormSubmit()">
+	<input id="OrderFormAntiForgeryToken" type="hidden" value="@AF_Token" />
+	<input id="MasterID" type="hidden" value="@Model.MyID"/>
+	<h3 class="OrderFormTitle">Создание заказа</h3>
+	<span id="FormError" class="FormError"></span>
+
+	<div class="FormGroup">
+		<button id="ProductID" class="ButtonChooser Empty" onclick="ChooseProductClick()">
+			<label class="ButtonChooserLabel">Product</label>
+			<div class="ButtonChooserShortData">
+				<p class="ProductData"><span id="ProductCategory"></span> <span id="ProductBrandModel"></span></p>
+				<p class="ProductSerialData">#<span id="ProductSerialNumber"></span></p>
+			</div>
+			<input id="ProductIDValue" type="hidden">
+		</button>
+		<span id="ProductIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<button id="ClientID" class="ButtonChooser Empty" onclick="ChooseClientClick()">
+			<label class="ButtonChooserLabel">Client</label>
+			<div class="ButtonChooserShortData">
+				<p class="ClientData"><span id="ClientName"></span>, <span id="ClientBirthday"></span></p>
+				<p class="ClientPassportData">#<span id="ClientPassportID">11587984</span></p>
+			</div>
+			<input id="ClientIDValue" type="hidden">
+		</button>
+		<span id="ClientIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Salary" class="FormGroupInput" min="0" type="number" placeholder=" ">
+		<label class="FormGroupTextTitle">Salary</label>
+		<span id="SalaryError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormButtonsGroup">
+		<button class="OrderButton Submit" onclick="event.target.blur();">Создать</button>
+		<a class="OrderButton Cancel" href="@Url.Action("Index", "Home")">Отмена</a>
+	</div>
+</form>
+
+<div class="ProductChooser">
+	<div class="PC-InnerDiv">
+		<div class="PC-Dialog">
+			<div class="PC-DialogHeader">
+				<input class="PCHeaderInput" id="PCHeader1" name="PCHeader" type="radio" checked onchange="OnPCHeaderChanged()" />
+				<label for="PCHeader1" class="PCHeaderLabel">Найти существующий</label>
+				<input class="PCHeaderInput" id="PCHeader2" name="PCHeader" type="radio" onchange="OnPCHeaderChanged()" />
+				<label for="PCHeader2" class="PCHeaderLabel">Создать новый</label>
+			</div>
+			<div class="PC-DialogBody">
+				<div class="PCBody " pcheader="PCHeader1">
+					<div class="PC-Search">
+						<button class="PC-SearchIcon" url="@Url.Action("FindProduct","Home")" onclick="PCSearchClick()">
+							<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="32" />
+								<path fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448" />
+							</svg>
+						</button>
+						<input id="PCSearchInput" autocomplete="off" class="PC-SearchInput" type="text" placeholder="Serial Number">
+						<button class="PC-SearchClearIcon" onclick="PCClearClick()">
+							<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 348.333 348.334">
+								<path fill="#fff" d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85 c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563 c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85 l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554 L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" />
+							</svg>
+						</button>
+					</div>
+
+					<p class="PCFoundedMsg Hidden">Найдено товаров (<span id="PCFoundedCount">0</span>)</p>
+
+					<div class="PC-FoundedDiv">
+						<table class="PC-FoundedTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="PCBody Hidden" pcheader="PCHeader2">
+					<form class="PCForm" action="@Url.Action("CreateProduct", "Home")" method="post" onsubmit="OnPCFormSubmit()">
+						<input id="PCFormAntiForgeryToken" type="hidden" value="@AF_Token" />
+						<span id="PCFormError" class="PCFormError"></span>
+
+						<div class="PCFormGroup">
+							<label class="PCFormGroupSelectTitle">Category</label>
+							<select id="PCCategoryID" class="PCFormGroupInput Select">
+								<option selected hidden disabled></option>
+								@foreach (var cat in Model.Categories)
+								{
+									<option value="@cat.ID">@cat.Value</option>
+								}
+							</select>
+							<span id="PCCategoryIDError" class="PCFormGroupError"></span>
+						</div>
+
+						<div class="PCFormGroup">
+							<input autocomplete="off" id="PCBrand" maxlength="20" class="PCFormGroupInput" type="text" placeholder=" ">
+							<label class="PCFormGroupTextTitle">Brand</label>
+							<span id="PCBrandError" class="PCFormGroupError"></span>
+						</div>
+
+						<div class="PCFormGroup">
+							<input autocomplete="off" id="PCModel" maxlength="20" class="PCFormGroupInput" type="text" placeholder=" ">
+							<label class="PCFormGroupTextTitle">Model</label>
+							<span id="PCModelError" class="PCFormGroupError"></span>
+						</div>
+
+						<div class="PCFormGroup">
+							<input autocomplete="off" id="PCSerialNumber" maxlength="20" class="PCFormGroupInput" type="text" placeholder=" ">
+							<label class="PCFormGroupTextTitle">Serial Number</label>
+							<span id="PCSerialNumberError" class="PCFormGroupError"></span>
+						</div>
+
+						<div class="PCFormGroup">
+							<input autocomplete="off" id="PCPrice" class="PCFormGroupInput" type="number" min="0" placeholder=" ">
+							<label class="PCFormGroupTextTitle">Price</label>
+							<span id="PCPriceError" class="PCFormGroupError"></span>
+						</div>
+
+						<div class="PCFormGroup">
+							<input autocomplete="off" id="PCYearIssue" class="PCFormGroupInput" min="0" max="2021" type="number" placeholder=" ">
+							<label class="PCFormGroupTextTitle">Year Issue</label>
+							<span id="PCYearIssueError" class="PCFormGroupError"></span>
+						</div>
+
+						<div class="PCFormGroup">
+							<button class="PCFormSubmitButton" onclick="event.target.blur();">Создать</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="PC-DialogFooter">
+				<button class="PCFooterCancelButton" onclick="ChooserProductCloseClick()">Отмена</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="ClientChooser">
+	<div class="CC-InnerDiv">
+		<div class="CC-Dialog">
+			<div class="CC-DialogHeader">
+				<input class="CCHeaderInput" id="CCHeader1" name="CCHeader" type="radio" checked onchange="OnCCHeaderChanged()" />
+				<label for="CCHeader1" class="CCHeaderLabel">Найти существующий</label>
+				<input class="CCHeaderInput" id="CCHeader2" name="CCHeader" type="radio" onchange="OnCCHeaderChanged()" />
+				<label for="CCHeader2" class="CCHeaderLabel">Создать новый</label>
+			</div>
+			<div class="CC-DialogBody">
+				<div class="CCBody " ccheader="CCHeader1">
+					<div class="CC-Search">
+						<button class="CC-SearchIcon" url="@Url.Action("FindClient","Home")" onclick="CCSearchClick()">
+							<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="32" />
+								<path fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448" />
+							</svg>
+						</button>
+						<input id="CCSearchInput" autocomplete="off" class="CC-SearchInput" type="text" placeholder="PassportID">
+						<button class="CC-SearchClearIcon" onclick="CCClearClick();">
+							<svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 348.333 348.334">
+								<path fill="#fff" d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85 c-7.844,7.844-18.128,11.769-28.407,11.769c-10.296,0-20.581-3.919-28.419-11.769L174.167,231.003L68.609,336.563 c-7.843,7.844-18.128,11.769-28.416,11.769c-10.285,0-20.563-3.919-28.413-11.769c-15.699-15.698-15.699-41.139,0-56.85 l105.54-105.549L11.774,68.611c-15.699-15.699-15.699-41.145,0-56.844c15.696-15.687,41.127-15.687,56.829,0l105.563,105.554 L279.721,11.767c15.705-15.687,41.139-15.687,56.832,0C352.258,27.466,352.258,52.912,336.559,68.611z" />
+							</svg>
+						</button>
+					</div>
+
+					<p class="CCFoundedMsg Hidden">Найдено клиентов (<span id="CCFoundedClientCount">0</span>)</p>
+
+					<div class="CC-FoundedClientsDiv">
+						<table class="CC-FoundedClientsTable">
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="CCBody Hidden" ccheader="CCHeader2">
+					<form class="CCForm" method="post" action="@Url.Action("CreateClient", "Home")" onsubmit="OnCCFormSubmit()">
+						<input id="CCFormAntiForgeryToken" type="hidden" value="@AF_Token" />
+						<span id="CCFormError" class="CCFormError"></span>
+
+						<div class="CCFormGroup">
+							<input autocomplete="off" id="CCFirstName" maxlength="20" class="CCFormGroupInput" type="text" placeholder=" ">
+							<label class="CCFormGroupTextTitle">First name</label>
+							<span id="CCFirstNameError" class="CCFormGroupError"></span>
+						</div>
+						<div class="CCFormGroup">
+							<input autocomplete="off" id="CCLastName" maxlength="20" class="CCFormGroupInput" type="text" placeholder=" ">
+							<label class="CCFormGroupTextTitle">Last name</label>
+							<span id="CCLastNameError" class="CCFormGroupError"></span>
+						</div>
+						<div class="CCFormGroup">
+							<input autocomplete="off" id="CCAddress" maxlength="50" class="CCFormGroupInput" type="text" placeholder=" ">
+							<label class="CCFormGroupTextTitle">Address</label>
+							<span id="CCAddressError" class="CCFormGroupError"></span>
+						</div>
+						<div class="CCFormGroup">
+							<input autocomplete="off" id="CCPassportID" maxlength="20" class="CCFormGroupInput" type="text" placeholder=" ">
+							<label class="CCFormGroupTextTitle">Passport ID</label>
+							<span id="CCPassportIDError" class="CCFormGroupError"></span>
+						</div>
+						<div class="CCFormGroup">
+							<input autocomplete="off" id="CCBirthday" max="@DateTime.Now.ToString(@"yyyy-MM-dd")" class="CCFormGroupInput" type="date" placeholder=" ">
+							<label class="CCFormGroupTextTitle">Birthday</label>
+							<span id="CCBirthdayError" class="CCFormGroupError"></span>
+						</div>
+
+						<div class="CCFormGroup">
+							<button class="CCFormSubmitButton" onclick="event.target.blur();">Создать</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="CC-DialogFooter">
+				<button class="CCFooterCancelButton" onclick="ChooserClientCloseClick()">Отмена</button>
+			</div>
+
+		</div>
+	</div>
+</div>

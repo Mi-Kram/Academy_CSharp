@@ -1,0 +1,187 @@
+﻿@model List<ImageModel>
+
+@{
+	ViewData["Title"] = "Galery";
+}
+
+<section class="Galery">
+	<div class="GaleryLeftMenu">
+		<div class="GaleryMenuGroup">
+			<h2>Тип</h2>
+			<input class="MenuTypeRadio" id="glmt0" onchange="ChangePhotosType()" type="radio" name="glmt" checked /><label class="MenuTypeLabel" for="glmt0">Все</label>
+			<input class="MenuTypeRadio" id="glmt1" onchange="ChangePhotosType()" type="radio" name="glmt"/><label class="MenuTypeLabel" for="glmt1">Пейзаж</label>			
+			<input class="MenuTypeRadio" id="glmt2" onchange="ChangePhotosType()" type="radio" name="glmt"/><label class="MenuTypeLabel" for="glmt2">Портрет</label>		
+			<input class="MenuTypeRadio" id="glmt3" onchange="ChangePhotosType()" type="radio" name="glmt"/><label class="MenuTypeLabel" for="glmt3">Натюрморт</label>	
+			<input class="MenuTypeRadio" id="glmt4" onchange="ChangePhotosType()" type="radio" name="glmt"/><label class="MenuTypeLabel" for="glmt4">Автомобили</label>	
+		</div>
+		<div class="GaleryMenuGroup">
+			<input id="fileChooser" onchange="PhotoChanged()" type="file" accept=".png, .jpg, .jpeg, .bmp" multiple style="display: none;"/>
+			<button onclick="AddPicture()" class="AddPictureButton">Добавить картинку</button>
+		</div>
+	</div>
+	<div class="GaleryMain">
+		<div class="GaleryPhotosContainer">
+			@foreach (var img in Model)
+			{
+				<div id="@img.ID" class="PhotoContainer">
+					<img src="@img.Path" alt="photo" />
+					<div onclick="DeletePicture(@img.ID)">delete</div>
+				</div>
+			}
+		</div>
+	</div>
+
+	<div class="PhotoTypeChooser">
+		<div class="InnerPhotoTypeChooser">
+			<div class="TypeChooserItem"><input id="ptcg0" class="TypeChooserInput" type="radio" name="ptcg" /><label for="ptcg0" class="TypeChooserLabel">Пейзаж</label></div>
+			<div class="TypeChooserItem"><input id="ptcg1" class="TypeChooserInput" type="radio" name="ptcg" /><label for="ptcg1" class="TypeChooserLabel">Портрет</label></div>
+			<div class="TypeChooserItem"><input id="ptcg2" class="TypeChooserInput" type="radio" name="ptcg" /><label for="ptcg2" class="TypeChooserLabel">Натюрморт</label></div>
+			<div class="TypeChooserItem"><input id="ptcg3" class="TypeChooserInput" type="radio" name="ptcg" /><label for="ptcg3" class="TypeChooserLabel">Автомобили</label></div>
+
+			<div class="TypeChooserButtons">
+				<button onclick="SendPhoto()">Отправить</button>
+				<button onclick="CancelSendPhoto()">Отмена</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+
+function ChangePhotosType() {
+	var labels = [...$('.MenuTypeRadio:checked + label')];
+	if (labels.length == 1) {
+		var type = labels[0].innerText;
+
+		$.ajax({
+			url: '@Url.Action("GetPhotosByType", "HomeWork")' + `?type=${type}`,
+			data: null,
+			processData: false,
+			contentType: false,
+			type: "POST",
+			success: function (data) {
+				if (data?.url) window.location = data.url;
+				var container = $('.GaleryPhotosContainer');
+				container.html('');
+
+				if (data) {
+					try {
+						data.forEach(x => {
+							container.append(`
+<div id="${x.id}" class="PhotoContainer">
+	<img src="${x.path}" alt="photo" />
+	<div onclick="DeletePicture(${x.id})">delete</div>
+</div>`);
+						});
+					} catch (e) { }
+				}
+			},
+			error: function (data) {
+				$('.GaleryPhotosContainer').html('');
+				setTimeout(() => {
+					alert('Ошибка!');
+				}, 10);
+			}
+		});
+	}
+}
+
+function DeletePicture(id) {
+	if (confirm('Удалить картинку?') == true) {
+		//	data: { id: id },
+		$.ajax(
+			{
+				url: '@Url.Action("Delete", "HomeWork")' + `?id=${id}`,
+				data: null,
+				processData: false,
+				contentType: false,
+				type: "POST",
+				success: function (data) {
+					if (data == true) {
+						var photo = document.getElementById(id);
+						if (photo) photo.remove();
+					}
+					else {
+						alert('Ошибка!');
+					}
+				},
+				error: function (data) {
+					alert('Ошибка!');
+				}
+			}
+		);
+	}
+}
+
+function AddPicture() {
+	document.getElementById('fileChooser').click();
+}
+
+function PhotoChanged() {
+	if (event.target.files.length > 0) {
+		$('.PhotoTypeChooser').css('display', 'block');
+	}
+}
+
+function SendPhoto() {
+	var labels = $('.TypeChooserInput:checked + .TypeChooserLabel');
+	if (labels.length != 1) {
+		alert('Выберите тип картинки!');
+		return;
+	}
+
+	var type = labels.text();
+	var input = document.getElementById('fileChooser');
+	var files = input.files;
+	$('.TypeChooserInput:checked').prop('checked', false);
+	$('.PhotoTypeChooser').css('display', 'none');
+	if (files.length > 0) {
+		var formData = new FormData();
+
+		formData.append("image_type", type);
+		var curType = $('.MenuTypeRadio:checked + label')[0].innerText;
+		formData.append("current_type", curType);
+		for (var i = 0; i != files.length; i++) {
+			formData.append("files", files[i]);
+		}
+
+		$.ajax(
+			{
+				url: '@Url.Action("DownloadImages", "HomeWork")',
+				data: formData,
+				processData: false,
+				contentType: false,
+				type: "POST",
+				success: function (data) {
+					if (data.isPass == true) {
+						var container = $('.GaleryPhotosContainer');
+
+						data.images.forEach(x => {
+							container.append(`
+<div id="${x.id}" class="PhotoContainer">
+	<img src="${x.path}" alt="photo" />
+	<div onclick="DeletePicture(${x.id})">delete</div>
+</div>`);
+						});
+					}
+				},
+				error: function (data) {
+					alert("Ошибка! Фото не отправленно!");
+				}
+			}
+		);
+
+		input.value = "";
+	}
+	else {
+		alert('Картинка не выбранна!');
+	}
+}
+
+function CancelSendPhoto() {
+	$('.TypeChooserInput:checked').prop('checked', false);
+	$('.PhotoTypeChooser').css('display', 'none');
+	$('#fileChooser').prop('value', '');
+}
+
+</script>

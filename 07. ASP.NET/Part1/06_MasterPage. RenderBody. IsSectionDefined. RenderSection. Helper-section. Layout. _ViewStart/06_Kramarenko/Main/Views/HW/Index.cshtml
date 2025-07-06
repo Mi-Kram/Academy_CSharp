@@ -1,0 +1,34 @@
+﻿@model Main.ViewModel.MainPageViewModel
+@using Main.CustomHelpers
+
+@{
+	ViewBag.Title = "Cars";
+}
+
+<h2>Cars</h2>
+
+<div style="display: flex;">
+	<div class="btn-group-vertical" style="flex-shrink: 0; width: max-content; margin-right: 10px;">
+		@Html.PagingButtons1(Model.CarTypePageInfo, 1, (i1, i2) => Url.Action("Index", new { carTypePage = i1, page = i2 }))
+	</div>
+	<div style="width: max-content; max-width: 100%;">
+		@*@CarHelpers.CreateCarTable(Model.CarsForView)*@
+
+		<div class="btn-group" style="margin-top: 10px;">
+			@Html.PagingButtons2(Model.PageInfo, Model.CarTypePageInfo.CurrentPage, (i1, i2) => Url.Action("Index", new { carTypePage = i1, page = i2 }))
+		</div>
+	</div>
+</div>
+
+<div style="margin-top: 20px;">
+	<style>
+		.btn + .btn {
+			margin-left: 10px;
+		}
+	</style>
+
+	<input class="btn btn-primary" type="button" value="Add" onclick="location.href='/HW/Add'" />
+	<input class="btn btn-primary" type="button" value="Remove" onclick="RemoveClick()" />
+	<input class="btn btn-primary" type="button" value="Edit" onclick="EditClick()" />
+	<input class="btn btn-primary" type="button" value="Detail" onclick="DetailClick()" />
+</div>

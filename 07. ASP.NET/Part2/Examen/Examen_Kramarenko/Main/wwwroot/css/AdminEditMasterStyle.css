@@ -1,0 +1,280 @@
+﻿.InnerMainDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.MasterForm{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+.MasterFormTitle{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.RegisterFormGroupTitlePhoto {
+	display: flex;
+	width: 500px;
+	max-width: 100%;
+	justify-content: space-around;
+}
+
+.RegisterFormGroupTitlePhoto > h3 {
+	width: max-content;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+.PhotoFormGroup {
+	width: max-content;
+}
+
+.FormGroupPhotoLabel{
+	width: 150px;
+	height: 150px;
+	margin: 0px auto;
+	border-radius: 50%;
+	overflow: hidden;
+	background: white;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.LabelPhotoBG {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 3px black solid;
+	z-index: 5;
+}
+
+.FormGroupPhotoHover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.3);
+	opacity: 0;
+	transition: opacity 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.FormGroupPhotoHover > svg{
+	height: 60%;
+	width: 60%;
+}
+
+.FormGroupPhotoLabel:hover .FormGroupPhotoHover {
+	opacity: 1;
+}
+
+.FormGroupPhotoLabel > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.FormGroup {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.FormGroup + .FormGroup{
+  margin-top: 35px;
+}
+
+.FormGroupTitle{
+  max-width: 100%;
+  display: block;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.FormGroupInput{
+  max-width: 100%;
+  width: 500px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 2px black solid;
+  font-size: 20px;
+  transition: background 0.2s;
+  background: white;
+  transition: background 0.2s;
+}
+
+.FormGroupInput[MasterPassword]{
+	padding-right: 55px;
+}
+
+.FormGroupInput.Error{
+  background-color: rgb(255, 164, 164);
+}
+
+.FormGroupTextTitle{
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  top: -25px;
+  left: 15px;
+  display: block;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.FormGroupInput:placeholder-shown + .FormGroupTextTitle{
+  top: 12px;
+  color: #777;
+}
+
+.FormGroupInput:focus + .FormGroupTextTitle{
+  top: -25px;
+  color: #000;
+}
+
+.FormGroupPasswordVisibility{
+  position: absolute;
+  top: 5px;
+  right: 13px;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: background 0.2s;
+  box-sizing: content-box;
+  padding: 7px;
+}
+
+.FormGroupPasswordVisibility:hover,
+.FormGroupPasswordVisibility:focus{
+	background: rgba(0,0,0,0.3);
+}
+
+.FormGroupPasswordVisibility > svg{
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.FormGroupPasswordVisibility > svg:nth-child(2){
+  display: none;
+}
+.FormGroupPasswordVisibility.Active > svg:nth-child(1){
+  display: none;
+}
+.FormGroupPasswordVisibility.Active > svg:nth-child(2){
+  display: block;
+}
+
+.FormGroupError {
+  max-width: 100%;
+  width: 500px;
+  display: block;
+  color: #f00;
+  font-size: 17px;
+  padding: 0px 10px;
+  margin-top: 3px;
+}
+
+.FormError {
+  max-width: 100%;
+  width: 500px;
+  display: block;
+  color: #f00;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.FormGroup.Buttons{
+	flex-direction: row;
+	width: max-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.MasterButton{
+  font-size: 30px;
+  padding: 5px 0px;
+  width: max-content;
+  min-width: 170px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border: 3px #000 solid;
+  border-radius: 35px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.MasterButton:focus,
+.MasterButton:hover{
+  background: #000;
+  color: #fff;
+}
+
+.MasterButton.Submit{
+	margin-right: 20px;
+}
+
+.MasterButton.Cancel:hover{
+	border-color: #e20b0b;
+	background: #e20b0b;
+	color: #fff;
+}
+
+.FormGroup.ChangePassword{
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.FormGroup.ChangePassword > label{
+	margin-left: 10px;
+	font-size: 20px;
+	width: max-content;
+}
+
+.NewPasswordsContainer{
+	display: none;
+	width: 100%;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	margin-top: 30px;
+}
+
+#ChangePassword{
+	transform-origin: 0px 50%;
+	transform: scale(2);
+	margin-right: 10px;
+}
+
+#ChangePassword:checked ~ .NewPasswordsContainer{
+	display: block;
+}

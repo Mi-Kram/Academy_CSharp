@@ -1,0 +1,353 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	outline: none;
+}
+
+body {
+	min-height: 100vh;
+	background: rgb(165, 165, 179);
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	margin: 0;
+	padding: 0;
+	margin-top: auto;
+	background: rgba(28, 28, 46, 0.8);
+	display: flex;
+	height: max-content;
+	min-height: 300px;
+	overflow: hidden;
+	z-index: 1;
+	backdrop-filter: blur(10px);
+}
+
+.FooterLogo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	width: 300px;
+}
+
+	.FooterLogo > img {
+		flex-shrink: 0;
+		height: 200px;
+		user-select: none;
+	}
+
+.FooterContent {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.FooterContent > div {
+	display: flex;
+	flex-direction: column;
+	margin: 50px;
+}
+
+.FooterContent > div > h3 {
+	color: #959595;
+	font-size: 12px;
+	font-weight: 300;
+	padding: 0px 2px;
+}
+
+.FooterContent > div > a {
+	color: #fff;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	display: block;
+	width: max-content;
+	padding: 10px 2px;
+}
+
+.FooterContent > div > a:focus,
+.FooterContent > div > a:hover {
+	color: #959595;
+}
+
+.TopMenu {
+	width: 100%;
+	height: 50px;
+	background: rgba(28, 28, 46, 0.8);
+	flex-shrink: 0;
+	display: flex;
+	align-items: stretch;
+	z-index: 1;
+	backdrop-filter: blur(10px);
+}
+
+.LookChatsDiv {
+	color: #fff;
+	font-size: 22px;
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	position: relative;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+	.LookChatsDiv:focus::before,
+	.LookChatsDiv:hover::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+.AuthRef {
+	color: #fff;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	margin-inline: auto 10px;
+	position: relative;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+
+	.AuthRef:focus,
+	.AuthRef:hover {
+		text-decoration: underline;
+	}
+
+.container {
+	background: rgba(255, 255, 255, 0.3);
+	padding: 50px;
+	padding-top: 20px;
+	width: max-content;
+	margin: 50px auto;
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	z-index: 1;
+}
+
+	.container h2 {
+		text-align: center;
+		font-size: 50px;
+		color: #111;
+		margin-bottom: 20px;
+	}
+
+	.container li{
+		text-align: center;
+		list-style: none;
+		color: #f00;
+		font-weight: 700;
+		font-size: 20px;
+		max-width: 400px
+	}
+
+.ErrorMessage{
+	width: 400px;
+	display: block;
+	padding-inline: 10px;
+	text-align: justify;
+	color: #f00;
+	font-weight: 700;
+}
+
+.FormInput {
+	display: flex;
+	border: 2px solid rgb(150, 150, 150);
+	border-radius: 5px;
+	padding: 10px;
+	width: 400px;
+	overflow: hidden;
+	background: #fff;
+	cursor: text;
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+.RegisterPhotoInput{
+	display: block;
+}
+.RegisterPhotoInput > input {
+	display: none;
+}
+
+.PhotoDiv {
+	height: 150px;
+	width: 150px;
+	background: #aaa;
+	margin-inline: auto;
+	border-radius: 50%;
+	position: relative;
+}
+	.PhotoDiv::before {
+		content: '';
+		position: absolute;
+		width: calc(100% + 14px);
+		height: calc(100% + 14px);
+		margin: -7px;
+		border-radius: 50%;
+		background: black;
+		top: 0;
+		left: 0;
+		z-index: -1;
+	}
+
+.PhotoContentDiv {
+	height: 150px;
+	width: 150px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.RegisterAddDivStyle {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0,0,0,0.4);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
+	z-index: 3;
+}
+
+.RegisterAddDivStyle ion-icon {
+	width: 60%;
+	height: 60%;
+	color: white;
+	pointer-events: none;
+}
+
+.PhotoDiv:hover .RegisterAddDivStyle {
+	display: flex;
+}
+
+.PhotoDiv img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: 2;
+}
+
+.PhotoDiv img[src=''] {
+	display: none;
+}
+
+.PhotoContentDiv > ion-icon {
+	width: 60%;
+	height: 60%;
+	color: #333;
+	display: none;
+}
+
+
+.PhotoDiv img[src=''] ~ ion-icon {
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.FormInput ion-icon {
+	font-size: 25px;
+	pointer-events: none;
+}
+
+	.FormInput input {
+		width: 100%;
+		margin-inline: 10px;
+		border: none;
+		outline: none;
+		font-size: 20px;
+	}
+
+		.FormInput input::placeholder {
+			user-select: none;
+		}
+
+.FormButton {
+	display: flex;
+	border: 5px solid rgb(76, 104, 231);
+	border-radius: 50px;
+	width: 400px;
+	overflow: hidden;
+	background: #fff;
+	color: rgb(76, 104, 231);
+	font-weight: 700;
+	margin-top: 10px;
+	font-size: 30px;
+	padding: 10px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	display: block;
+	user-select: none;
+}
+
+	.FormButton:focus,
+	.FormButton:hover {
+		color: white;
+		background: rgb(76, 104, 231);
+	}
+
+.BubleDiv {
+	position: absolute;
+	animation: BubleDivBorderRadiusAnimation 7s linear infinite;
+	opacity: 0.8;
+}
+
+@keyframes BubleDivBorderRadiusAnimation {
+	0% {
+		border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+	}
+
+	20% {
+		border-radius: 60% 40% 56% 44% / 30% 30% 70% 70%;
+	}
+
+	40% {
+		border-radius: 60% 40% 56% 44% / 56% 56% 44% 44%;
+	}
+
+	60% {
+		border-radius: 57% 43% 29% 71% / 41% 42% 58% 59%;
+	}
+
+	80% {
+		border-radius: 52% 48% 72% 28% / 48% 38% 62% 52%;
+	}
+
+	100% {
+		border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+	}
+}

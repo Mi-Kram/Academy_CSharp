@@ -1,0 +1,344 @@
+﻿@page "{handler?}"
+
+@model Main.Pages.Pictures.IndexModel
+
+@{
+	ViewData["Title"] = "Galery";
+}
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+	public string GetAntiXsrfRequestToken()
+	{
+		return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
+	}
+}
+
+<section class="Galery">
+	<div class="GaleryLeftMenu">
+		<div class="GaleryMenuGroup">
+			<h2>Тип</h2>
+			<pic-category input-class="MenuTypeRadio"
+						  category-id="0"
+						  input-id="0"
+						  onchange="ChangePhotosType()"
+						  group="glmt"
+						  is-checked="@(Model.CategoryID == 0)"
+						  label-class="MenuTypeLabel"
+						  content="Все">
+			</pic-category>
+			@if (User.Identity.IsAuthenticated)
+			{
+				<pic-category input-class="MenuTypeRadio"
+							  category-id="-1"
+							  input-id="-1"
+							  onchange="ChangePhotosType()"
+							  group="glmt"
+							  is-checked="@(Model.CategoryID == -1)"
+							  label-class="MenuTypeLabel"
+							  content="Мои">
+				</pic-category>
+			}
+			@for (int i = 0; i < Model.Categories.Count; i++)
+			{
+				<pic-category input-class="MenuTypeRadio"
+							  category-id="@Model.Categories[i].ID"
+							  input-id="@($"glmt{i + 1}")"
+							  onchange="ChangePhotosType()"
+							  group="glmt"
+							  is-checked="false"
+							  label-class="MenuTypeLabel"
+							  content="@Model.Categories[i].Value">
+				</pic-category>
+			}
+		</div>
+		@if (User.Identity.IsAuthenticated)
+		{
+			<div class="GaleryMenuGroup">
+				<button onclick="AddPictureClick()" class="AddPictureButton">Добавить картинку</button>
+			</div>
+		}
+	</div>
+	<div class="GaleryMain">
+		<div class="GaleryPhotosContainer">
+			@foreach (var img in Model.Pictures.Skip((Model.CurrentPage-1)*Model.OnePageCount).Take(Model.OnePageCount))
+			{
+				<pic-item container-class="PhotoContainer"
+						  show-handler="ShowPicture"
+						  img-id="@img.ID"
+						  img-src="@img.ImgSrc"
+						  delete-button-class="DeleteImgButtonStyle"
+						  delete-handler="DeletePicture"
+						  can-delete="@(Model.IsAdmin || Model.CategoryID == -1)">
+				</pic-item>
+			}
+		</div>
+		<div class="PagpingButtonsContainer">
+			<div class="PhotoPaggings">
+				@{ 
+					int n = Model.Pictures.Count / Model.OnePageCount;
+					if (Model.Pictures.Count % Model.OnePageCount != 0) n++;
+					for (int i = 1; i <= n; i++)
+					{
+						<photo-pagging-item value="@i"
+											selected-value="@Model.CurrentPage"
+											input-class="PhotoPaggingInput"
+											label-class="PhotoPaggingLabel"
+											onchange="OnPhotoPaggingChange()">
+						</photo-pagging-item>
+					}
+				} 
+			</div>
+		</div>
+	</div>
+</section>
+
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="AddPictureOuterDiv">
+		<div class="AddPictureInnerDiv">
+			<div class="AddPictureDiv">
+				<h2>Добавление картинки</h2>
+				<div id="AP-Files">
+					<input type="file" accept=".png, .jpg, .jpeg, .bmp" />
+				</div>
+				<div id="AP-Caption">
+					<input placeholder="Заголовок" type="text" value="" maxlength="20" />
+				</div>
+				<div id="AP-Description">
+					<textarea placeholder="Описание" maxlength="300"></textarea>
+				</div>
+				<div id="AP-Category">
+					@for (int i = 0; i < Model.Categories.Count; i++)
+					{
+						var ct = Model.Categories[i];
+						<div>
+							<input type="radio" id="@($"aptr{i}")" value="@ct.ID" name="aptr" @(i == 0 ? "checked" : "") />
+							<label for="@($"aptr{i}")">@ct.Value</label>
+						</div>
+					}
+				</div>
+				<div id="AP-Buttons">
+					<input type="button" value="Отмена" onclick="AddPictureCancel()" />
+					<input type="button" value="Добавить" onclick="AddPictureSubmit()" />
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+<script type="text/javascript" charset="UTF-8">
+	function ShowPicture(id) {
+		window.location = '@Url.Page("/Pictures/DetailPicture")' + '?id=' + id;
+	}
+
+	function ChangePhotosType() {
+		var radios = $('.MenuTypeRadio:checked');
+		if (radios.length == 1) {
+			var type = radios.prop('value') || 0;
+			var data = new FormData();
+			data.append("typeID", type);
+
+			$.ajax({
+				url: '@Url.Page("/Pictures/Index", "ByType")',
+				type: "POST",
+				headers: {
+					"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+				},
+				processData: false,
+				contentType: false,
+				data: data,
+				success: function (data) {
+					var container = $('.GaleryPhotosContainer');
+					container.html('');
+
+					if (data) {
+						try {
+							data.pictures.forEach(x => {
+								container.append(`
+	<div id="${x.id}" class="PhotoContainer" onclick="ShowPicture(${x.id})">
+		<img src="${x.imgSrc}" alt="photo" />
+		${(x.canDelete === true ? `<input type="button" value="delete" class="DeleteImgButtonStyle" onclick="DeletePicture(${x.id})" />` : '')}
+	</div>`);
+							});
+
+							var paggingContainer = $('.PhotoPaggings');
+							paggingContainer.html('');
+							for (var i = 1; i <= data.paggingCount; i++) {
+								paggingContainer.append(`
+<input class="PhotoPaggingInput" value="${i}" id="ppg${i}" onchange="OnPhotoPaggingChange()" type="radio" name="ppg" ${(i == 1 ? "Checked" : "")} />
+<label class="PhotoPaggingLabel" for="ppg${i}">${i}</label>`);
+							}
+						} catch (e) { }
+					}
+				},
+				error: function (data) {
+					$('.GaleryPhotosContainer').html('');
+					setTimeout(() => {
+						alert('Ошибка!');
+					}, 10);
+				}
+			});
+		}
+	}
+
+	function OnPhotoPaggingChange() {
+		var type_radios = $('.MenuTypeRadio:checked');
+		var pagging_radios = $('.PhotoPaggingInput:checked');
+		if (type_radios.length == 1 && pagging_radios.length == 1) {
+			var page = pagging_radios.prop('value') || 1;
+			var type = type_radios.prop('value') || 0;
+			var data = new FormData();
+			data.append("page", page);
+			data.append("type", type);
+
+			$.ajax({
+				url: '@Url.Page("/Pictures/Index", "Page")',
+				type: "POST",
+				headers: {
+					"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+				},
+				processData: false,
+				contentType: false,
+				data: data,
+				success: function (data) {
+					var container = $('.GaleryPhotosContainer');
+					container.html('');
+
+					if (data) {
+						try {
+							data.forEach(x => {
+								container.append(`
+	<div id="${x.id}" class="PhotoContainer" onclick="ShowPicture(${x.id})">
+		<img src="${x.imgSrc}" alt="photo" />
+		${(x.canDelete === true ? `<input type="button" value="delete" class="DeleteImgButtonStyle" onclick="DeletePicture(${x.id})" />` : '')}
+	</div>`);
+							});
+						} catch (e) { }
+					}
+				},
+				error: function (data) {
+					$('.GaleryPhotosContainer').html('');
+					setTimeout(() => {
+						alert('Ошибка!');
+					}, 10);
+				}
+			});
+		}
+	}
+</script>
+
+@if (User.Identity.IsAuthenticated)
+{
+<script type="text/javascript" charset="UTF-8">
+	function DeletePicture(id) {
+		event.stopPropagation();
+
+		if (confirm('Удалить картинку?') == true) {
+			var data = new FormData();
+			data.append("id", id);
+
+			$.ajax(
+				{
+					url: '@Url.Page("/Pictures/Index", "Delete")',
+					data: data,
+					processData: false,
+					headers: {
+						"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+					},
+					contentType: false,
+					type: "POST",
+					success: function (data) {
+						if (data === true) {
+							var photo = document.getElementById(id);
+							if (photo) photo.remove();
+						}
+						else {
+							alert('Ошибка!');
+						}
+					},
+					error: function (data) {
+						alert('Ошибка!');
+					}
+				}
+			);
+		}
+	}
+
+	function AddPictureClick() {
+		$(".AddPictureOuterDiv").css('display', 'flex');
+	}
+
+	function AddPictureCancel() {
+		$("#AP-Files input").prop('value', '');
+		$("#AP-Caption input").prop('value', '');
+		$("#AP-Description textarea").prop('value', '');
+		$("#AP-Category input").first().prop('checked', true);
+		$(".AddPictureOuterDiv").css('display', '');
+	}
+
+	function AddPictureSubmit() {
+		var files = $("#AP-Files input").prop('files');
+		var caption = $("#AP-Caption input").prop('value') || "";
+		var description = $("#AP-Description textarea").prop('value') || "";
+		var categoryID = $("#AP-Category input:checked").prop('value');
+		var myCategoryID = $('.MenuTypeRadio:checked').prop('value');
+
+		try {
+			var data = new FormData();
+			for (var i = 0; i < files.length; i++) {
+				data.append('files', files[i]);
+			}
+			data.append('caption', caption);
+			data.append('description', description);
+			data.append('categoryID', categoryID);
+			data.append('myCategoryID', myCategoryID);
+
+			$.ajax(
+				{
+					url: '@Url.Page("/Pictures/Index", "AddPhoto")',
+					data: data,
+					processData: false,
+					headers: {
+						"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+					},
+					contentType: false,
+					type: "POST",
+					success: function (data) {
+						if (!data) {
+							alert('Ошибка!');
+							return;
+						}
+
+						if (data.isPass == true) {
+							var container = $('.GaleryPhotosContainer');
+
+							try {
+								container.append(`
+<div id="${data.image.id}" class="PhotoContainer" onclick="ShowPicture(${data.image.id})">
+	<img src="${data.image.imgSrc}" alt="photo" />
+	<input type="button" value="delete" class="DeleteImgButtonStyle" onclick="DeletePicture(${data.image.id})" />
+</div>`);
+							} catch (e) {  }
+						}
+						else if (data.isError) {
+							alert('Ошибка!');
+						}
+					},
+					error: function (data) {
+						alert('Ошибка! Ajax error');
+					}
+				}
+			);
+		} catch (e) {
+			alert('Ошибка! end');
+		}
+
+		$("#AP-Files input").prop('value', '');
+		$("#AP-Caption input").prop('value', '');
+		$("#AP-Description textarea").prop('value', '');
+		$("#AP-Category input").first().prop('checked', true);
+		$(".AddPictureOuterDiv").css('display', '');
+	}
+</script>
+}

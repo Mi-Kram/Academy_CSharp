@@ -1,0 +1,81 @@
+﻿@model List<Main.Models.authors>
+@{
+	ViewBag.Title = "Task3";
+}
+
+<h2>Task3</h2>
+
+<script>
+	function SearchAuthors() {
+		event.preventDefault();
+
+		var serch = $("#au_search").val();
+		serch = encodeURIComponent(serch);
+
+		$('#ContentDiv').load('@Url.Action("Task3Search", "HW")?au_search=' + serch)
+	}
+	
+	/*
+	$('#Genres').change(function (e) {
+		e.preventDefault();
+
+		var genre = $('#Genres').val();
+		genre = encodeURIComponent(genre);
+
+		$('#results').load('Url.Action("BooksList", "Books")?genre=' + genre)
+	});*/
+
+</script>
+
+@Html.TextBox("au_search", "", new { @id = "au_search" })
+<button style="padding: 5px 20px; border-radius: 5px;" onclick="SearchAuthors()">Поиск</button>
+
+<style>
+	table {
+		border-collapse: collapse;
+	}
+
+		table td,
+		table th {
+			padding: 5px 10px;
+			border: 2px black solid;
+		}
+
+		table thead tr {
+			background: #4680db;
+		}
+
+		table tbody tr:nth-child(2n) {
+			background: #7f7;
+		}
+</style>
+
+<div id="ContentDiv" style="margin-top: 20px;">
+	<table>
+		<thead>
+			<tr>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Address</th>
+				<th>Phone</th>
+				<th>State</th>
+				<th>City</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			@foreach (var au in Model)
+			{
+				<tr>
+					<td>@au.au_fname</td>
+					<td>@au.au_lname</td>
+					<td>@au.address</td>
+					<td>@au.phone</td>
+					<td>@au.state</td>
+					<td>@au.city</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+

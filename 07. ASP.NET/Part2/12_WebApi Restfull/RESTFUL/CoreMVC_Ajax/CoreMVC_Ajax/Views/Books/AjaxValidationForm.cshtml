@@ -1,0 +1,66 @@
+﻿@model CoreMVC_Ajax.ViewModels.BookFormViewModel
+
+@{
+    ViewBag.Title = "Book";
+}
+
+<script type="text/javascript">
+    function OnSuccess(data) {
+        alert("Success!");
+        //window.location.href = 'https://localhost:44391/Books';
+    }
+</script>
+
+<h2>@Model.Book.Title</h2>
+
+<form method="post" data-ajax="true" data-ajax-method="post" data-ajax-url="/Books/Save" data-ajax-update="#results" data-ajax-success="OnSuccess">
+    <div id="results">
+        @Html.ValidationSummary(true, "Please fix the following errors!")
+
+        <!-- втроенная защита от CSRF - атаки -->
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.Title)
+            @Html.TextBoxFor(m => m.Book.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Title)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.Author)
+            @Html.TextBoxFor(m => m.Book.Author, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Author)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Genres)
+            @Html.DropDownListFor(m => m.Book.Genre, new SelectList(Model.Genres, "Name", "Name"), "Select genre", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Genre)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.PubDate)
+            @Html.TextBoxFor(m => m.Book.PubDate, new { @class = "form-control", type="date" })
+            @Html.ValidationMessageFor(m => m.Book.PubDate)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Book.Price)
+            @Html.TextBoxFor(m => m.Book.Price, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Book.Price)
+        </div>
+
+        @Html.HiddenFor(m => m.Book.Id)
+
+        <button class="btn btn-primary">Save</button>
+        <input class="btn" type="button" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Books") + "'");" />
+
+    </div>
+
+</form>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,120 @@
+﻿@model List<Main.Models.MessageModel>
+
+<style>
+	.MessageContainer {
+		width: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+	.MessageBox {
+		display: flex;
+		margin: 10px;
+		max-width: 60%;
+		width: max-content;
+		display: flex;
+		padding: 10px 20px;
+	}
+
+	.MyMessage {
+		flex-direction: row-reverse;
+		margin-left: auto;
+		background: rgb(117, 235, 117);
+		border-radius: 20px 20px 0px 20px
+	}
+
+	.FriendMessage {
+		margin-right: auto;
+		background: rgb(151, 173, 233);
+		border-radius: 20px 20px 20px 0px
+	}
+
+	.MessageBoxDiv1 {
+		width: max-content;
+		flex-shrink: 0;
+	}
+
+		.MessageBoxDiv1 > div {
+			width: 60px;
+			height: 60px;
+			overflow: hidden;
+			border-radius: 50%;
+		}
+
+			.MessageBoxDiv1 > div > img {
+				object-fit: cover;
+				height: 100%;
+				width: 100%;
+			}
+
+	.MessageBoxDiv2 {
+		margin-inline: 10px;
+	}
+
+		.MessageBoxDiv2 > div {
+			display: flex;
+			flex-direction: row;
+		}
+
+	.SenderLogin {
+		width: max-content;
+		color: rgb(102, 102, 102);
+		font-weight: 700;
+		font-size: 15px;
+		display: block;
+		justify-self: flex-end;
+	}
+
+	.SendTime {
+		justify-self: flex-start;
+		display: block;
+	}
+
+	.MyMessage .SenderLogin {
+		margin-left: auto;
+	}
+
+	.FriendMessage .SenderLogin {
+		margin-right: auto;
+	}
+
+	.ContentMsg {
+		text-align: justify;
+		word-wrap: break-word;
+		font-size: 20px;
+		margin-top: 5px;
+	}
+</style>
+
+<input id="currentChatID" type="hidden" value="@ViewBag.ChatID" />
+<input id="lastMsgID" type="hidden" value="@(Model.Count>0?Model[Model.Count-1].ID.ToString():"")" />
+<div class="MessageContainer">
+	@foreach (var msg in Model)
+	{
+		@*<div class="MessageBox FriendMessage">
+				<p class="SenderLogin">@msg.Sender.UserName</p>
+				<p class="ContentMsg">@msg.Content</p>
+			</div>*@
+
+		<div class="MessageBox FriendMessage">
+			<div class="MessageBoxDiv1">
+				<div>
+					<img src="/@msg.SenderImg" alt="photo" />
+				</div>
+			</div>
+			<div class="MessageBoxDiv2">
+				<div>
+					<p class="SenderLogin">@msg.SenderName</p>
+					<div style="width: 100%; min-width: 20px;"></div>
+					<p class="SendTime">@msg.SendTime</p>
+				</div>
+				<p class="ContentMsg">@msg.Content</p>
+			</div>
+		</div>
+
+	}
+</div>
+
+<script src="~/Scripts/UpdaterChatMessages.js"></script>
+<script src="~/Scripts/ScrollToBottomOnLoad.js"></script>
+

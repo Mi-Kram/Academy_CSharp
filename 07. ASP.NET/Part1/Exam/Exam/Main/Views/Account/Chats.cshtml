@@ -1,0 +1,42 @@
+﻿@model List<Main.Models.Chat>
+@{
+	ViewBag.Title = "Chats";
+}
+
+<style>
+	.ChatContainer {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.ChatItem {
+		background: rgb(224, 190, 144);
+		width: 100%;
+		overflow: hidden;
+		padding: 10px 20px;
+		text-decoration: none;
+		color: black;
+		font-size: 30px;
+		font-weight: 700;
+	}
+
+		.ChatItem:nth-child(2n) {
+			background: rgb(214, 164, 93);
+		}
+
+		.ChatItem:focus,
+		.ChatItem:hover {
+			background: rgb(211, 149, 3);
+		}
+</style>
+
+<div class="ChatContainer">
+	@foreach (var chat in Model)
+	{
+		<a href="~/Account/OpenChat?chatID=@chat.ID" class="ChatItem">
+			<h3>@chat.Title</h3>
+		</a>
+	}
+</div>

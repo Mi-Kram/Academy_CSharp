@@ -1,0 +1,294 @@
+﻿.InnerMainDiv{
+	display: flex;
+	justify-content: center;
+}
+
+.CategoryWrapper{
+	display: flex;
+	margin-top: 30px;
+}
+
+.CategoryWrapper.Active{
+	width: 100%;
+	justify-content: space-around;
+}
+
+.CategoryContainer{
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.CRUDButtons{
+	width: 100%;
+	display: flex;
+}
+
+.CRUDButton{
+	text-decoration: none;
+	width: max-content;
+	background: white;
+	border: 3px black solid;
+	color: black;
+	padding: 5px 0px;
+	min-width: 130px;
+	display: flex;
+	justify-content: center;
+	border-radius: 20px;
+	font-size: 20px;
+	user-select: none;
+	transition: background 0.2s, color 0.2s;
+}
+
+.CRUDButton + .CRUDButton{
+	margin-left: 20px;
+}
+
+.CRUDButton:focus,
+.CRUDButton:hover{
+	background: black;
+	color: white;
+}
+
+.CRUDButton.Create{
+	color: #000;
+	border-color: #000;
+}
+
+.CRUDButton.Create:focus,
+.CRUDButton.Create:hover{
+	background: #000;
+	color: #fff;
+}
+
+.CRUDButton.Edit{
+	color: rgb(9, 12, 185);
+	border-color: rgb(9, 12, 185);
+}
+
+.CRUDButton.Edit:focus,
+.CRUDButton.Edit:hover{
+	background: rgb(9, 12, 185);
+	color: #fff;
+}
+
+.CRUDButton.Delete{
+	color: rgb(243, 18, 18);
+	border-color: rgb(243, 18, 18);
+}
+
+.CRUDButton.Delete:focus,
+.CRUDButton.Delete:hover{
+	background: rgb(243, 18, 18);
+	color: #fff;
+}
+
+.CategoryTable{
+	width: max-content;
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+	font-size: 20px;
+	overflow: hidden;
+}
+
+.CategoryTableHead{
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	border-bottom: 2px black solid;
+	padding-bottom: 2px;
+	height: 30px;
+}
+
+.CategoryTableBody{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.CategoryTableRow{
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	height: 40px;
+	border-bottom: 3px #888 solid;
+	transition: background 0.2s;
+}
+
+.CategoryTableRow:hover{
+	background: rgba(0, 0, 255, 0.2);
+}
+
+.CategoryTableHeadCell{
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0px 10px;
+	overflow: hidden;
+	font-size: 30px;
+}
+
+.CategoryTableCell{
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0px 10px;
+	overflow: hidden;
+}
+
+.CategoryTableCell.Check,
+.CategoryTableHeadCell.Check{
+	flex-shrink: 0;
+	width: 30px;
+	padding: 0px;
+	justify-content: center;
+}
+
+.CategoryTableCell.Category,
+.CategoryTableHeadCell.Category{
+	justify-content: center;
+}
+
+.CategoryTableCell.Check > input{
+	transform-origin: 50% 50%;
+	transform: scale(1.6);
+}
+
+#CategorySelectAllCheckBox{
+	transform-origin: 50% 50%;
+	transform: scale(2);
+}
+
+.CategoryValue{
+	font-size: 20px;
+}
+
+.CategoryForm{
+	display: none;
+	flex-direction: column;
+	width: max-content;
+	margin-top: 50px;
+	border: 2px black solid;
+	padding: 30px;
+	border-radius: 50px;
+	background: rgba(8, 42, 194, 0.13);
+	align-self: flex-start;
+}
+
+.CategoryWrapper.Active .CategoryForm{
+	display: flex;
+}
+
+.CategoryFormTitle{
+	font-size: 25px;
+	display: block;
+	width: max-content;
+	margin: 0 auto 20px auto;
+}
+
+.FormGroup{
+	margin-top: 10px;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.CategoryInput{
+  max-width: 100%;
+  width: 300px;
+  display: block;
+  padding: 5px 10px;
+  border-radius: 25px;
+  border: 1px black solid;
+  font-size: 17px;
+  background: white;
+  transition: background 0.2s;
+}
+
+.CategoryInput.Error{
+  background-color: rgb(255, 164, 164);
+}
+
+.CategoruInputLabel{
+  color: #000;
+  font-size: 17px;
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  display: block;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.CategoryInput:placeholder-shown + .CategoruInputLabel{
+  top: 6px;
+  color: #777;
+}
+
+.CategoryInput:focus + .CategoruInputLabel{
+  top: -20px;
+  color: #000;
+}
+
+.CategoryError{
+  max-width: 100%;
+  width: 300px;
+  display: block;
+  color: #f00;
+  font-size: 17px;
+  padding: 0px 10px;
+  margin-top: 2px;
+}
+
+.FormGroup.Buttons{
+	flex-direction: row;
+	width: max-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.FormButton{
+  font-size: 17px;
+  padding: 3px 0px;
+  width: max-content;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border: 1px #000 solid;
+  border-radius: 15px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.FormButton:focus,
+.FormButton:hover{
+  background: #000;
+  color: #fff;
+}
+
+.FormButton.Submit{
+	margin-right: 20px;
+}
+
+.FormButton.Submit:focus,
+.FormButton.Submit:hover{
+	border-color: #1d9405;
+	background: #1d9405;
+	color: #fff;
+}
+
+.FormButton.Cancel:focus,
+.FormButton.Cancel:hover{
+	border-color: #e20b0b;
+	background: #e20b0b;
+	color: #fff;
+}

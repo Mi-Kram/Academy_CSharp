@@ -1,0 +1,33 @@
+﻿@model Main.ViewModel.MainCarPageViewModel
+@using Main.CarHelpers
+
+@{
+	ViewBag.Title = "Car";
+	ViewBag.IsAdmin = Model.User.IsAdmin;
+	ViewBag.IsAdminToggle = Model.IsAdminToggle;
+}
+
+<div>
+	@CarHelpers.CreateCarTable(Model.Cars, $"/Car/Sort?page={Model.PageInfo.CurrentPage}&sortColumn=")
+
+	<div class="brn-group" style="margin-top: 20px;">
+		@Html.TablePaging(Model.PageInfo, i => Url.Action("Index", new { @page = i }))
+	</div>
+</div>
+
+	<div style="margin-top: 20px;">
+		<style>
+			.btn + .btn {
+				margin-left: 10px;
+			}
+		</style>
+
+		@if (Model.User.IsAdmin && Model.IsAdminToggle)
+		{
+			<input class="btn btn-primary" type="button" value="Add" onclick="location.href='/Car/Add'" />
+			<input class="btn btn-primary" type="button" value="Remove" onclick="RemoveClick()" />
+			<input class="btn btn-primary" type="button" value="Edit" onclick="EditClick()" />
+		}
+
+		<input class="btn btn-primary" type="button" value="Detail" onclick="DetailClick('@Model.User.IsAdmin')" />
+	</div>

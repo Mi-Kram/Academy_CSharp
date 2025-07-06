@@ -1,0 +1,126 @@
+﻿@model CoreMVC_Ajax.ViewModels.BookFormViewModel
+
+@{
+    ViewBag.Title = "Edit book";
+}
+
+<h2>@Model.Book.Title</h2>
+
+<form id="validForm" action="" method="post">
+
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+    <!-- втроенная защита от CSRF - атаки -->
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Title)
+        @Html.TextBoxFor(m => m.Book.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.Title)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Author)
+        @Html.TextBoxFor(m => m.Book.Author, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.Author)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Genres)
+        @Html.DropDownListFor(m => m.Book.Genre, new SelectList(Model.Genres, "Name", "Name"), "Select genre", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.Genre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.PubDate)
+        @Html.TextBoxFor(m => m.Book.PubDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.Book.PubDate)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Book.Price)
+        @Html.TextBoxFor(m => m.Book.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.Price)
+    </div>
+
+    @Html.HiddenFor(m => m.Book.Id)
+
+    <button class="btn btn-primary">Save</button>
+    <input class="btn" type="button" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Index", "Books") + "'");" />
+</form>
+
+    <script>
+
+    function ProcessResult(data) {
+        console.log(data);
+
+        // скрыть все ошибки, показанные на предыдущем шаге валидации
+        $("input").removeClass('input-validation-error');
+        $("select").removeClass('input-validation-error');
+        $("span[data-valmsg-for]").removeClass('field-validation-error');
+        $("span[data-valmsg-for]").addClass('field-validation-valid');
+        $("span[data-valmsg-for]").text("");
+
+        if (data.success == false) {
+            //alert("400")
+
+            // перебрать все полученные ошибки валидации
+            $.each(data.errors, function (key, value) {
+                //console.log(key);
+                console.log(value.key);
+                console.log(value.errors[0]);
+
+                // выделить текстовое поле с ошибкой
+                var filter = "input[name='" + "Book." + value.key + "']";
+                $(filter).addClass('input-validation-error');
+
+                // показать сообщение об ошибке для каждого текстового поля с ошибкой
+                var validationMessageElement = $('span[data-valmsg-for="' + "Book." + value.key + '"]');
+                validationMessageElement.removeClass('field-validation-valid');
+                validationMessageElement.addClass('field-validation-error');
+                validationMessageElement.text(value.errors[0]);
+
+                console.log('span[data-valmsg-for="' + "Book." + value.key + '"]');
+            });
+        }
+        else
+        {
+            alert("Success!!!");
+            window.location.href = 'https://localhost:44391/Books';
+        }
+    }
+
+    $('#validForm').submit(function (e) {
+
+        e.preventDefault();
+
+        //alert("send");
+
+        var form = $(this);
+
+        // подача Ajax-запроса на сервер при помощи JQuery
+        $.ajax({
+            url: '@Url.Action("Save2", "Books")',
+            method: "POST",
+            data: JSON.stringify({
+                Id: $('#Book_Id').val(),
+                Title: $('#Book_Title').val(),
+                Author: $('#Book_Author').val(),
+                Genre: $('#Book_Genre').val(),
+                PubDate: $('#Book_PubDate').val(),
+                Price: $('#Book_Price').val()
+            }),
+            dataType: 'JSON',
+            contentType: 'application/json',
+            cache: false,
+            processData: false,
+            success: function (data) {
+                ProcessResult(data);
+            },
+            error: function (data) {
+                alert("OnError!!!");
+            }
+        })
+    });
+
+    </script>

@@ -1,0 +1,46 @@
+﻿@model List<Main.Models.MessageModel>
+
+<input id="currentChatID" type="hidden" value="@ViewBag.ChatID" />
+<input id="lastMsgID" type="hidden" value="@(Model.Count>0?Model[Model.Count-1].ID.ToString():"")" />
+<div class="MessageContainer">
+	@foreach (var msg in Model)
+	{
+		@*<div class="MessageBox @(msg.SenderName==User.Identity.Name ? "MyMessage" : "FriendMessage")">
+				<p class="SenderLogin">@msg.SenderName</p>
+				<p class="ContentMsg">@msg.Content</p>
+			</div>*@
+
+		<div class="MessageBox @(msg.SenderName==User.Identity.Name ? "MyMessage" : "FriendMessage")">
+			<div class="MessageBoxDiv1">
+				<div>
+					<img src="/@msg.SenderImg" alt="photo"/>
+				</div>
+			</div>
+			<div class="MessageBoxDiv2">
+				<div>
+					<p class="SenderLogin">@msg.SenderName</p>
+					<div style="width: 100%; min-width: 20px;"></div>
+					<p class="SendTime">@msg.SendTime</p>
+				</div>
+				<p class="ContentMsg">@msg.Content</p>
+			</div>
+		</div>
+
+	}
+</div>
+<div style="height: 60px;"></div>
+
+<div class="MessageSenderDiv">
+	<div class="MessageSenderBox">
+		<input type="text" onkeydown="OnMessageInputKeyDown()" autocomplete="off" maxlength="200" placeholder="message ...">
+	</div>
+	<div class="SendMessageButton">
+		<div onclick="SendMessage()">
+			<ion-icon name="send"></ion-icon>
+		</div>
+	</div>
+</div>
+
+<script src="~/Scripts/UpdaterChatMessages.js"></script>
+<script src="~/Scripts/ScrollToBottomOnLoad.js"></script>
+

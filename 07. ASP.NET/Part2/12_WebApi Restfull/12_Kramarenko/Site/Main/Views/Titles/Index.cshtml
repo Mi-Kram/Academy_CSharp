@@ -1,0 +1,178 @@
+﻿@model TitlesViewModel
+@{
+	ViewBag.Title = "Titles";
+}
+
+<a href="@Url.Action("Create", "Titles")" class="TitlesCreateBtn">Добавить</a>
+
+<select size="1" class="PublishersComboBox" onchange="OnPublisherChange()">
+	<option selected value="0">Все</option>
+	@foreach (var pub in Model.Publishers)
+	{
+		<option value="@pub.PubId">@pub.PubName</option>
+	}
+</select>
+
+<table class="TitlesTable">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Publisher</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody id="TitlesTableBody">
+		@foreach (var title in Model.Titles.Take(5))
+		{
+			<tr title-id="@title.TitleId">
+				<td>@title.Title1</td>
+				<td>@string.Format("{0:0.##}", title.Price)</td>
+				<td>@title.Pub.PubName</td>
+				<td><button title-id="@title.TitleId" onclick="OnEditClick()" class="TitleEditBtn">Edit</button></td>
+				<td><button title-id="@title.TitleId" onclick="OnDeleteClick()" class="TitleDeleteBtn">Delete</button></td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="PagpingButtonsContainer">
+	<div class="PhotoPaggings">
+		@{
+			int n = Model.Titles.Count / 5;
+			if (Model.Titles.Count % 5 != 0) n++;
+
+			for (int i = 1; i <= n; i++)
+			{
+				<input value="@i" id="@($"tpi{i}")" name="tpig" onchange="OnPaggingChanged()" class="PhotoPaggingInput" type="radio" @(i == 1 ? "checked" : "") />
+				<label for="@($"tpi{i}")" class="PhotoPaggingLabel">@i</label>
+			}
+		}
+	</div>
+</div>
+
+<script>
+	function OnPublisherChange() {
+		$.ajax({
+			url: 'api/TitlesApi/pub/' + event.target.value,
+			method: "GET",
+			data: null,
+			processData: false,
+			dataType: 'JSON',
+			contentType: 'application/json',
+			success: function (data) {
+				if (data) {
+					try {
+						var tbody = $('#TitlesTableBody');
+						tbody.html('');
+
+						$.each(data.titles, function () {
+							tbody.append(`
+<tr title-id="${this.id}">
+	<td>${this.title}</td>
+	<td>${this.price}</td>
+	<td>${this.pubName}</td>
+	<td><button title-id="${this.id}" onclick="OnEditClick()" class="TitleEditBtn">Edit</button></td>
+	<td><button title-id="${this.id}" onclick="OnDeleteClick()" class="TitleDeleteBtn">Delete</button></td>
+</tr>`)});
+
+						var paggingContainer = $('.PhotoPaggings');
+						paggingContainer.html('');
+						var n = data.paggingCnt;
+						if (!isNaN(n)) {
+							for (var i = 1; i <= n; i++) {
+								paggingContainer.append(`
+<input value="${i}" id="tpi${i}" name="tpig" onchange="OnPaggingChanged()" class="PhotoPaggingInput" type="radio" ${(i==1?"checked":"")} />
+<label for="tpi${i}" class="PhotoPaggingLabel">${i}</label>`);
+							}
+						}
+					} catch (e) { }
+				}
+				else {
+					alert('Ошибка!');
+				}
+			},
+			error: function (data) {
+				alert('Ошибка!');
+			}
+		});
+	}
+
+	function OnPaggingChanged() {
+		var pub = $('.PublishersComboBox').val();
+		var page = $('.PhotoPaggingInput:checked').val();
+
+		$.ajax({
+			url: `api/TitlesApi/${pub}/${page}`,
+			method: "GET",
+			data: null,
+			processData: false,
+			dataType: 'JSON',
+			contentType: 'application/json',
+			success: function (data) {
+				if (data) {
+					try {
+						var tbody = $('#TitlesTableBody');
+						tbody.html('');
+
+						$.each(data.titles, function () {
+							tbody.append(`
+<tr title-id="${this.id}">
+	<td>${this.title}</td>
+	<td>${this.price}</td>
+	<td>${this.pubName}</td>
+	<td><button title-id="${this.id}" onclick="OnEditClick()" class="TitleEditBtn">Edit</button></td>
+	<td><button title-id="${this.id}" onclick="OnDeleteClick()" class="TitleDeleteBtn">Delete</button></td>
+</tr>`)
+						});
+
+
+						var n = data.paggingCnt;
+						if (!isNaN(n) && n != $('.PhotoPaggings > .PhotoPaggingInput').length) {
+							var paggingContainer = $('.PhotoPaggings');
+							paggingContainer.html('');
+
+							for (var i = 1; i <= n; i++) {
+								paggingContainer.append(`
+<input value="${i}" id="tpi${i}" name="tpig" onchange="OnPaggingChanged()" class="PhotoPaggingInput" type="radio" ${(i == n ? "checked" : "")} />
+<label for="tpi${i}" class="PhotoPaggingLabel">${i}</label>`);
+							}
+						}
+
+					} catch (e) { }
+				}
+				else {
+					alert('Ошибка!');
+				}
+			},
+			error: function (data) {
+				alert('Ошибка!');
+			}
+		});
+	}
+
+	function OnEditClick() {
+		var btn = $(event.target);
+		window.location.href = '/Titles/Edit/' + btn.attr('title-id');
+	}
+
+	function OnDeleteClick() {
+		var btn = $(event.target);
+		$.ajax({
+			url: "/api/TitlesApi/" + btn.attr("title-id"),
+			method: "DELETE",
+			processData: false,
+			success: function (data) {
+				if (data) {
+					$(`#TitlesTableBody > tr[title-id="${data}"]`).remove();
+				}
+				else {
+					alert('Ошибка!')
+				}
+			}
+		}).fail(function () {
+			alert('Ошибка!');
+		})
+	}
+</script>

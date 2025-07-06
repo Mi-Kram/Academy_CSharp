@@ -1,0 +1,52 @@
+﻿@section SiteLinks{
+	<link href="/css/AdminCreateClientStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminCreateClientScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<form class="Form" action="@Url.Action("CreateClient", "Admin")" method="post" onsubmit="OnFormSubmit()">
+	<h3 class="FormTitle">Создание товара</h3>
+	<input id="AntiForgeryToken" type="hidden" value="@AF_TOKEN" />
+	<span id="FormError" class="FormError"></span>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="FirstName" maxlength="50" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">First Name</label>
+		<span id="FirstNameError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="LastName" maxlength="50" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">Last Name</label>
+		<span id="LastNameError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Address" maxlength="100" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">Address</label>
+		<span id="AddressError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="PassportID" maxlength="50" class="FormGroupInput" type="text" placeholder=" ">
+		<label class="FormGroupTextTitle">PassportID</label>
+		<span id="PassportIDError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup">
+		<input autocomplete="off" id="Birthday" class="FormGroupInput" max="@DateTime.Now.ToString(@"yyyy-MM-dd")" type="date" placeholder=" ">
+		<label class="FormGroupTextTitle">Birthday</label>
+		<span id="BirthdayError" class="FormGroupError"></span>
+	</div>
+
+	<div class="FormGroup Buttons">
+		<button class="FormButton Submit" onclick="event.target.blur();">Создать</button>
+		<a class="FormButton Cancel" href="@Url.Action("Clients", "Admin")">Отмена</a>
+	</div>
+</form>
+

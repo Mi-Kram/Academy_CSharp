@@ -1,0 +1,40 @@
+﻿@model List<Main.Areas.Identity.Data.ApplicationClient>
+@section SiteLinks{
+	<link href="/css/ChooseClientStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/ChooseClientScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+	var SaveUrl = Url.Action("ChooseClient", "Admin");
+	var FormType = ViewBag.OrderFormType ?? "create";
+	var BackUrl = FormType == "create" ? Url.Action("AddOrder", "Admin", new { isNotFirst = true }) : Url.Action("EditOrder", "Admin");
+	var SortUrl = Url.Action("ChooseClientSort", "Admin");
+}
+
+<h3 class="ChooseTitle">Выберите клиента</h3>
+<table class="ClientTable" token="@AF_TOKEN" saveurl="@SaveUrl" backurl="@BackUrl" sorturl="@SortUrl">
+	<thead>
+		<tr>
+			<th onclick="OnTableHeadCellClick(1)"><p>Клиент</p></th>
+			<th onclick="OnTableHeadCellClick(2)"><p>Адрес</p></th>
+			<th onclick="OnTableHeadCellClick(3)"><p>Дата рождения</p></th>
+			<th class="ClientTableCell Button"></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var c in Model)
+		{
+			<tr>
+				<td>@c.FirstName @c.LastName</td>
+				<td>@c.Address</td>
+				<td>@c.Birthday.Value.ToString(@"dd.MM.yyyy")</td>
+				<td class="ClientTableCell Button"><button class="ChooseButton" onclick="OnChooseButtonClick('@c.ID')">Выбрать</button></td>
+			</tr>
+		}
+	</tbody>
+</table>
+<button class="BackButton" onclick="OnBackButtonClick()">Назад</button>
+

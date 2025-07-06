@@ -1,0 +1,30 @@
+﻿@model MVC_FileUpload.Models.FileModel
+
+@{
+    ViewBag.Title = "UploadFiles";
+}
+
+<h2>UploadFiles</h2>
+
+
+@using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.files, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+            @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Upload" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <div class="text-success">
+                @ViewBag.UploadStatus
+            </div>
+        </div>
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

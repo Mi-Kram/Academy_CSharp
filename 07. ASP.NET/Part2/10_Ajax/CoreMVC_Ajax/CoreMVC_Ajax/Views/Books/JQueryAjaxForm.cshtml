@@ -1,0 +1,100 @@
+﻿@model CoreMVC_Ajax.ViewModels.BooksViewModel
+
+@{
+    ViewBag.Title = "Books - JQuery";
+}
+
+<h2>Books</h2>
+
+<form action="" method="post">
+    <div class="form-group col-4 p-0">
+        @Html.DropDownListFor(m => m.Genres, new SelectList(Model.Genres, "Name", "Name"), "Select genre", new { @class = "form-control" })
+    </div>
+
+    <script type="text/javascript">
+
+    // 3 способ (передача JSON при помощи JQuery по методу GET)
+    
+    /*$(document).ready(function () {
+        // обработчик выбора пункта из выпадающего списка
+        $('#Genres').change(function (e) {
+
+            // предотвратить отправку формы
+            e.preventDefault();
+
+            // получить жанр из выпадающего списка
+            var genre = $('#Genres').val();
+
+            // кодирование названия жанра для отправки методом GET
+            genre = encodeURIComponent(genre);
+
+            // оправка по Ajax при помощи метода GET
+            $('#booksTable').load('Url.Action("BooksList", "Books")?genre=' + genre)
+        });
+    });*/
+
+
+        // 4 способ (передача JSON при помощи JQuery по методу POST)
+        $('#Genres').change(function (e) {
+
+            // получить значение выпадающего списка при помощи JQuery
+            var gr = $('#Genres').val();
+
+            // подача Ajax-запроса на сервер при помощи JQuery
+            $.ajax({
+                url: '@Url.Action("BooksListJson", "Books")',
+                method: "POST",
+                data: JSON.stringify({
+                    genre: gr
+                }),
+                dataType: 'json',
+                contentType: 'application/json',
+                cache: false,
+                processData: true,
+                success: function (data) {
+                    console.log(data);
+
+                    // получить ссылку на таблицу с результатами
+                    var table = $('#booksTable');
+
+                    // удалить все старые строки
+                    table.find("tbody tr").remove();
+
+                    // перебрать коллекцию в Json и создать новые строки таблицы на их основе
+                    data.forEach(function (book) {
+                        table.append("<tr><td>" + book.Title + "</td><td>" + book.Author + "</td><td>" + book.Genre + "</td><td>" + book.PubDate + "</td><td>" + book.Price + "</td></tr>");
+                    });
+                }
+            })
+        });
+
+    </script>
+</form>
+
+<br/>
+
+<div id="results" class="form-group">
+    <table id="booksTable" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Pubdate</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.Books)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@book.PubDate</td>
+                    <td>@book.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

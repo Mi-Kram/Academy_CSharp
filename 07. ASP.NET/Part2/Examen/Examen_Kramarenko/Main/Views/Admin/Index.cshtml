@@ -1,0 +1,63 @@
+﻿@model AdminOrdersViewModel
+@section SiteLinks{
+	<link href="/css/AdminOrdersStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminOrdersScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<div class="OrderContainer">
+	<div class="CRUDButtons">
+		<a class="CRUDButton Create" href="@Url.Action("AddOrder", "Admin")">Добавить</a>
+		<button class="CRUDButton Edit" url="@Url.Action("EditOrder", "Admin")" onclick="OnOrderEditCkick()">Изменить</button>
+		<button class="CRUDButton Delete" token="@AF_TOKEN" url="@Url.Action("DeleteOrder", "Admin")" onclick="OnOrderDeleteClick()">Удалить</button>
+		<select size="1" url="@Url.Action("OrderByMaster", "Admin")" class="MasterFilterList" onchange="OnMasterListChange()">
+			<option selected value="0">Все</option>
+			@foreach (var m in Model.Masters)
+			{
+				 <option value="@m.Id">@m.UserName</option>
+			}
+		</select>
+	</div>
+
+	<p class="CheckedSalarySum">Заработано: <span id="SalarySum">0</span></p>
+
+	<table class="OrderTable" sorturl="@Url.Action("SortOrders", "Admin")">
+		<thead>
+			<tr>
+				<th class="OrderCheckboxColumn"><div class="OrderTableCheckCell"><input id="OrderSelectAllCheckBox" onchange="OnOrderTableMainCheckboxChange()" type="checkbox"></div></th>
+				<th onclick="OnOrderTableHeadCellClick(1)"><p>Товар</p></th>
+				<th onclick="OnOrderTableHeadCellClick(2)"><p>Клиент</p></th>
+				<th onclick="OnOrderTableHeadCellClick(3)"><p>Мастер</p></th>
+				<th onclick="OnOrderTableHeadCellClick(4)"><p>Оклад</p></th>
+				<th onclick="OnOrderTableHeadCellClick(5)"><p>Дата начала</p></th>
+				<th onclick="OnOrderTableHeadCellClick(6)"><p>Дата конца</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var order in Model.Orders)
+			{
+			<tr>
+				<td><div class="OrderTableCheckCell"><input id="@order.ID" onchange="OnOrderTableRowChange()" class="OrderCheckBox" type="checkbox"></div></td>
+				<td>@order.Product.Category.Value @order.Product.Brand @order.Product.Model</td>
+				<td>@order.Client.FirstName @order.Client.LastName</td>
+				<td>@order.Master.UserName</td>
+				<td class="SalaryCell">@order.Salary</td>
+				<td>@order.StartDate.ToString(@"dd.MM.yyyy")</td>
+				@if (order.EndDate.HasValue)
+				{
+					<td class="EndDateCell">@order.EndDate.Value.ToString(@"dd.MM.yyyy")</td>
+				}
+				else
+				{
+					<td class="EndDateCell Not">В работе</td>
+				}
+			</tr>
+			}
+		</tbody>
+	</table>
+</div>

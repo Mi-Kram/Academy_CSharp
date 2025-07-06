@@ -1,0 +1,76 @@
+﻿@model Main.Models.person
+@{
+	ViewBag.Title = "Task6";
+}
+
+<h2>Task6</h2>
+
+<script>
+	function onSuccess(data) {
+		console.log(data)
+		if (data.url) {
+			window.location.href = data.url;
+		}
+
+		$("input").removeClass('input-validation-error');
+		$("select").removeClass('input-validation-error');
+		$("span[data-valmsg-for]").removeClass('field-validation-error');
+		$("span[data-valmsg-for]").addClass('field-validation-valid');
+		$("span[data-valmsg-for]").text("");
+
+		// перебрать все полученные ошибки валидации
+		$.each(data.errors, function (index, value) {
+			// сделать первую букву заглавной в ключе ошибки
+			var _id = value.key.charAt(0).toUpperCase() + value.key.substring(1);
+			id = _id.replace('.', '_');
+
+			// выделить текстовое поле с ошибкой (вариант для jQuery)
+			var filter = "input[name='" + _id + "']";
+			$(filter).addClass('input-validation-error');
+
+			// показать сообщение об ошибке для каждого текстового поля с ошибкой
+			var validationMessageElement = $('span[data-valmsg-for="' + _id + '"]');
+			validationMessageElement.removeClass('field-validation-valid');
+			validationMessageElement.addClass('field-validation-error');
+			validationMessageElement.text(value.errors[0]);
+		});
+	}
+</script>
+
+<style>
+	form * {
+		display: block;
+	}
+
+	form > div > *:nth-child(3) {
+		color: red;
+	}
+</style>
+
+@using (Ajax.BeginForm("Task6Show", "HW", null, new AjaxOptions
+{
+	HttpMethod = "POST",
+	OnSuccess = "onSuccess"
+}, new { @style = "margin-top: 20px;" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(true, "")
+
+	<div style="margin-top: 10px;">
+		@Html.LabelFor(m => m.FirsName)
+		@Html.TextBoxFor(m => m.FirsName)
+		@Html.ValidationMessageFor(m => m.FirsName)
+	</div>
+	<div style="margin-top: 10px;">
+		@Html.LabelFor(m => m.LastName)
+		@Html.TextBoxFor(m => m.LastName)
+		@Html.ValidationMessageFor(m => m.LastName)
+	</div>
+	<div style="margin-top: 10px;">
+		@Html.LabelFor(m => m.Age)
+		@Html.TextBoxFor(m => m.Age)
+		@Html.ValidationMessageFor(m => m.Age)
+	</div>
+	<button class="btn btn-primary" style="margin-top: 20px;">SHOW</button>
+
+}

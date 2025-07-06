@@ -1,0 +1,161 @@
+﻿@model CoreMVC_WebAPI.Models.Author
+
+@{
+    ViewBag.Title = "Edit author";
+}
+
+<h2>@Model.au_fname @Model.au_lname</h2>
+
+<form id="validForm" action="" method="post">
+
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.au_fname)
+        @Html.TextBoxFor(m => m.au_fname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.au_fname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.au_lname)
+        @Html.TextBoxFor(m => m.au_lname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.au_lname)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.City)
+        @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.City)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.State)
+        @Html.TextBoxFor(m => m.State, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.State)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Zip)
+        @Html.TextBoxFor(m => m.Zip, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Zip)
+    </div>
+
+    @Html.HiddenFor(m => m.au_id)
+
+    <button class="btn btn-primary">Save</button>
+    <input class="btn" type="button" value="Cancel" onclick="@("window.location.href='" + @Url.Action("Authors", "Home") + "'");" />
+
+</form>
+
+<script>
+
+    function onError(data) {
+        console.log(data);
+        //alert(data);
+
+        // скрыть все ошибки, показанные на предыдущем шаге валидации
+        $("input").removeClass('input-validation-error');
+        $("select").removeClass('input-validation-error');
+        $("span[data-valmsg-for]").removeClass('field-validation-error');
+        $("span[data-valmsg-for]").addClass('field-validation-valid');
+        $("span[data-valmsg-for]").text("");
+
+        // если произошла ошибка валидации
+        if (data.status == 400) {
+            alert("400")
+            //console.log(data.responseJSON);
+
+            // перебрать все полученные ошибки валидации
+            //$.each(data.responseJSON.ModelState, function (key, value) {
+            $.each(data.responseJSON.errors, function (key, value) {
+                //key = key.split('.')[1];
+
+                console.log(key);
+                console.log(value);
+
+                // выделить текстовое поле с ошибкой
+                var filter = "input[name='" + key + "']";
+                $(filter).addClass('input-validation-error');
+
+                // показать сообщение об ошибке для каждого текстового поля с ошибкой
+                var validationMessageElement = $('span[data-valmsg-for="' + key + '"]');
+                validationMessageElement.removeClass('field-validation-valid');
+                validationMessageElement.addClass('field-validation-error');
+                validationMessageElement.text(value[0]);
+            });
+        }
+    }
+
+    $('#validForm').submit(function (e) {
+
+        // предовратить отправку формы
+        e.preventDefault();
+
+        //alert("send");
+
+        //var form = $(this);
+
+            // подача Ajax-запроса на сервер при помощи JQuery
+            /*$.ajax({
+                url: 'https://localhost:44327/api/authors/' + $('#au_id').val(),
+                method: "PUT",
+                data: JSON.stringify({
+                    au_id: $('#au_id').val(),
+                    au_fname: $('#au_fname').val(),
+                    au_lname: $('#au_lname').val(),
+                    city: $('#City').val(),
+                    state: $('#State').val(),
+                    phone: $('#Phone').val(),
+                    address: $('#Address').val(),
+                    zip: $('#Zip').val()
+                }),
+                dataType: 'JSON',
+                contentType: 'application/json',
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    document.location.href = "/Home/Authors";
+                },
+                error: function (data) {
+                    onError(data);
+                }
+            })*/
+
+            $.ajax({
+                url: '/api/authors/555-888-999',
+                method: "PUT",
+                data: JSON.stringify({
+                    au_id: "555-888-999",
+                    au_fname: $('#au_fname').val(),
+                    au_lname: $('#au_lname').val(),
+                    city: $('#City').val(),
+                    state: $('#State').val(),
+                    phone: $('#Phone').val(),
+                    address: $('#Address').val(),
+                    zip: $('#Zip').val()
+                }),
+                dataType: 'JSON',
+                contentType: 'application/json',
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    onError(data);
+                }
+            });
+    });
+
+</script>

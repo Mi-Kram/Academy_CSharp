@@ -1,0 +1,13 @@
+﻿@model List<Main.Models.Chat>
+@{
+	ViewBag.Title = "Chats";
+}
+
+<div class="ChatContainer">
+	@foreach (var chat in Model)
+	{
+		<a href="~/Home/OpenChat?chatID=@chat.ID" class="ChatItem">
+			<h3>@chat.Title</h3>
+		</a>
+	}
+</div>

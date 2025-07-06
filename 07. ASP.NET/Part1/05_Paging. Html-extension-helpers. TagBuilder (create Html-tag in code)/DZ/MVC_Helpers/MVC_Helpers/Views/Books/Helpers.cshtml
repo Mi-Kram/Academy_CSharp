@@ -1,0 +1,27 @@
+﻿@model MVC_Helpers.Models.Books
+
+@{
+    ViewBag.Title = "Helpers";
+}
+
+@helper BookList(IEnumerable<MVC_Helpers.Models.Book> books)
+{
+    <ul>
+        @foreach (MVC_Helpers.Models.Book book in books)
+        {
+            <li>@book.Title</li>
+        }
+    </ul>
+}
+
+<h2>Helpers</h2>
+
+@BookList(Model)
+
+<br>
+
+@CustomHelpers.HtmlList(new string[] { "Тургенев", "Пушкин", "Лермонтов", "Толстой", "Бунин" })
+
+<br>
+
+@Html.CustomButton("Test", "Test button name", "btn btn-primary")

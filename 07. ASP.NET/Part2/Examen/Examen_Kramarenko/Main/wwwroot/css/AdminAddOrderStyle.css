@@ -1,0 +1,323 @@
+﻿.InnerMainDiv {
+	display: flex;
+	justify-content: center;
+}
+
+.OrderForm{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+.OrderFormTitle{
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.RegisterFormGroupTitlePhoto {
+	display: flex;
+	width: 500px;
+	max-width: 100%;
+	justify-content: space-around;
+}
+
+.RegisterFormGroupTitlePhoto > h3 {
+	width: max-content;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+.PhotoFormGroup {
+	width: max-content;
+}
+
+.FormGroupPhotoLabel{
+	width: 150px;
+	height: 150px;
+	margin: 0px auto;
+	border-radius: 50%;
+	overflow: hidden;
+	background: white;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.LabelPhotoBG {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 3px black solid;
+	z-index: 5;
+}
+
+.FormGroupPhotoHover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.3);
+	opacity: 0;
+	transition: opacity 0.3s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.FormGroupPhotoHover > svg{
+	height: 60%;
+	width: 60%;
+}
+
+.FormGroupPhotoLabel:hover .FormGroupPhotoHover {
+	opacity: 1;
+}
+
+.FormGroupPhotoLabel > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.FormGroup {
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	position: relative;
+}
+
+.FormGroup + .FormGroup{
+  margin-top: 35px;
+}
+
+.FormGroupTitle{
+  max-width: 100%;
+  display: block;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.FormGroupInput{
+  max-width: 100%;
+  width: 500px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 2px black solid;
+  font-size: 20px;
+  background: white;
+  transition: background 0.2s;
+}
+
+.FormGroupInput.Button{
+	display: flex;
+	justify-content: flex-start;
+	color: #666;
+}
+
+.FormGroupInput.Button:hover{
+	background: rgb(203, 209, 247);
+}
+
+.ProductButtonDiv{
+	text-align: start;
+	display: block;
+	color: #000;
+}
+
+.ProductButtonDiv > p:nth-child(2){
+	font-size: 15px;
+	color: #555;
+}
+
+.ClientButtonDiv{
+	text-align: start;
+	display: block;
+	color: #000;
+}
+
+.ClientButtonDiv > p:nth-child(2){
+	font-size: 17px;
+}
+
+.MasterButtonDiv{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	color: #000;
+}
+
+.MasterPhotoDiv{
+	width: 50px;
+	height: 50px;
+	border: 2px #000 solid;
+	background: #000;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 10px;
+}
+
+.MasterPhotoDiv > img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.MasterButtonDiv > p{
+	display: block;
+	width: max-content;
+	max-width: 100%;
+	text-align: center;
+}
+
+.FormGroupInput.Error {
+	border-color: #f00;
+	background-color: rgb(255, 164, 164);
+}
+
+.FormGroupTextTitle{
+  color: #000;
+  font-size: 20px;
+  position: absolute;
+  top: -25px;
+  left: 15px;
+  display: block;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.FormGroupInput:placeholder-shown + .FormGroupTextTitle{
+  top: 12px;
+  color: #777;
+}
+
+.FormGroupInput:focus + .FormGroupTextTitle{
+  top: -25px;
+  color: #000;
+}
+
+.FormGroupPasswordVisibility{
+  position: absolute;
+  top: 5px;
+  right: 13px;
+  width: 25px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: background 0.2s;
+  box-sizing: content-box;
+  padding: 7px;
+}
+
+.FormGroupPasswordVisibility:hover,
+.FormGroupPasswordVisibility:focus{
+	background: rgba(0,0,0,0.3);
+}
+
+.FormGroupPasswordVisibility > svg{
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.FormGroupPasswordVisibility > svg:nth-child(2){
+  display: none;
+}
+.FormGroupPasswordVisibility.Active > svg:nth-child(1){
+  display: none;
+}
+.FormGroupPasswordVisibility.Active > svg:nth-child(2){
+  display: block;
+}
+
+.FormGroupError {
+  max-width: 100%;
+  width: 500px;
+  display: block;
+  color: #f00;
+  font-size: 19px;
+  padding: 0px 10px;
+  margin-top: 3px;
+}
+
+.FormError {
+  max-width: 100%;
+  width: 500px;
+  display: block;
+  color: #f00;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.FormGroup.Buttons{
+	flex-direction: row;
+	width: max-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.FormButton{
+  font-size: 30px;
+  padding: 5px 0px;
+  width: max-content;
+  min-width: 150px;
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border: 3px #000 solid;
+  border-radius: 35px;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.FormButton:focus,
+.FormButton:hover{
+  background: #000;
+  color: #fff;
+}
+
+.FormButton.Submit{
+	margin-right: 20px;
+}
+
+.FormButton.Submit:hover{
+	border-color: #1d9604;
+	background: #1d9604;
+	color: #fff;
+}
+
+.FormButton.Cancel:hover{
+	border-color: #e20b0b;
+	background: #e20b0b;
+	color: #fff;
+}
+
+.ProductOptionDiv{
+	background: red;
+	display: grid;
+	grid-template-columns: 1fr;
+	width: 100%;
+}
+
+.ProductOptionDiv > p > span{
+	color: #555;
+}

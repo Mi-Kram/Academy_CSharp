@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMVC_WebAPI_Auth", "CoreMVC_WebAPI_Auth\CoreMVC_WebAPI_Auth.csproj", "{7E669EF7-E50B-4C41-91AC-D7D3BE6783D0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E669EF7-E50B-4C41-91AC-D7D3BE6783D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E669EF7-E50B-4C41-91AC-D7D3BE6783D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E669EF7-E50B-4C41-91AC-D7D3BE6783D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E669EF7-E50B-4C41-91AC-D7D3BE6783D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54143509-A3C2-42E7-AC25-2B00A095EFB7}
+	EndGlobalSection
+EndGlobal

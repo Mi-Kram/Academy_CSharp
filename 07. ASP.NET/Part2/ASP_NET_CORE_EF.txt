@@ -1,0 +1,94 @@
+Подключение EF DatabaseFirst
+	1. Скачать пакеты NuGet
+		-- Microsoft.EntityFrameworkCore.SqlServer
+		-- Microsoft.EntityFrameworkCore.Tools
+	
+	2. В консоль диспетчера пакетов прописать команду
+		PM> Scaffold-DbContext "Server=.\SQLExpress;Database=pubs;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Data -Tables Authors -DataAnnotations
+		(если нужны все таблицы - убрать (-Tables Authors), иначе перечислить таблицы через запятую)
+	
+	3. В файле "appsettings.json" добавить ConnectionString
+		"ConnectionStrings": {
+			"DefaultConnection": "Server=.\\SQLEXPRESS;Database=pubs;Trusted_Connection=True;"
+		}
+	
+	4. В файле "Startup.cs" в метод "ConfigureServices(IServiceCollection services)" добавить:
+    string connection = Configuration.GetConnectionString("DefaultConnection");
+    services.AddDbContext<pubsContext>(options => options.UseSqlServer(connection));
+
+
+Подключение EF CodeFirst
+	1. Скачать пакеты NuGet
+		-- Microsoft.EntityFrameworkCore.SqlServer
+		-- Microsoft.EntityFrameworkCore.Tools
+	
+	2. В файле "appsettings.json" добавить ConnectionString
+		"ConnectionStrings": {
+			"DefaultConnection": "Server=.\\SQLEXPRESS;Database=pubs;Trusted_Connection=True;"
+		}
+	
+	3. В файле "Startup.cs" в метод "ConfigureServices(IServiceCollection services)" добавить:
+    string connection = Configuration.GetConnectionString("DefaultConnection");
+    services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+	
+	4. Создать класс "ApplicationContext"
+		public class ApplicationContext : DbContext
+    {
+        //public DbSet<Book> Books { get; set; }
+        //public DbSet<Genre> Genres { get; set; }
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        { }
+    }
+	
+	5. В консоль диспетчера пакетов сразу начать добавлять миграции (add-migration). Команда "enable-migrations" не нужна
+	
+
+
+=======================================
+
+Получить ApplicationContext вручную:
+
+1. в классе Startup создать константу (название connectionString в appsettings)
+public const string CONNECTION_NAME = "DefaultConnection";
+
+2. в контроллере (допустим HomeController):
+private string ConnectionString { get; set; } = "";
+public HomeController(IConfiguration configuration)
+{
+	ConnectionString = configuration.GetConnectionString(Startup.CONNECTION_NAME);
+}
+
+public IActionResult Index()
+{
+	List<Person> = lst = new List<Person>();
+	
+	using (ApplicationContext context = ApplicationContext.GetContext(ConnectionString))
+	{
+		lst = context.Persons.ToList();
+	}
+	
+	return View(lst);
+}
+
+3. в классе ApplicationContext:
+public static ApplicationContext GetContext(string connectionString)
+{
+	var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+	optionsBuilder.UseSqlServer(connectionString);
+	return new ApplicationContext(optionsBuilder.Options);
+}
+
+/*
+
+в файле Startup можно хранить переменную ConnectionString - строка 
+подключения к БД. Инициализация происходит в методе ConfigureServices:
+public static string ConnectionString { get; private set; } = "";
+public void ConfigureServices(IServiceCollection services) {
+	ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+}
+
+соответственно: 
+	var context = ApplicationContext.GetContext(Startup.ConnectionString)
+
+*/

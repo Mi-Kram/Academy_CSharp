@@ -1,0 +1,59 @@
+﻿@model List<Main.Areas.Identity.Data.Category>
+@section SiteLinks{
+	<link href="/css/AdminProductCategoriesStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminProductCategoriesScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<div class="CategoryWrapper">
+	<input id="AntiForgeryToken" value="@AF_TOKEN" type="hidden">
+	<div class="CategoryContainer">
+
+		<div class="CRUDButtons">
+			<button class="CRUDButton Create" url="@Url.Action("AddCategory", "Admin")" onclick="OnAddCategoryClick()">Добавить</button>
+			<button class="CRUDButton Edit" url="@Url.Action("EditCategory", "Admin")" onclick="OnCategoryEditCkick()">Изменить</button>
+			<button class="CRUDButton Delete" url="@Url.Action("DeleteCategory", "Admin")" onclick="OnCategoryDeleteClick()">Удалить</button>
+		</div>
+
+		<div class="CategoryTable">
+			<div class="CategoryTableHead">
+				<div class="CategoryTableHeadCell Check"><input onchange="OnCategoryTableMainCheckboxChange()" id="CategorySelectAllCheckBox" type="checkbox"></div>
+				<div class="CategoryTableHeadCell Category"><p>Категории</p></div>
+			</div>
+			<div class="CategoryTableBody">
+				@foreach (var c in Model)
+				{
+					<div class="CategoryTableRow">
+						<div class="CategoryTableCell Check">
+							<input id="@c.ID" onchange="OnCategoryTableRowChange()" type="checkbox" class="CategoryCheckBox">
+						</div>
+						<div class="CategoryTableCell Category">
+							<p class="CategoryValue" categoryid="@c.ID">@c.Value</p>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+
+	</div>
+
+	<form action="#" onsubmit="OnCategoryFormSubmit()" class="CategoryForm">
+		<h3 class="CategoryFormTitle">Создание категории</h3>
+		<input id="CategoryID" type="hidden" value="" />
+		<div class="FormGroup">
+			<input id="CategoryValue" autocomplete="off" type="text" class="CategoryInput" maxlength="20" placeholder=" ">
+			<label for="CategoryValue" class="CategoruInputLabel">Категория</label>
+			<span id="CategoryValueError" class="CategoryError"></span>
+		</div>
+		<div class="FormGroup Buttons">
+			<button onclick="event.target.blur()" class="FormButton Submit">Добавить</button>
+			<input onclick="OnCategoryFormCancel()" type="button" class="FormButton Cancel" value="Отмена" />
+		</div>
+	</form>
+
+</div>

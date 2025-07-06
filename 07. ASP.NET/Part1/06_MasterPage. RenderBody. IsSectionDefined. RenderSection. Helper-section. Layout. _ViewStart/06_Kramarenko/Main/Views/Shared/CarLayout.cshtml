@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title</title>
+
+	@Scripts.Render("~/bundles/jquery")
+	<script src="/Scripts/jquery.validate.min.js"></script>
+	<script src="/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="~/Scripts/CarScript.js"></script>
+
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/Content/CarStyle.css" />
+</head>
+<body>
+
+	<div class="MainPageDiv">
+		<header class="CarHeaderStyle">
+			<div class="HeaderLoginDiv">
+				<p>@Session[Main.Models.SessionKeys.USER_LOGIN]</p>
+			</div>
+			@{
+				try
+				{
+					if ((bool)ViewBag.IsAdmin == true)
+					{
+						if ((bool)ViewBag.IsAdminToggle == true)
+						{
+							<div class="HeaderAdminToggleDiv">
+								@Html.ActionLink("User", "SetUser", "Car")
+							</div>
+						}
+						else
+						{
+							<div class="HeaderAdminToggleDiv">
+								@Html.ActionLink("Admin", "SetAdmin", "Car")
+							</div>
+						}
+					}
+				}
+				catch { }
+			}
+		</header>
+		<main class="CarMainStyle">
+			<div class="MainContainer">
+				@RenderBody()
+			</div>
+		</main>
+	</div>
+</body>
+</html>

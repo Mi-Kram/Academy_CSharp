@@ -1,0 +1,9 @@
+В helper, для показа таблицы с книгами:
+
+<books state="CA" rowcolor="blue" altcolor="white" />
+<books type="business" rowcolor="blue" altcolor="white" books-list="booksLst" />
+
+добавить следующие функции:
+- фильтрация по жанру или по штату
+- paging
+- сортировка по столбцам

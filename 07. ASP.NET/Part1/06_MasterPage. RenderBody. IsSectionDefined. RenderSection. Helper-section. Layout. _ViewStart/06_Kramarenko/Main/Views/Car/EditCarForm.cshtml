@@ -1,0 +1,98 @@
+﻿@model Main.ViewModel.CarFormViewModel
+@{
+	ViewBag.Title = "EditCar";
+}
+
+@using (Html.BeginForm("Save", "Car", FormMethod.Post, new { enctype = "multipart/form-data", @class = "CarEditFormStyle" }))
+{
+	@Html.AntiForgeryToken();
+
+	@Html.HiddenFor(model => model.IsNew, new { @id = "HiddenNewData" });
+	@Html.HiddenFor(model => model.ID);
+	@Html.HiddenFor(model => model.ImgSrc, new { @id = "HiddenSrcPath" });
+
+	@Html.ValidationSummary(true)
+
+	@* @required="required",*@
+
+	<div class="AddFormDivGroup">
+		<p>Image:</p>
+		@{
+			if (Model.IsNew)
+			{
+				@Html.TextBoxFor(model => model.Files, "", new { @id = "CarFileImgInput", @required = "required", @type = "file", @accept = ".jpg, .jpeg, .png, .bmp", @onchange = "OnImageChanged()" })
+			}
+			else
+			{
+				@Html.TextBoxFor(model => model.Files, "", new { @id = "CarFileImgInput", @type = "file", @accept = ".jpg, .jpeg, .png, .bmp", @onchange = "OnImageChanged()" })
+			}
+		}
+		<div id="divImageViewer" class="DivImageViewerStyle" onclick="OnDivImageViewerClick()" hidden>
+			<img id="ViewerImage" class="ViewerImageStyle" src="#" alt="carImg" />
+		</div>
+	</div>
+
+	<div class="AddFormDivGroup">
+		<p>Brand:</p>
+		@Html.TextBoxFor(model => model.Brand, new { @class = "form-control", @placeholder = "brand" })
+		@Html.ValidationMessageFor(x => x.Brand, "", new { @class="text-danger" })
+	</div>
+
+	<div class="AddFormDivGroup">
+		<p>Model:</p>
+		@Html.TextBoxFor(model => model.Model, new { @class = "form-control", @placeholder = "model" })
+		@Html.ValidationMessageFor(x => x.Model, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="AddFormDivGroup">
+		<p>Speed:</p>
+		@Html.TextBoxFor(model => model.Speed, new { @class = "form-control", @placeholder = "speed" })
+		@Html.ValidationMessageFor(x => x.Speed, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="AddFormDivGroup">
+		<p>Price:</p>
+		@Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "price" })
+		@Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="AddFormDivGroup">
+		<p>Type:</p>
+		@Html.DropDownListFor(m => m.TypeID, new SelectList(Model.AllCarTypes, "ID", "Value"), "Choose car type", new { @id = "typeList", @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.TypeID, "", new { @class = "text-danger" })
+	</div>
+
+	<div class="AddFormDivGroup">
+		<p>Year:</p>
+		@Html.TextBoxFor(m => m.DateStr, new { @type = "date", @class = "form-control", @value = Model.DateStr })
+		@Html.ValidationMessageFor(x => x.DateStr, "", new { @class = "text-danger" })
+	</div>
+
+	<div style="margin-left: 30px; margin-top: 15px;">
+		<button class="btn btn-primary" onclick="console.log('test')">Save</button>
+		<input class="btn btn-primary" type="button" value="Cancel" onclick="location.href='/Car/Index'" />
+	</div>
+
+
+	<script>
+		var options = document.querySelectorAll('#typeList > option');
+
+		if (document.getElementById('HiddenNewData').value.toLowerCase() == 'true') {
+			for (var i = 0; i < options.length; i++) {
+				var val = i == 0;
+				options[i].selected = val;
+				options[i].hidden = val;
+				options[i].disabled = val;
+			}
+		}
+		else {
+			options[0].remove();
+
+			document.getElementById('divImageViewer').hidden = false;
+			document.getElementById('CarFileImgInput').style.display = 'none';
+			document.getElementById('ViewerImage').src = '/' + document.getElementById('HiddenSrcPath').value;
+		}
+	</script>
+}
+
+

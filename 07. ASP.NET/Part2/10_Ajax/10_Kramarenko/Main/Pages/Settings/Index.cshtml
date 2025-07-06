@@ -1,0 +1,90 @@
+﻿@page "{handler?}"
+
+@model Main.Pages.Settings.IndexModel
+
+@{
+	ViewData["Title"] = "Settings";
+}
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+	public string GetAntiXsrfRequestToken()
+	{
+		return Xsrf.GetAndStoreTokens(HttpContext).RequestToken;
+	}
+}
+
+<h3>Выберите тему:</h3>
+<div style="display: flex; flex-direction: column;">
+	@for (int i = 0; i < Model.SiteThemas.Count; i++)
+	{
+		var thema = Model.SiteThemas[i];
+		<div>
+			<input id="@($"str{i}")" type="radio" name="str" onchange="OnThemaChanged()" value="@thema.ID" @(Model.CurrentThemaID == thema.ID ? "checked" : "") />
+			<label for="@($"str{i}")">@thema.Name</label>
+		</div>
+	}
+	<button onclick="SaveThema()">Сохранить</button>
+</div>
+
+<script>
+	function OnThemaChanged() {
+		var id = event.target.value;
+		var data = new FormData();
+		data.append("id", id);
+
+		$.ajax(
+			{
+				url: '@Url.Page("/Settings/Index", "Thema")',
+				data: data,
+				processData: false,
+				headers: {
+					"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+				},
+				contentType: false,
+				type: "POST",
+				success: function (data) {
+					if (data && data.isSuccess === true) {
+						$('body').attr('style', `background: url(${data.background});`);
+					}
+					else {
+						alert('Ошибка!');
+					}
+				},
+				error: function (data) {
+					alert('Ошибка!');
+				}
+			}
+		);
+	}
+
+	function SaveThema() {
+		var id = $('input[name=str]:checked').prop('value');
+		var data = new FormData();
+		data.append("id", id);
+
+		$.ajax(
+			{
+				url: '@Url.Page("/Settings/Index", "SaveThema")',
+				data: data,
+				processData: false,
+				headers: {
+					"RequestVerificationToken": '@GetAntiXsrfRequestToken()'
+				},
+				contentType: false,
+				type: "POST",
+				success: function (data) {
+					if (data === true) {
+						alert('Успешно сохранено!');
+					}
+					else {
+						alert('Ошибка!');
+					}
+				},
+				error: function (data) {
+					alert('Ошибка!');
+				}
+			}
+		);
+	}
+</script>

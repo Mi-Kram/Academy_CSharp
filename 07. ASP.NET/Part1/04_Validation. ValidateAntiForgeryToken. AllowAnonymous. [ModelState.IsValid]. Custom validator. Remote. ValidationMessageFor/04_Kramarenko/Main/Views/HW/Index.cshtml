@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Main.Models.Car>
+
+@{
+    ViewBag.Title = "Cars";
+}
+
+<h2>Cars</h2>
+
+<table class="CarTableStyle">
+    <thead>
+        <tr onclick="OnCarTableHeadClick()">
+            <th></th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Speed</th>
+            <th>Price</th>
+            <th>Year</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            for (int i = 0; i < Model.Count(); i++)
+            {
+                var car = Model.ElementAt(i);
+
+                <tr onclick="OnTableRowClick()">
+                    <td><input id="@car.ID" type="checkbox" class="TCB"/><img src="/@car.ImgSrc"/></td>
+                    <td>@car.Brand</td>
+                    <td>@car.Model</td>
+                    <td>@car.Speed</td>
+                    <td>@car.Price</td>
+                    <td>@car.Date.Year</td>
+                    <td>@car.Type.Value</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+<div style="margin-top: 20px;">
+    <style>
+        .btn + .btn{
+            margin-left: 10px;
+        }
+    </style>
+
+    <input class="btn btn-primary" type="button" value="Add" onclick="location.href='/HW/Add'" />
+    <input class="btn btn-primary" type="button" value="Remove" onclick="RemoveClick()" />
+    <input class="btn btn-primary" type="button" value="Edit" onclick="EditClick()" />
+    <input class="btn btn-primary" type="button" value="Detail" onclick="DetailClick()" />
+</div>

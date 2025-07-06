@@ -1,0 +1,53 @@
+﻿@model AdminMastersViewModel
+@section SiteLinks{
+	<link href="/css/AdminMastersStyle.css" rel="stylesheet" />
+}
+@section SiteScripts{
+	<script src="~/js/AdminMastersScript.js"></script>
+}
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
+	var AF_TOKEN = Xsrf.GetAndStoreTokens(Context).RequestToken;
+}
+
+<div class="MasterContainer">
+	<div class="CRUDButtons">
+		<a class="CRUDButton Create" href="@Url.Action("AddMaster", "Admin")">Добавить</a>
+		<button class="CRUDButton Edit" url="@Url.Action("EditMaster", "Admin")" onclick="OnMasterEditCkick()">Изменить</button>
+		<button class="CRUDButton Delete" token="@AF_TOKEN" url="@Url.Action("DeleteMaster", "Admin")" onclick="OnMasterDeleteClick()">Удалить</button>
+	</div>
+
+	<div class="MasterTable" sorturl="@Url.Action("SortMaster", "Admin")">
+		<div class="MasterTableHead">
+			<div class="MasterTableHeadCell Check"><input onchange="OnMasterTableMainCheckboxChange()" id="MasterSelectAllCheckBox" type="checkbox"></div>
+			<div class="MasterTableHeadCell Photo"></div>
+			<div onclick="OnMasterTableHeadCellClick(1)" class="MasterTableHeadCell UserName"><p>Имя</p></div>
+			<div onclick="OnMasterTableHeadCellClick(2)" class="MasterTableHeadCell Done">Выполненно</div>
+			<div onclick="OnMasterTableHeadCellClick(3)" class="MasterTableHeadCell NotDone">В работе</div>
+		</div>
+		<div class="MasterTableBody">
+			@foreach (var m in Model.Masters)
+			{
+				<div class="MasterTableRow">
+					<div class="MasterTableCell Check">
+						<input id="@m.Id" onchange="OnMasterTableRowChange()" type="checkbox" class="MasterCheckBox">
+					</div>
+					<div class="MasterTableCell Photo">
+						<div class="MasterPhotoDiv">
+							<img src="@m.PhotoPath" alt="photo">
+						</div>
+					</div>
+					<div class="MasterTableCell UserName">
+						<p class="MasterUserName">@m.UserName</p>
+					</div>
+					<div class="MasterTableCell Done">
+						<p class="MasterCompletedWorks">@m.Orders.Count(x => x.IsDone)</p>
+					</div>
+					<div class="MasterTableCell NotDone">
+						<p class="MasterNotCompletedWorks">@m.Orders.Count(x => !x.IsDone)</p>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>

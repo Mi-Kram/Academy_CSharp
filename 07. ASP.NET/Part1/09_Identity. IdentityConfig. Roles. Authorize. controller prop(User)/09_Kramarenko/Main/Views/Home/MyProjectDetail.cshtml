@@ -1,0 +1,53 @@
+﻿@model Main.Models.Project
+@{
+    ViewBag.Title = "MyProject";
+}
+
+<h2>@Model.Caption</h2>
+<p>@Model.Description</p>
+<hr />
+
+<style>
+	table {
+		box-sizing: border-box;
+	}
+	table *{
+		box-sizing: border-box;
+	}
+
+	table tbody tr{
+		background: #e8e8e8;
+	}
+	table tbody tr:nth-child(2n){
+		background: #b3bfef;
+	}
+
+	table td,
+	table th{
+		border: 2px solid black;
+	}
+	table thead tr{
+		background: #288e10;
+	}
+</style>
+
+<table style="font-size: 16pt; min-width: 400px; width: max-content;">
+  <caption style="text-align: center; font-size: 20pt;">Работники</caption>
+  <thead>
+		<tr style="color: white;">
+			<th></th>
+			<th style="width: 100%; padding: 5px 10px;">Логин</th>
+		</tr>
+  </thead>
+  <tbody>
+    @foreach (var person in Model.Employees)
+		{
+		<tr>
+			<td style="max-width: 100px"><img style="max-height: 60px; max-width: 100px; padding: 5px;" src="/@person.ImgSrc" alt="photo" /></td>
+			<td style="padding: 5px 10px;">@person.UserName</td>
+		</tr>
+		}
+  </tbody>
+</table>
+
+

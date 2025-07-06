@@ -1,0 +1,204 @@
+﻿.MainButtons {
+	display: flex;
+	padding: 30px 0px;
+	max-width: 100%;
+}
+
+.MainAddButton {
+	width: max-content;
+	font-size: 20px;
+	padding: 5px 30px;
+	background: white;
+	border: 3px #000 solid;
+	border-radius: 20px;
+	transition: background 0.2s, color 0.2s;
+	text-decoration: none;
+	color: black;
+	user-select: none;
+}
+
+.MainAddButton:focus,
+.MainAddButton:hover {
+	background: #000;
+	color: #fff;
+}
+
+.MainCategoryFilterList {
+	margin-left: 20px;
+	width: 300px;
+	font-size: 20px;
+	padding: 5px 10px;
+	background: white;
+	border: 3px #000 solid;
+	color: #000;
+	border-radius: 20px;
+	transition: background 0.2s, color 0.2s;
+}
+
+.MainCategoryFilterList:focus,
+.MainCategoryFilterList:hover {
+	border-color: #000;
+	color: #000;
+
+	background: #000;
+	color: #fff;
+}
+
+.MainCategoryFilterList > option{
+	color: #000;
+	background: white;
+}
+
+.MainData {
+	width: 100%;
+}
+
+.MainTable {
+	width: 100%;
+	background: white;
+	display: flex;
+	flex-direction: column;
+}
+
+.MainTableHeader {
+	display: flex;
+	background: rgb(28, 27, 32);
+}
+
+.MainTableHeadCell {
+	background: transparent;
+	border: none;
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	border: 2px #000 solid;
+	border-left: none;
+}
+
+.MainTableHeadCell:first-child {
+	border-left: 2px #000 solid;
+}
+
+.MainTableHeadCell > p {
+	padding: 5px 10px;
+	font-size: 20px;
+	display: block;
+	color: white;
+	pointer-events: none;
+}
+
+.MainTableBody {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.TableOrderItem {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	transition: background 0.2s;
+}
+
+.OrderItemCheckbox {
+	display: none;
+}
+
+.OrderItemLabel {
+	display: flex;
+	width: 100%;
+	transition: background 0.2s;
+}
+
+.TableOrderItem:hover {
+	background: #ccf;
+}
+
+.OrderItemCheckbox:checked + .OrderItemLabel,
+.OrderItemCheckbox:checked + .OrderItemLabel + .OrderItemData {
+	background: rgb(168, 255, 168);
+}
+
+.MainTableBodyCell {
+	width: 100%;
+	border: 2px black solid;
+	border-top: none;
+	border-left: none;
+}
+
+.MainTableBodyCell:first-child {
+	border-left: 2px black solid;
+}
+
+.MainTableBodyCell {
+	padding: 5px 10px;
+	font-size: 15px;
+}
+
+.OrderItemData {
+	height: 70px;
+	transition: height 0.5s;
+	display: flex;
+	justify-content: stretch;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+.OrderItemCheckbox:not(:checked) ~ .OrderItemData {
+	height: 0px;
+}
+
+.OrderItemDataInnerDiv {
+	border: 2px black solid;
+	border-top: none;
+	padding: 5px 15px;
+	display: flex;
+	overflow: hidden;
+	width: 100%;
+}
+
+.OrderItemDataHeader {
+	display: flex;
+	flex-direction: column;
+	width: max-content;
+	margin-right: 20px;
+}
+
+.OrderItemDataButtons {
+	width: max-content;
+	display: flex;
+	align-self: flex-end;
+}
+
+.OrderItemDataButtons > * {
+	display: flex;
+	justify-content: center;
+	margin-right: 20px;
+	width: max-content;
+	min-width: 120px;
+	font-size: 18px;
+	padding: 0px;
+	border-radius: 20px;
+	transition: background 0.2s, color 0.2s;
+	text-decoration: none;
+	background: white;
+	border: 3px #000 solid;
+	color: black;
+}
+
+.OrderItemDataButtons > *:focus,
+.OrderItemDataButtons > *:hover {
+	background: #000;
+	color: #fff;
+}
+
+.OrderItemDataButtons > *:nth-child(1) {
+	border-color: rgb(10, 65, 214);
+	border-color: rgb(28, 27, 32);
+}
+
+.OrderItemDataButtons > *:nth-child(1):focus,
+.OrderItemDataButtons > *:nth-child(1):hover {
+	background: rgb(10, 65, 214);
+	background: rgb(28, 27, 32);
+}

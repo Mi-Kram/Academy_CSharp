@@ -1,0 +1,83 @@
+﻿@model Picture
+@{
+    ViewData["Title"] = "DetailPicture";
+}
+
+<input id="picID" type="hidden" value="@Model.ID" />
+
+<div class="DetailPhoto">
+    <div id="DP-Caption">
+        <p>@Model.Caption</p>
+    </div>
+    <div id="DP-Photo">
+        <img src="@Model.ImgSrc" alt="photo" />
+    </div>
+	<div class="DP-Info">
+		<div id="DP-Category">
+			<p>Категория:<span>@Model.Category.Value</span></p>
+		</div>
+		<div id="DP-PubDate">
+			<p>Дата публикации:<span>@Model.CreationDate.ToString("dd.MM.yyyy")</span></p>
+		</div>
+		<div id="DP-Description">
+			<p>@Model.Description</p>
+		</div>
+	</div>
+	<div id="DP-Comments">
+		<h2>Комментарии</h2>
+
+		<div class="SendCommentContainer">
+			<textarea maxlength="200"></textarea>
+			<input type="button" value="Отправить" onclick="SendComment()"/>
+		</div>
+
+		<div class="CommentList">
+			@foreach (var cmt in Model.Comments)
+			{
+				<div class="Comment">
+					<p class="CommentDate">@cmt.Date.ToString("dd.MM.yyyy HH:mm")</p>
+					<p class="CommentContent">@cmt.Content</p>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	function SendComment() {
+		var msg = $('.SendCommentContainer > textarea').val().trim();
+		$('.SendCommentContainer > textarea').val('');
+		if (msg.length == 0) return;
+
+		var data = new FormData();
+		data.append("pictureID", $('#picID').prop('value'));
+		data.append("msg", msg);
+
+		$.ajax({
+			url: '@Url.Action("AddComment", "Home")',
+			type: "POST",
+			processData: false,
+			contentType: false,
+			data: data,
+			success: function (data) {
+				if (data) {
+					if (data.isOk === true) {
+						var container = $('.CommentList');
+
+						container.html(
+`<div class="Comment">
+	<p class="CommentDate">${data.comment.date}</p>
+	<p class="CommentContent">${data.comment.msg}</p>
+</div>` + container.html());
+
+						return;
+					}
+				}
+				alert('Ошибка!');
+			},
+			error: function (data) {
+				alert('Ошибка!');
+			}
+		});
+	}
+</script>

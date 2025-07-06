@@ -1,0 +1,66 @@
+﻿@model List<Main.Models.authors>
+@{
+	ViewBag.Title = "Task1";
+}
+
+<h2>Task1</h2>
+
+
+@using (Ajax.BeginForm("Task1Search", new AjaxOptions
+{
+	UpdateTargetId = "ContentDiv"
+}))
+{
+	@Html.TextBox("au_search");
+	<button style="padding: 5px 20px; border-radius: 5px;">Поиск</button>
+}
+
+<style>
+	table {
+		border-collapse: collapse;
+	}
+
+		table td,
+		table th {
+			padding: 5px 10px;
+			border: 2px black solid;
+		}
+
+		table thead tr {
+			background: #4680db;
+		}
+
+		table tbody tr:nth-child(2n) {
+			background: #7f7;
+		}
+</style>
+
+<div id="ContentDiv" style="margin-top: 20px;">
+	<table>
+		<thead>
+			<tr>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Address</th>
+				<th>Phone</th>
+				<th>State</th>
+				<th>City</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			@foreach (var au in Model)
+			{
+				<tr>
+					<td>@au.au_fname</td>
+					<td>@au.au_lname</td>
+					<td>@au.address</td>
+					<td>@au.phone</td>
+					<td>@au.state</td>
+					<td>@au.city</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+

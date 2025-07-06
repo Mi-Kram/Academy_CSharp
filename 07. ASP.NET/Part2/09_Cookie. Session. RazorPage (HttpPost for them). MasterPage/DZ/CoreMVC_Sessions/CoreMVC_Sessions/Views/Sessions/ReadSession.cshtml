@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    ViewBag.Title = "ReadSession";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<form action="@Url.Action("RemoveFromSession", "Sessions")" method="post">
+
+    <div class="form-group">
+        <label for="firstName">First name</label>
+        <input readonly type="text" id="firstName" name="firstName" value="@ViewBag.FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input readonly type="text" id="lastName" name="lastName" value="@ViewBag.LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age</label>
+        <input readonly type="text" id="age" name="age" value="@httpContextAccessor.HttpContext.Session.GetString("age")" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="age">Session Id</label>
+        <input readonly type="text" id="age" name="age" value="@ViewBag.SessionId" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">Remove from session</button><br /><br />
+    @Html.ActionLink("Add to session", "Index", "Sessions")
+</form>
