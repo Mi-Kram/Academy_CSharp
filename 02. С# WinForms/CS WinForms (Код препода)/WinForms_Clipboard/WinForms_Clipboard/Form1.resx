@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>
+                    The FAR File and Archive Manager
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    What's new in the latest version
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[!] Important
+[+] New
+[-] Fixed error
+[*] Changes
+
+ДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДД
+FAR 1.70 beta 4 (build 1282) (13.03.2002)
+ДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДД
+
+General
+~~~~~~~
+[!] The full version of FAR, including the build number, is  shown  on  the
+    start page of the help system.
+
+[!] For more details read the documentation in PlugDoc.rar::WhatsNew.txt
+
+[+] ArcSupport.txt - configuring archivers for FAR Manager
+
+[!] THE RULES  FOR  HANDLING  SPECIAL  CHARACTER  SEQUENCES  (!.!,  !\  and
+    others), that are used, for example, in file associations -  HAVE  BEEN
+    CHANGED. NOW FAR DOES NOT PERFORM ANY HANDLING OF QUOTATION MARKS  WHEN
+    PROCESSING SUCH SEQUENCES AND DOES NOT ADD ANY QUOTATION MARKS, LIKE IT
+    DID IN PREVIOUS VERSIONS. FOR  THE  SYSTEM  TO  WORK  NORMALLY,  IT  IS
+    NECESSARY TO REVIEW ALL PLACES WHERE SUCH SEQUENCES ARE USED AND TO ADD
+    QUOTES WHERE IT IS NECESSARY (for example, to replace !.! with "!.!").
+
+[!] Because of the changes in file highlighting processing, you  will  have
+    to create two new highlighting groups (by default, if no highlighting
+    groups are present in the registry, these groups are created
+    automatically), to improve the look of some plugin panels:
+    a) mask "..", include attribute "[x] Folder" - default colors (that is,
+       the color for normal files)
+    b) "[ ] Match file mask(s)" - that is,  analysis  only  by  attributes,
+       include attribute "[x] Folder" - the color for normal folders.  This
+       group must be in the end of the list (preferably the last one).
+
+[!] The registry key for handling policies [HKCU\Software\Far\Policies]  is
+    now also handled for the registry branch HKEY_LOCAL_MACHINE (see
+    TechInfo#4 and TechInfo#30 for details).
+
+
+System
+~~~~~~
+[*] The default key to detach the FAR console from a non-interactive
+    process is Ctrl-Alt-Tab.
+
+[+] New rule (TechInfo#34) allows to specify the set of characters
+    that will cause FAR to quote filenames containing those characters.
+
+[+] The environment variable %PATHEXT% can be used in sort groups and
+    in the file highlighting specifications.
+
+[-] In FAR 1.70 beta 3, file attributes for an existing Tree.Far were
+    not always preserved when the tree was updated.
+
+[-] Changing the sort order from a plugin didn't work correctly.
+
+[!] When deleting a symbolic link pointing to a non-empty directory,
+    a redundant warning is no longer shown.
+
+[*] If the user clicks the left mouse button outside a dialog:
+      - clicking the left mouse button is handled as pressing Esc;
+      - clicking the right mouse button is handled as pressing Enter;
+      - other mouse buttons do not have any effect.
+
+[*] Now, when entering a directory on a plugin panel fails (for
+    example, because a network share is unaccessible), the cursor
+    doesn't jump to the top of the panel.
+
+[*] Now, when trying to enter an unaccessible directory in the NTFS
+    file system, an error message is shown and the cursor stays at the
+    same place. Earlier in this situation the cursor silently jumped
+    to the top of the panel.
+
+[!] Changes related to wheel support under Windows 2000 (see
+    TechInfo#33 for details). The parameter "MouseWheelDelta" has been
+    renamed to "MsWheelDelta" and now specifies the delta for
+    scrolling in the panels.
+
+[-] Incorrect initial positioning of elements when showing a history
+    list or a combo box in a dialog.
+
+[*] When the option "AutoComplete in input lines" is disabled, you can
+    press Ctrl-End to autocomplete a line.
+
+[+] Now the view/edit history can also be invoked from the viewer or
+    editor (by pressing Alt-F11).
+
+[!] Pressing Ctrl-F10 in the internal editor or viewer now positions
+    the cursor in the panels to the current file without leaving the
+    editor/viewer. To restore the old behaviour (position the cursor
+    to the current file and quit the editor or viewer), see macros in
+    Addons\Macros\CtrlF10.reg.
+
+[*] Now it is possible to use F6 (switch between viewer/editor) in the
+    viewer and editor opened from the Find files dialog (Alt-F7).
+
+[*] Now pressing Shift-F10 immediately after FAR start shows the main menu
+    for the active panel. Previously, the menu for the left panel was
+    always shown.
+
+[*] Now when moving the cursor in the list of found files (Alt-F7) the
+    empty lines separating directories are automatically skipped.
+
+[*] Removed unneeded delays when processing the cursor movement in the
+    list of found files (Alt-F7) after the search has been completed.
+
+[+] New behaviour for Alt-F9 (changing the window size) - see
+    TechInfo#38.
+
+[-] Windows 2000: the file panels were not updated after deleting a
+    symbolic link.
+
+[!] The number of history list items for dialog edit boxes has been
+    increased to 64. Unused items are deleted from the registry.
+
+[+] Pressing Shift-Del when a dialog edit box history list is open
+    deletes the current item if it is not locked.
+
+[+] Pressing Alt-Shift-F9 in the panels:
+    - for plugin panels - invokes the settings of the plugin
+      controlling the panel;
+    - for normal panels - shows the plugins configuration menu (same
+      as Options | Plugins configuration).
+
+[+] Added the capability of creating multiple folders at the same time.
+    See the help on the "Create folder" command for details.
+
+[-] Files with quotation marks in the middle of the name were not
+    handled correctly. For example, when trying to execute
+    Shift-F4 "foo".txt Enter
+    FAR reported an error.
+
+[+] Pressing F4 in the "Plugins configuration" menu allows to assign
+    hotkeys for the items of that menu, allowing to invoke them later
+    through keyboard macro commands.
+
+[-] Windows NT: the mouse was getting locked after running some PE
+    executables.
+
+[+] Ctrl-Alt-Ins puts the full path to the current file into the
+    clipboard.
+
+[*] If a directory is a symbolic link, "&lt; Link &gt;" instead of "&lt;Folder&gt;"
+    is shown in the status line.
+
+[*] Additions to the information in TechInfo#10.
+
+[+] New rule (TechInfo#39) allowing to configure the file names
+    sorting order for different locales.
+
+[*] Windows 2000: corrected the behaviour of Ctrl-Alt-F - for reparse
+    points (symbolic links and mounted drives) the real path to the
+    directory is put into the command line.
+
+[-] The commands to insert paths (Ctrl-], Ctrl-[, Ctrl-Shift-] and
+    Ctrl-Shift-[) always inserted paths in the OEM codepage.
+
+[!] Now the following key combinations work when the panels are turned off:
+    CtrlG,CtrlF,CtrlAltF,Ctrl[,Ctrl],CtrlShift[,CtrlShift]
+
+[+] Extended the set  of  key  combinations  for  inserting  filenames  and
+    pathnames in the panels:
+    * Ctrl-Alt-[ - insert the network (UNC) path from the left panel
+    * Ctrl-Alt-] - insert the network (UNC) path from the right panel
+    * Alt-Shift-[ - insert the network (UNC) path from the active panel
+    * Alt-Shift-] - insert the network (UNC) path from the passive panel
+
+[+] Keyboard shortcuts for copying the names of the selected files  on  the
+    active panel:
+    * Alt-Shift-Ins - full names of selected files
+    * Ctrl-Alt-Ins - network (UNC) names of selected files
+
+[!] Keyboard shortcuts  working  with  UNC  names  work  according  to  the
+    following rules:
+    * for network drives - the network (UNC) name of the file object;
+    * for local drives - full name of the file with symbolic links expanded
+
+[+] After FAR Manager is started, it sets the following environment
+    variables available for child processes:
+      %FARLANG% - Current language of the shell
+      %FARUSER% - Current user (if the /u parameter is used)
+
+[+] Shift-F1 in any menu, just like F1, invokes the help system (if
+    F1 has been assigned as a hotkey, it will not be possible to
+    invoke the help).
+
+[+] The key F5 in the highlight group selection menu creates a new
+    group having the same properties as the current group.
+
+[+] The keys Ctrl-Up and Ctrl-Down in the files highlighting group
+    list can be used to move groups up and down in the list.
+
+[+] Pressing Shift-Enter in the panels when the cursor is on a
+    directory runs the Windows Explorer and shows the contents of that
+    directory.
+
+[+] Pressing Shift-Enter in the disk selection menu starts the Windows
+    Explorer and shows the contents of the root drive of that disk.
+
+[-] Records in the plugins cache were duplicated if FAR was started
+    through a short file name.
+
+[-] The file panel filter (Ctrl-I) now correctly handles files with
+    extensions like "*.aaa,bbb,ccc,ddd,eee,fff".
+
+[+] In some situations (find files, file selection, file associations,
+    sort groups and files highlighting) it is possible to use exclude
+    masks. An exclude mask is one or several file masks that must not
+    be matched by the required files. It is separated from the main
+    mask with the character '|'. It is possible to use the semicolon
+    (';') to separate masks. It is also possible to embed a mask in
+    quotes, if, for example, it contains a separator character. File
+    masks are checked for correctness now.
+
+[!] Since the procedure for handling file masks has changed, the
+    directory with the name ".." is highlighted in the same way as all
+    other directories. If you don't like it and want to revert to the
+    old behaviour for highlighting "..", you should change the mask
+    for folders in the files highlighting settings from "*.*" to
+    "*.*|..".
+
+[+] A warning is shown before clearing history lists (of commands,
+    viewing, folders and in dialogs).
+
+[-] When FAR was first started, the Gray* key did not work until any of the
+    cursor keys was pressed.
+
+[-] In the quick search, the key combination "AltShift-" searched for
+    files starting with "-" and not with "_".
+
+[*] The color of the clock can be  specified  separately  for  the  panels,
+    viewer and editor.
+
+[!] Filenames from viewers and editors opened from plugins are now appended
+    to the common view/edit history (Alt-F11). For example, this applies to
+    the view: and edit: commands (the FARCmds plugin). Plugin  authors  can
+    control this behaviour (see the plugin development documentation).
+
+[!] Added a  new  command  line  parameter  "/x"  for  disabling  exception
+    handling. The TechInfo#17 rule has been modified accordingly.
+
+[+] Pressing the middle mouse button in the panels is treated the  same  as
+    pressing Enter.
+
+[+] Updated the dialog for searching files in the panels (Alt-F7).
+
+[+] The following new features have been added to file search in archives:
+    1) Viewing the files found in archives by pressing F3 and F4;
+    2) Putting the list of archives  containing  the  found  files  to  the
+       temporary panel;
+    3) Searching in archives in plugin panels with the OPIF_REALNAMES  flag
+       set (for example, the temporary panel).
+
+[*] The look of the "tree" has been changed.
+
+[+] FAR now handles the CLS operating system command internally.
+
+[-] After Ctrl-G the last line of output was erased.
+
+[+] New rule TechInfo#40 for specifying the locale used  for  sorting  file
+    names.
+
+[-] Long system error messages were truncated.
+
+[*] Names of temporary files and directories are uppercased.
+
+[-] When entering a character by its  code  (Alt  +  keys  on  the  numeric
+    keypad), pressing and holding a numeric key was not handled correctly.
+
+[+] Additional policy parameters (TechInfo#4) for disallowing macro command
+    creation, ignoring the "/p" command line  parameter  and  the  path  to
+    personal plugins.
+
+[*] Mask matching for a specific highlighting group can be turned off.
+
+[*] The Tab key in the main menu (F9) jumps to the  menu  for  the  passive
+    panel ("Left" or "Right"), except for the case when  the  menu  of  the
+    passive panel is currently active. In the latter case, Tab jumps to the
+    menu of the active panel.
+
+[-] After running some programs that hide the cursor and do not restore  it
+    after termination (for example, mailview from PlugRing), the cursor was
+    not restored correctly.
+
+[+] A new rule TechInfo#41 allowing to change the cursor positioning
+    behaviour when a history list for a dialog input line is first opened.
+
+[!] In the menus "Command history" (Alt-F8), "View/edit history"  (Alt-F11)
+    and "Folder history" (Alt-F12), the cursor now jumps to the  last  item
+    when you try to move it up from the first item, and the opposite.
+
+[+] Hotkeys for digits have been added in the "Folder shortcuts" menu.
+
+[+] Added control keys to the screen grabber:
+    Ctrl-Shift-Left/Ctrl-Shift-Right - move with selection by 10
+    characters horizontally
+    Ctrl-Shift-Up/Ctrl-Shift-Down - move with selection by 5
+    characters vertically
+
+[!] Options "System settings|Add plugins' prefixes to path" and "Interface
+    settings|Show scrollbar in menus" have been moved to TechInfo rules #42
+    and #43, respectively.
+
+[!] The parameter for showing the copying time described in TechInfo#26  is
+    now available in the configuration interface: "Interface settings|Show
+    copying time information". However, the dialog allows to set  only  two
+    modes: always show the information or turn it off altogether.
+
+[+] New option "Panel settings|Do not update panels automatically" allowing
+    to control the mechanism for automatically updating the panels when the
+    file system changes.
+
+[*] If a plugin panel (for example, MultiArc) was active when FAR was
+    closed, then after FAR Manager restart the directory with the host
+    file will be correctly restored, and the cursor will be positioned
+    to that file.
+
+[!] The behaviour of the middle mouse button is now configurable.
+    "Interface settings"|"Middle button equals Enter in panels"
+
+[+] The tree panel (Ctrl+T) has its own keybar.
+
+[-] Incorrect help topics were shown for the tree panel.
+
+[+] New rule TechInfo#45 for restoring the FAR Manager console window
+    code page after running external programs (that do not restore the
+    old code page value upon completion).
+
+[+] Added an option "Update read only description files" in the "File
+    descriptions" configuration dialog.
+
+[+] New rule (TechInfo#46) allowing to save the settings under Windows
+    NT (and higher) when the option "System settings | Auto save
+    setup" is enabled and the user has clicked the Close button of the
+    FAR Manager console window.
+
+[+] A change in the rule TechInfo#25 allowing to configure the cursor
+    size in the overtype mode.
+
+[-] Under Windows 9x/Me, after a command "cd //host/share", the panel
+    caption looked like "C:\\host\share" (the current drive letter was
+    prepended to the UNC path).
+
+
+Info panel
+~~~~~~~~~~
+[*] Now it is possible to scroll the description file shown in the
+    information panel using the mouse.
+
+[*] Now the information panel has its own keybar.
+
+[-] Incorrect help topic was shown when F1 was pressed in the
+    information panel.
+
+[-] When trying to delete the description file currently displayed in
+    the information panel, a sharing violation occurred.
+
+[-] Pressing F4 in the information panel when no folder description
+    files were specified caused FAR to crash.
+
+[-] Now when pressing F4 in the information panel, if the description
+    file does not exist, FAR doesn't take into accout filenames
+    containing characters * and ? for determining the name of the
+    description file to be created.
+
+[-] The information panel was not updated after changing the Folder
+    description files option.
+
+[+] The info panel has its own keybar.
+
+
+QuickView
+~~~~~~~~~
+[*] Now the quick view panel has its own keybar.
+
+[-] Incorrect help topic was shown when F1 was pressed in the quick
+    view panel.
+
+[-] The Change drive menu invoked from the quick view panel could not
+    be closed by pressing Esc.
+
+[*] For mounted drives, it is shown that the drive  is  a  mounted  volume,
+    and, if possible, the drive letter is also shown.
+
+
+File attributes
+~~~~~~~~~~~~~~~
+[-] Problems with setting the file date/time and the Read-only attribute.
+
+[+] Double-clicking a "Modification", "Creation" or "Last access" label
+    sets the respective date and time fields to the current time.
+    Double-clicking a date/time edit field sets the respective date or
+    time component to the current value.
+
+[+] F4 in the tree panel also invokes the attributes dialog.
+
+[!] Changes to TechInfo#15 for better compatibility with FAR 1.6x.
+
+[-] It was not possible to set  the  Encrypted  attribute  for  files  with
+    Cyrillic characters.
+
+
+Copy/Move
+~~~~~~~~~
+[-] When calculating the copy time, the time when dialogs are shown is
+    not included in the total time.
+
+[*] When moving files or directories within the current drive, the
+    total size is not calculated when the option "[x] Show total copy
+    progress indicator" is enabled.
+
+[+] Windows 2000: creating symbolic links for directories (Alt-F6),
+    also available in the directory tree panel.
+
+[+] Multicopy. It is possible to specify multiple filenames separated
+    with semicolons (';') in the destination edit box. For example:
+    "c:\foo\;d:\foo2".
+
+[-] Problems with creating symbolic links under Windows 2000.
+
+[-] Recursive copying of linked directories (copying onto itself).
+
+[+] Shift-F10 allows to show the directory tree for the  drive  entered  in
+    the input line.
+
+[+] Windows NT/2000: for file objects with multiple streams (if the option
+    "Use  system  copy  routine"  is  turned  off),  a  warning  about  the
+    possibility of losing additional streams is shown, The same warning  is
+    shown when trying to copy such files to a volume that  doesn't  support
+    multiple streams.
+
+[-] Windows 2000/XP/NTFS5: when copying or moving an encrypted folder to a
+    file system that does not support encryption, the capabilities of the
+    destination file system were not taken into account.
+
+
+File associations
+~~~~~~~~~~~~~~~~~
+[-] The association "!@AFQ!" in the root of any drive created a list
+    in which filenames had two backslashes in a row, for example,
+    "E:\\file.txt".
+
+[-] In associations with IF EXIST, the @ character was not handled
+    correctly.
+
+[-] In associations with IF EXIST, quotes in the middle of a filename
+    (for example, C:\1\"test 2.ttt") were not handled correctly.
+
+[+] New special sequences that are expanded to file extensions:
+     "!`" - long extension of the file;
+     "!`~" - short extension of the file.
+    For example, for the file "foo.ext" the special sequence "!`" will be
+    expanded to ".ext".
+
+[+] It is possible to specify commands for the alternate  viewer  (Alt-F3),
+    alternate editor  (Alt-F4)  and  Ctrl-PgDn  in  the  file  associations
+    dialog.
+
+[*] The help topic has been broken into 3 parts:
+     1. "File associations"
+        Introduction. General information.
+     2. "Editing file associations"
+        For the file associations editing dialog.
+     3. "Special symbols"
+        Description of supported special symbols.
+     Consequently,  the  file  association  selection  menu  and  the  file
+     associations editing dialog now have separate help topics.
+
+
+Editor
+~~~~~~
+[-] Incorrect description for Shift-Enter in the help file.
+
+[+] Ctrl-Shift-Enter - insert the full name of the file being edited.
+
+[-] Entering a character code (Ctrl-Q) did not mark the text as
+    modified.
+
+[-] Entering a character code (Ctrl-Q) did not put data into the undo
+    buffer.
+
+[-] XLat translation did not put data into the undo buffer.
+
+[-] When a block was pasted and the autoindent was enabled, spaces
+    instead of tabs were inserted in the beginning of each line.
+
+[!] By default, files with the Read-Only attribute are not locked and
+    the warning is not shown (restored the behaviour of FAR 1.65).
+
+[+] Two options from TechInfo (#19) have been added to the editor
+    options dialog:
+     - Disable editing of files with the R/O attribute
+     - Warn when opening files with the R/O attribute
+
+[+] New behaviour for opening a file already opened for editing. Three
+    choices are available - "Show current", "Reload" and "New
+    instance". Also an option has been added to the confirmation
+    dialog to control the behaviour of opening an already opened but
+    unchanged file (see the help file for details).
+
+[-] It was possible to indent or unindent (Alt-I/Alt-U) stream blocks
+    when the editor was locked (Ctrl-L).
+
+[-] Fixed a problem causing a change in the look of the cursor in the
+    editor and input lines after running some DOS tasks. Such cursor
+    looked like it was positioned one line higher than it actually
+    was.
+
+[-] In the character table selection menu (Shift-F8),  the  item  with  the
+    table detected when the file was  opened  was  selected,  even  if  the
+    current table was different.
+
+[+] New option "Persistent blocks in edit controls".
+
+[-] A non-persistent block was not deselected when the user clicked a mouse
+    button.
+
+[-] Ctrl-], Ctrl-[, Ctrl-Shift-] Ё Ctrl-Shift-[ always inserted strings  in
+    the OEM codepage.
+
+[*] The default size of the editor undo buffer has been increased from
+    64 to 2048 elementary operations.
+
+[+] It is possible to change the undo buffer size (see TechInfo#44).
+
+
+Viewer
+~~~~~~
+[-] Now when scrolling with the scrollbar in the internal viewer,
+    lines are not "torn" (the viewer is always positioned on a
+    line boundary).
+
+[-] Sometimes after opening the viewer in the Windows codepage
+    the keybar title for the F8 button showed Win instead of DOS.
+
+[*] +/- now work in the viewer after switching to the editor by pressing
+    F6 and then switching back.
+
+[-] The current position was set incorrectly after clicking the viewer
+    scrollbar in very large files.
+
+[!] Because D is a hexadecimal digit, it is no longer allowed to
+    use D in the Goto dialog to specify a decimal offset.
+
+[+] Ctrl-Ins copies the selection (search results) to the clipboard.
+
+
+Help
+~~~~
+[-] Fixed a bug with pressing F5 in a help file opened from HLFViewer.
+
+[*] The Tab character in help files is converted to spaces.  The  tab  size
+    can be specified with the option ".Options TabSize=&lt;size&gt;". The default
+    tab size is 8.
+
+[+] The plugins help list (Shift-F2) is now alphabetically sorted.
+
+[*] Clicking the middle mouse button is treated as pressing Enter.
+
+[+] A double-click in the non-scrolling area of a help window zooms
+    the window, as if F5 had been pressed.
+
+User menu
+~~~~~~~~~
+[+] Added handling for the remark statements "rem" and "::" located at the
+    beginning of a line.
+
+[-] The submenu pointer alignment did not work correctly.
+
+[*] Macros are expanded in submenu headers.
+
+[+] Cursor keys Left/Right open and close submenus.
+
+[*] After a user menu command has been executed, the previous contents
+    of the command line is restored.
+
+
+Macros
+~~~~~~
+[!] The information on macro commands (TechInfo#22) has  been  moved  to  a
+    separate document "Macros[.Rus].txt"
+
+[!] Added a workaround for a bug in the Win9X Conagent.exe -  pressing  the
+    Left key on the numeric keypad with  NumLock  turned  on  inserted  the
+    following sequence into the keyboard buffer:  Left  Down,  Shift  Down,
+    Shift Up, Left Up. This made it impossible to assign a macro command to
+    the Left key.
+
+[+] New macro command attribute "Selection present".
+
+[!] New dialog for configuring additional macro command settings.
+
+[+] New help topic for the additional macro settings dialog.
+
+[+] Two new pseudo-keys "MsWheelUp" and "MsWheelDown".
+
+[-] Macros for the keys Alt-Shift-&lt;digit&gt; did not work in the panels.
+
+[-] Macros created for the "Tree" area were saved in the "Info" area.
+
+[!] Macro keys "$Year", "$Month", "$Day", "$Hour", "$Min" and "$Sec" are no
+    longer supported and  have  been  replaced  with  a  single  macro  key
+    "$Date".
+
+[+] New macro command "$XLat" - invokes the transliteration function.
+    For example, a macro command
+      [HKEY_CURRENT_USER\Software\Far\KeyMacros\Dialog\ShiftBS]
+      "Sequence"="CtrlShiftLeft $XLat CtrlRight"
+      "DisableOutput"=dword:00000001
+    will work always, independently of what key has been assigned for
+    transliteration in dialog input lines.
+
+[!] Macro sequences with errors in  key  names  are  ignored  when  reading
+    macros from the registry.
+
+[*] While a macro with the flag "Disable screen output while executing
+    macro" set is being executed, the console title is not changed.
+
+
+Addons
+~~~~~~
+[+] Addons\Archivers\*.reg
+    Settings for various archivers.
+
+[+] Addons\Macros\WheelScreenSwitch.reg
+    An example of using the mouse wheel together with the Shift key to
+    switch between the open windows.
+
+[+] Addons\Macros\AltDown.reg
+    Open combobox and history list (as if Ctrl-Down was pressed)
+
+[+] Addons\Macros\ShiftBS.reg
+    Converts the word before the cursor with the XLat function.
+
+[*] Addons\Macros\ShiftF1.reg
+    Macro has been changed to use new MultiArc plugin features.
+
+[+] Addons\Macros\SwitchMainLanguage.reg
+    Fast switching of the main shell language.
+
+[+] Addons\SetUp\*.reg
+    Typical settings of FAR Manager.
+
+[!] Better organized tables in Addons\Tables.
+
+[+] Addons\Tables\Slavic (CE)\Polish\Mazovia.reg
+    Polish language table Mazovia (CP 896 - old DOS format)
+
+[+] Addons\Tables\German\Mac.Ger.reg
+    German Macintosh Code-table
+
+[-] Addons\Tables\Slavic (CE)\Czech\Kamenicti.reg
+
+[-] Addons\Tables\Slavic (CE)\Czech\Kamenicti.reg
+    Corrected errors in the source table, unmatched characters are
+    replaced with FEh (254). Corrected codes: 172, 181..184, 189, 190, 198, 199,
+    207..216, 221, 222, 224, 226..245, 247, 249, 251..253.
+
+Plugins
+~~~~~~~
+[!] Changes and additions to standard plugins (for more information see
+    Plugins\WhatsNew[.Rus].txt).
+
+[*] Clarification in the document on installing/removing plugins
+    (Plugins\InstallPlugins[.Rus].txt)
+
+
+ДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДД
+FAR 1.70 beta 3 (build 591) (19.04.2001)
+ДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДДД
+
+General
+~~~~~~~
+[!] For more details read the documentation on PlugDoc.rar::WhatsNew.txt
+[+] New section in help files "Overview of plugin capabilities" (the same
+    as in Plugins\Review.txt)
+[+] "FAR.EXE /?" shows the list of available command line parameters.
+[!] Changed the mechanism for handling keys with modifiers Alt-, Ctrl-,
+    Alt-Shift-, Ctrl-Shift-, Ctrl-Alt- in non-English keyboard layouts.
+    (See TechInfo#24 for details).
+
+System
+~~~~~~
+[+] It is possible to eject CD-ROM and removable drives by pressing the
+    Del key in the disk selection menu. Under Windows NT/2000 this
+    operation requires administrator privileges.
+[+] Shift-F1 in the list of plugin commands (F11) and in the disks menu
+    (Alt-F1/Alt-F2) shows the help for the current plugin (the standard
+    topic "Contents").
+[+] Pressing Shift-F1 in the plugin configuration menu shows the help
+    topic "Config" for the current plugin. If there is no such topic, the
+    standard topic "Contents" is shown instead.
+[-] The rule "CmdHistoryRule=1" (see TechInfo#9) did not work correctly.
+[+] Handling of commands:
+     "IF [NOT] EXIST filename command" and
+     "IF [NOT] DEFINED variable command".
+    Regarding "smart" associations: If several associations are specified
+    for a single extension, and if some associations have the "IF EXIST"
+    condition, the action selection menu shows only the items for
+    which the condition is true.
+[-] Entering certain text in dialogs:
+      - create new file (Shift-F4)
+      - create directory (F7)
+      - specify description for selected files (Ctrl-Z)
+      - apply command to selected files (Ctrl-G)
+    crashed FAR.
+[+] If the size of the console cursor in insert mode doesn't suit you, see
+    the rule 25 (TechInfo#25).
+[+] Ctrl-Alt-F puts the UNC filename of the current file into the command
+    line.
+[*] Now the task list (Ctrl-W) is more user-friendly - attempts to move
+    the cursor up from the first item or down from the last item cause the
+    cursor to move to the last or the first item, respectively.
+[-] An error in the "Screen grabber" function (Alt-Ins):
+    "...If you carry out the selection using the mouse and move the mouse
+    outside the border of the window, each line in the clipboard will have
+    a "tail" of the beginning characters of the following line. There will
+    be as many characters as the characters by which the mouse has been
+    moved outside the window..."
+[-] The "Show selected first" state (Shift-F12) was not saved when exiting
+    FAR.
+[+] A new option for confirmation of pressing the Esc key
+    (Options|Confirmations|Pressing the Esc), disabled by default.
+[+] An option to confirm disconnecting network drives by pressing Del
+    in the Disks menu (Options|Confirmations|Disconnect network drive). By
+    default the option is enabled.
+[!] Increased sizes:
+     - for entering file descriptions (Ctrl-Z)          - 1024 characters.
+     - for "File highlighting" masks                    - 2048 characters.
+     - for "Sort group" masks                           - 2048 characters.
+     - for "File panel filter" masks (Ctrl-I)           - 2048 characters.
+[+] Detachment of the FAR console from a non-interactive process running
+    in it (see TechInfo#27 for details).
+[+] Ctrl-: (Ctrl-colon) and Ctrl-Alt-: (Ctrl-Alt-colon) put the
+    filename/UNC filename of the current file on the passive panel into the
+    command line.
+[-] Crash when the width of one panel (mode 7, Ctrl-7) was more than 150
+    characters.
+[-] Enter and Shift-Enter didn't cancel the selection in the command
+    line.
+[-] The panels in the mode 8 (Ctrl-8) didn't show file owners under
+    Windows 2000.
+[-] If the registry branch
+    [HKEY_CLASSES_ROOT\Directory\shellex\CopyHookHandlers] is empty, it
+    may cause FAR to crash when deleting directories to the recycle bin.
+    Now FAR checks this registry section on startup and, if CopyHookHandlers
+    is empty, deletes [HKEY_CLASSES_ROOT\Directory\shellex\CopyHookHandlers].
+[+] It is possible to set the filler character for the "Wipe file" operation
+    (Alt-Del) (see TechInfo #29).
+[+] Alt-Shift-Left, Alt-Shift-Right, Alt-Shift-Home and Alt-Shift-End select
+    the block in the command line also when the panels are on.
+[-] When trying to delete a file that was used (for example, a program
+    that was running), the error message said that the operation was completed
+    successfully.
+[*] When updating the tree, the file attributes for an existing file
+    Tree.Far are preserved.
+[+] For any UNC paths ".." is added to the root directory - Windows
+    doesn't do that when the UNC path is mapped to the root directory of
+    a drive.
+[+] New rule TechInfo#30, taking into account the system policy "Hide
+    Drives in My Computer".
+[-] Incorrect results for Ctrl-N Ctrl-F (the short names mode) for
+    long file names in plugins like TempPanel (that contain the names
+    of real files with full paths).
+[-] Duplicate filenames in the editor/viewer history and positions
+    cache (see TechInfo#31 for details).
+[*] Directories are deleted correctly when F8 or Shift-F8 is pressed
+    in the tree panel.
+[+] Ctrl-C/Ctrl-Ins - copies the current line from a history menu
+    (Alt-F8, Alt-F11, Alt-F12) to the clipboard.
+[-] If a file name embedded in quotes was pasted from the clipboard
+    into the quick search line, the file was not located correctly.
+[+] Support for the mouse wheel in Windows 2000 (see TechInfo#33 for
+    details).
+
+Info panel
+~~~~~~~~~~
+[*] The information panel (Ctrl-L) under Windows 200 shows correct
+    information for symbolic links (directory junctions and volume mount
+    points) when en
+</value>
+  </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>132, 17</value>
+  </metadata>
+</root>
