@@ -1,0 +1,23 @@
+﻿<Window x:Class="WPF_Dialogs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Dialogs"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="MainWindow" Height="383" Width="633">
+
+    <Grid x:Name="grid1">
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,20,63" x:Name="button5" VerticalAlignment="Bottom" Width="119" Click="button5_Click" Content="Show modal"/>
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,20,33" x:Name="button6" VerticalAlignment="Bottom" Width="119" Click="button6_Click" Content="Show"/>
+        <Button Content="OpenFileDialog" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click"/>
+        <Button Content="SaveFileDialog" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_1"/>
+        <Button Content="FolderDialog" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_2"/>
+        <Button Content="WinForms FolderDialog" HorizontalAlignment="Left" Margin="10,91,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_3"/>
+        <xctk:ColorPicker Name="ClrPcker_Background" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="161" SelectedColorChanged="ClrPcker_Background_SelectedColorChanged"/>
+        <Button Content="WinForms ColorDialog" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_4"/>
+        <Label Name="label1" Content="Hello big world!!!" HorizontalAlignment="Left" Margin="10,228,0,0" VerticalAlignment="Top" Width="772"/>
+        <Button Content="WinForms FontDialog" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click_5"/>
+    </Grid>
+</Window>

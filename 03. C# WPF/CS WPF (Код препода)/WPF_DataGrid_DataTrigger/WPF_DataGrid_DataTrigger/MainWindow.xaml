@@ -1,0 +1,192 @@
+﻿<Window x:Class="WPF_DataGrid_DataTrigger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_DataGrid_DataTrigger"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="531" Width="804">
+
+    <Window.Resources>
+
+        <local:PriceConverter x:Key="PriceConverter" EdgeValue="100000" />
+        <local:PriceToTextConverter x:Key="PriceToTextConverter" />
+
+        <DataTemplate x:Key="UltraFastTemplate">
+            <TextBlock Margin="2" Text="Fast" Foreground="Yellow"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="FastTemplate">
+            <TextBlock Margin="2" Text="Fast" Foreground="Green"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="AverageTemplate">
+            <TextBlock Margin="2" Text="Average" Foreground="Blue"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SlowTemplate">
+            <TextBlock Margin="2" Text="Slow" Foreground="Red"/>
+        </DataTemplate>
+
+        <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
+            <Setter Property="Foreground" Value="#FF0ACB0A"/>
+            <Setter Property="Background" Value="#FF807777"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid Name="TemplateRoot" SnapsToDevicePixels="true">
+                            <Rectangle Name="PART_Track" Fill="{TemplateBinding Background}" Margin="0"/>
+
+                            <Decorator x:Name="PART_Indicator" HorizontalAlignment="Left" Margin="0">
+                                <Rectangle Margin="0,0,2,0" Fill="{TemplateBinding Foreground}" Name="Indicator" />
+                            </Decorator>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                                Storyboard.TargetName="Indicator"
+                                                Storyboard.TargetProperty="(Rectangle.Fill).Color"
+                                                From="Green" To="MediumBlue" Duration="0:0:3"
+                                                AutoReverse="True" RepeatBehavior="Forever" />
+
+                                        <ThicknessAnimation 
+                                            Storyboard.TargetName="Indicator"
+                                            Storyboard.TargetProperty="Margin"
+                                            From="0,0,200,0" To="0,0,0,0" Duration="0:0:1"/>
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="0,0,0,-3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding}" AlternationCount="2" AlternatingRowBackground="AliceBlue" AutoGenerateColumns="False" Height="352" VerticalAlignment="Top">
+
+            <!-- общий стиль для всех ячеек грид>-->
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Car ID" Binding="{Binding ID}"/>
+
+                <DataGridTextColumn Header="Brand" Binding="{Binding Brand}"/>
+
+                <DataGridTextColumn Header="Model" Binding="{Binding Model}"/>
+
+                <DataGridTemplateColumn Header="Speed" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ProgressBar Margin="2" Minimum="0" Maximum="415" Value="{Binding Speed}">
+                                <ProgressBar.ToolTip>
+                                    <TextBlock Text="{Binding Speed}"/>
+                                </ProgressBar.ToolTip>
+                            </ProgressBar>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Category">
+                    <DataGridTemplateColumn.CellTemplateSelector>
+                        <local:CarTemplateSelector 
+                            UltraFastTemplate="{StaticResource UltraFastTemplate}"
+                            FastTemplate="{StaticResource FastTemplate}"
+                            AverageTemplate="{StaticResource AverageTemplate}"
+                            SlowTemplate="{StaticResource SlowTemplate}"/>
+                    </DataGridTemplateColumn.CellTemplateSelector>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+
+                            <Setter Property="Margin" Value="5,0,5,0" />
+
+                            <Style.Triggers>
+
+                                <!-- DataTrigger стартует, если PriceConverter возвратит true -->
+                                <DataTrigger Binding="{Binding Path=Price, Converter={StaticResource PriceConverter}}" Value="true">
+                                    <Setter Property="Foreground" Value="Blue" />
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Price}" Value="2000000">
+                                    <Setter Property="Foreground" Value="Red" />
+                                </DataTrigger>
+
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=Brand}" Value="BMW" />
+                                        <Condition Binding="{Binding Path=Model}" Value="X5" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </MultiDataTrigger>
+
+                                <!-- использование анамации в DataTrigger -->
+                                <DataTrigger Binding="{Binding Price}" Value="1500000">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="Opacity"
+                                                    From="0" To="1" Duration="0:0:3" 
+                                                    RepeatBehavior="Forever"
+                                                    AutoReverse="True"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                </DataTrigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="PriceCategory">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Price, Converter={StaticResource PriceToTextConverter}, NotifyOnTargetUpdated=True}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <StackPanel Margin="31,372,149,10">
+            <CheckBox Name="checkBox1" Content="Show message?" />
+            <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="48">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="Hello big world!!!" />
+                        <Setter Property="Visibility" Value="Hidden" />
+                        <Setter Property="Foreground" Value="Blue" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=checkBox1, Path=IsChecked}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+
+</Window>

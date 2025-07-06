@@ -1,0 +1,19 @@
+﻿<Application x:Class="WPF_Templates.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPF_Templates"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ControlTemplate x:Key="win1" TargetType="{x:Type Window}">
+            <Border Width="{TemplateBinding Window.Width}" Height="{TemplateBinding Window.Height}">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                        <GradientStop Offset="0" Color="Silver"/>
+                        <GradientStop Offset="1" Color="DarkKhaki"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <ContentPresenter />
+            </Border>
+        </ControlTemplate>
+    </Application.Resources>
+</Application>

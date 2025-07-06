@@ -1,0 +1,76 @@
+﻿<Window x:Class="WPF_Canvas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Canvas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" Name="w1">
+
+    <ScrollViewer Height="Auto" Width="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Canvas Height="1500" Name="canvas1" Width="1500" Opacity="1" Background="Beige" RenderTransformOrigin="0.509,0.441" MouseLeftButtonDown="canvas1_MouseLeftButtonDown" MouseMove="canvas1_MouseMove">
+            <Rectangle MouseLeftButtonDown="rectangle1_MouseLeftButtonDown" Canvas.Left="323" Canvas.Top="38" Height="89" Name="rectangle1" Stroke="Red" Width="157" Fill="Aqua" />
+            <Ellipse  MouseLeftButtonDown="ellipse1_MouseLeftButtonDown" Canvas.Left="521.368" Canvas.Top="19.932" Height="120.056" Name="ellipse1" Stroke="Black" Width="159.048" Fill="Salmon" />
+            <Line Name="line1" MouseLeftButtonDown="Line_MouseLeftButtonDown" X1="10" Y1="10" X2="100" Y2="100" StrokeThickness="7" Canvas.Left="367" Canvas.Top="392" Height="142" Width="160" RenderTransformOrigin="0.5, 0.5" >
+                <Line.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="1.767"/>
+                        <TranslateTransform X="5.871" Y="-15.835"/>
+                    </TransformGroup>
+                </Line.RenderTransform>
+
+                <Line.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Red" Offset="0"></GradientStop>
+                        <GradientStop Color="Blue" Offset="1"></GradientStop>
+                    </LinearGradientBrush>
+                </Line.Stroke>
+
+            </Line>
+
+
+            <Polygon MouseLeftButtonDown="Poly1_MouseLeftButtonDown" Name="Poly1" Points="110,110, 120,20, 130,40, 190,67" Stroke="Blue" Height="116" Canvas.Left="111" Canvas.Top="0" Width="201" Fill="Coral" />
+            <Polyline MouseLeftButtonDown="pline1_MouseLeftButtonDown" Points="50,70, 200,100, 30,130, 23,23, 200,130" Name="pline1" Stroke="Brown" Width="214" Height="130" Canvas.Left="26.752" Canvas.Top="401.544" StrokeThickness="3"></Polyline>
+            <Path Name="path1" MouseLeftButtonDown="Path_MouseLeftButtonDown" Stroke="Black" Fill="Bisque" Data="M 0,0 C 100,400, 200,-200, 300,300 Q 100,500 0,0" Height="148.104" Canvas.Top="185" Width="238.664" Canvas.Left="360.168" StrokeThickness="3" Stretch="Fill" />
+            <Path MouseLeftButtonDown="Path_MouseLeftButtonDown" Stroke="Black" Data="M 100,50 A 4, 7, 300, 1, 0, 480, 180" Height="134.104" Canvas.Top="262.896" Width="144.296" Canvas.Left="27" StrokeThickness="3" Stretch="Fill" />
+            <Button Canvas.Left="12" Canvas.Top="12" Content="Add ellipse" Height="23" Name="button1" Width="94" Click="button1_Click" />
+            <Path MouseLeftButtonDown="Path_MouseLeftButtonDown" Stroke="Black" Data="M 0,0 L 100, 0 L 50, 100 Z" Height="113.104" Canvas.Top="170" Width="212.048" Canvas.Left="57.168" StrokeThickness="3" Stretch="Fill" />
+            <Button Content="Canvas size" Canvas.Left="12" Canvas.Top="40" Width="94" Click="Button_Click"/>
+
+
+            <!-- https://professorweb.ru/my/WPF/graphics_and_animation/level13/13_5.php -->
+
+            <!--
+        <Path Stroke="Black" StrokeThickness="3" MouseLeftButtonDown="Path_MouseLeftButtonDown" Canvas.Left="286" Canvas.Top="172">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure StartPoint="10, 100">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment Size="100,50" RotationAngle="45" IsLargeArc="True" SweepDirection="CounterClockwise" Point="200,100" />
+                                        <LineSegment Point="100,100" />
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                            <PathFigure StartPoint="300,200">
+                                <PathFigure.Segments>
+                                    <PathSegmentCollection>
+                                        <ArcSegment Size="100,100" RotationAngle="45" IsLargeArc="True" SweepDirection="CounterClockwise" Point="300,300" />
+                                    </PathSegmentCollection>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+            -->
+
+        </Canvas>
+    </ScrollViewer>
+
+</Window>

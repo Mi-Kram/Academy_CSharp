@@ -1,0 +1,41 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:WPF_Custom_Control">
+
+    <Style TargetType="{x:Type local:FilteringTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FilteringTextBox}">
+
+                    <Grid>
+                        <Border x:Name="MainBorder" Background="White" BorderThickness="1.4,1.4,1,1" BorderBrush="Silver">
+                            <Label x:Name="TextLabel"
+                                Content="{Binding RelativeSource={RelativeSource  Mode=TemplatedParent}, Path=WatermarkText}" 
+                                Background="{TemplateBinding Background}" Visibility="Hidden" 
+                                Focusable="False" Foreground="Silver"/>
+                        </Border>
+                        <ScrollViewer Margin="3" x:Name="PART_ContentHost" Foreground="Black"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsFocused" Value="False"/>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="TextLabel" Value="Visible" />
+                            <Setter Property="Background" TargetName="TextLabel" Value="#FFEEFFFF" />
+                        </MultiTrigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="MainBorder" Value="Black"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="#FF333333" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

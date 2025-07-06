@@ -1,0 +1,50 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Name="FormGrid" Title="Cross and circle" Height="500" Width="520" Icon="MainWindowIcon.ico"
+        MinHeight="300" MinWidth="320">
+    <Grid Margin="0,0,0,0" Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="520*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Name="menu" VerticalAlignment="Top" Height="20" Margin="0,0,0,0" Grid.Column="0" Grid.Row="0">
+            <MenuItem Header="Фон">
+                <MenuItem Header="Выбрать цвет" Click="BackGR_Click"/>
+                <MenuItem Header="Выбрать картинку" Click="BackIM_Click"/>
+            </MenuItem>
+            <MenuItem Header="Фигура">
+                <MenuItem Header="Крестик" Click="MenuItemCross_Click"/>
+                <MenuItem Header="Нолик" Click="MenuItemCircle_Click"/>
+            </MenuItem>
+            <MenuItem Header="Режим">
+                <MenuItem Name="boardX3" Header="3x3" IsChecked="True"  Click="GM_3x3_Click"/>
+                <MenuItem Name="boardX4" Header="4x4" IsChecked="False" Click="GM_4x4_Click"/>
+                <MenuItem Name="boardX5" Header="5x5" IsChecked="False" Click="GM_5x5_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid Name="playBoard" ShowGridLines="True"
+              Grid.Row="1" Background="White" Margin="0,0,0,0" MouseDown="playBoard_MouseDown">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="150*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150*"/>
+                <RowDefinition Height="150*"/>
+                <RowDefinition Height="150*"/>
+            </Grid.RowDefinitions>
+            
+            
+        </Grid>
+
+    </Grid>
+</Window>

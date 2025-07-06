@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="WPF_User_Control.MusicPlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_User_Control"
+             mc:Ignorable="d" d:DesignWidth="800" Height="230">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="MediaStoryboardResource" CurrentTimeInvalidated="storyboard_CurrentTimeInvalidated">
+
+            <MediaTimeline Name="tmline1" Source="roxette.mp3" Storyboard.TargetName="media" />
+
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid Margin="0,32,0,10">
+        <MediaElement Name="media" MediaOpened="media_MediaOpened" Margin="0,14,0,0" HorizontalAlignment="Right" Width="45.001" Height="35" VerticalAlignment="Top"></MediaElement>
+
+        <Slider Name="sliderPosition" ValueChanged="sliderPosition_ValueChanged" Height="21" VerticalAlignment="Top"></Slider>
+        <TextBlock Name="lblTime" Height="16" VerticalAlignment="Top" Margin="0,24,119,0"></TextBlock>
+        <Slider Minimum="0" Maximum="1" Value="{Binding ElementName=media, Path=Volume, Mode=TwoWay}" Height="21" Name="slider1" Margin="0,48,0,0" VerticalAlignment="Top" />
+        <Slider Minimum="-1" Maximum="1" Value="{Binding ElementName=media, Path=Balance, Mode=TwoWay}" Margin="0,75,0,0" Height="26" VerticalAlignment="Top"></Slider>
+        <StackPanel Name="st1" Margin="13.813,107,8,0" Orientation="Horizontal" Height="32" VerticalAlignment="Top">
+            <StackPanel.Triggers>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="cmdPlay">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard Name="MediaStoryboard" Storyboard="{StaticResource MediaStoryboardResource}"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="cmdStop">
+                    <EventTrigger.Actions>
+                        <StopStoryboard BeginStoryboardName="MediaStoryboard"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="cmdPause">
+                    <EventTrigger.Actions>
+                        <PauseStoryboard BeginStoryboardName="MediaStoryboard"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="cmdResume">
+                    <EventTrigger.Actions>
+                        <ResumeStoryboard BeginStoryboardName="MediaStoryboard"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="cmdSpeed">
+                    <EventTrigger.Actions>
+                        <SetStoryboardSpeedRatio BeginStoryboardName="MediaStoryboard" SpeedRatio="2"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="cmdSpeed2">
+                    <EventTrigger.Actions>
+                        <SetStoryboardSpeedRatio BeginStoryboardName="MediaStoryboard" SpeedRatio="1"/>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+
+            </StackPanel.Triggers>
+            <Button Name="cmdPlay">Play</Button>
+            <Button Name="cmdStop" Width="37">Stop</Button>
+            <Button Name="cmdPause">Pause</Button>
+            <Button Name="cmdResume">Resume</Button>
+            <Button Name="cmdSpeed">Speed</Button>
+            <Button Name="cmdSpeed2">Speed2</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

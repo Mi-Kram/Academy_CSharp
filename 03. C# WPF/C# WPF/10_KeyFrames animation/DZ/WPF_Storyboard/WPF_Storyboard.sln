@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Storyboard", "WPF_Storyboard\WPF_Storyboard.csproj", "{94334DC1-97A6-4C1F-9D1D-39DC5DB95AE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94334DC1-97A6-4C1F-9D1D-39DC5DB95AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94334DC1-97A6-4C1F-9D1D-39DC5DB95AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94334DC1-97A6-4C1F-9D1D-39DC5DB95AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94334DC1-97A6-4C1F-9D1D-39DC5DB95AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CAE5023-E0D5-4C3C-8DC2-64422DCB521B}
+	EndGlobalSection
+EndGlobal

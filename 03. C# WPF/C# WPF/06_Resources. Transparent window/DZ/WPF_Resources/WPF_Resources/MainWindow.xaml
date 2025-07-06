@@ -1,0 +1,100 @@
+﻿<Window x:Class="WPF_Resources.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Resources"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+
+        <LinearGradientBrush x:Key="Brush1">
+            <GradientStop x:Name="gr1" Color="Blue" Offset="0" />
+            <GradientStop x:Name="gr2" Color="Red"  Offset="1" />
+        </LinearGradientBrush>
+
+        <Style x:Key="BStyle1">
+            <Setter Property="Button.Background" Value="{StaticResource Brush1}"/>
+            <Setter Property="Button.FontSize" Value="14" />
+            <Setter Property="Button.FontFamily" Value="Arial" />
+        </Style>
+
+        <Style x:Key="BStyle3">
+            <Setter Property="Button.Foreground" Value="Yellow" />
+            <Setter Property="Button.Background" Value="Black" />
+
+            <Style.Triggers>
+
+                <Trigger Property="Button.IsPressed" Value="True">
+                    <Setter Property="Button.Foreground" Value="Black" />
+                    <Setter Property="Button.FontSize" Value="20" />
+                    <Setter Property="Button.Background" Value="Red" />
+                </Trigger>
+
+                <!--
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="Button.IsPressed" Value="true"/>
+                        <Condition Property="Button.IsEnabled" Value="true"/>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Button.Foreground" Value="Blue" />
+                        <Setter Property="Button.Background" Value="Yellow" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+                -->
+
+            </Style.Triggers>
+
+        </Style>
+
+        <Style x:Key="BStyle2">
+            <Setter Property="Button.Cursor" Value="Hand"/>
+            <Setter Property="Button.Foreground" Value="Green"/>
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource BStyle2}">
+            <Setter Property="Button.Background" Value="Beige"/>
+            <Setter Property="Button.FontSize" Value="12" />
+
+            <EventSetter Event="Button.MouseEnter" Handler="buttonMouseEnter"/>
+            <EventSetter Event="Button.MouseLeave" Handler="buttonMouseLeave"/>
+        </Style>
+
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Image.Width" Value="100"/>
+            <Setter Property="Image.Height" Value="50"/>
+            <Setter Property="Image.Stretch" Value="Fill"/>
+
+            <EventSetter Event="Image.MouseDown" Handler="imageMouseDown"/>
+            <EventSetter Event="Image.MouseUp" Handler="imageMouseUp"/>
+
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Width" Value="200" />
+                    <Setter Property="Height" Value="200" />
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Button Name="button1" Click="button1_Click" Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176">Find resource</Button>
+        <Button Margin="2,48,616,0" Name="button2" Click="button2_Click" Height="24" VerticalAlignment="Top">Resources.Add</Button>
+        <Button Height="23" Style="{StaticResource BStyle1}" HorizontalAlignment="Left" Margin="2,83,0,0" Name="button3" VerticalAlignment="Top" Width="174" Click="button3_Click">Применить кисть</Button>
+
+        <Image Margin="0,0,36,27" Name="image1" Stretch="Fill" Source="Images/admin.gif" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+
+        <Button Height="23" Margin="0,118,0,0" Name="button4" VerticalAlignment="Top" Click="button4_Click" HorizontalAlignment="Left" Width="176">Применить стиль</Button>
+        <Button Height="23" HorizontalAlignment="Left" Margin="2,0,0,248" Name="button5" VerticalAlignment="Bottom" Width="174" Click="button5_Click">Создать стиль</Button>
+        <Button Style="{StaticResource BStyle3}" HorizontalAlignment="Left" Margin="0,205,0,55" Name="button6" Width="174" IsEnabled="True">Trigger test</Button>
+        <Button Height="98" Background="{DynamicResource Brush1}" HorizontalAlignment="Right" Margin="0,11.5,36,0" Name="button7" VerticalAlignment="Top" Width="199">
+            Test Button
+        </Button>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="322,127.21,0,0" VerticalAlignment="Top" Width="199" Height="73.808"/>
+    </Grid>
+
+</Window>

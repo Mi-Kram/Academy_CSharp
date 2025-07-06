@@ -1,0 +1,35 @@
+﻿<Window x:Class="WPF_TextBlock.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_TextBlock"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="851">
+    
+    <Grid Width="752" Margin="30,110.5,30,18.684">
+        <TextBlock Margin="102.212,24.442,22.22,0" Name="textBlock1" FontSize="20" TextDecorations="UnderLine" TextWrapping="Wrap">
+            <TextBlock.TextEffects>
+                <TextEffect Foreground="Red" PositionCount="3" PositionStart="0" />
+                <TextEffect PositionCount="1" x:Name="MyTextEffect2">
+                    <TextEffect.Transform>
+                        <RotateTransform x:Name="TextEffectRotateTransform2" Angle="20" CenterX="10" CenterY="10" />
+                    </TextEffect.Transform>
+                </TextEffect>
+            </TextBlock.TextEffects>
+            
+            TextBlock is designed to be <Italic>lightweight</Italic>,
+            and is geared <LineBreak/> specifically at integrating
+            small portions of flow <Underline>content</Underline> into a user
+            <Bold>interface (UI)</Bold>.
+        </TextBlock>
+
+        <Button HorizontalAlignment="Left" Name="button1" Width="75" Click="button1_Click" Height="23.331" VerticalAlignment="Bottom" Margin="9.999,0,0,25.553">Create</Button>
+        <TextBlock Margin="102,144,22,0" Name="textBlock2" Height="61" VerticalAlignment="Top">
+            <TextBlock.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </TextBlock.BitmapEffect>
+        </TextBlock>
+    </Grid>
+    
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="WPF_Tooltips.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Tooltips"
+        mc:Ignorable="d"
+        Title="MainWindow" Name="w1" Height="445" Width="780">
+
+    <Grid Name="grid">
+        <Button Margin="61,26,527,309" MouseEnter="button1_MouseEnter" x:Name="button1" Click="button1_Click" Content="Change tooltip">
+            <Button.ToolTip>
+                <Grid>
+                    <Button MouseEnter="button1_MouseEnter" x:Name="button2" Click="button1_Click" ToolTip="Hello world" Content="Testing"/>
+                    <Button Margin="61,26,244,126" MouseEnter="button1_MouseEnter" x:Name="button3" Click="button1_Click" ToolTip="Hello world" Content="Testing2"/>
+                </Grid>
+            </Button.ToolTip>
+        </Button>
+    </Grid>
+
+</Window>

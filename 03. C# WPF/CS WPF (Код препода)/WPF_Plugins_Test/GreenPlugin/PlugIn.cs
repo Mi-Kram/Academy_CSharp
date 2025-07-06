@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+
+namespace GreenPlugin
+{
+    public class PlugIn
+    {
+        public void ChangeWindow(Window window)
+        {
+            window.Background = new SolidColorBrush(Colors.LightGreen);
+
+            // Сформировать стиль для кнопок главного окна
+            Style st = new Style(typeof(Button));
+            Setter setter1 = new Setter(Button.BackgroundProperty, Brushes.Black);
+            Setter setter2 = new Setter(Button.CursorProperty, Cursors.Cross);
+            Setter setter3 = new Setter(Button.ForegroundProperty, Brushes.White);
+            st.Setters.Add(setter1);
+            st.Setters.Add(setter2);
+            st.Setters.Add(setter3);
+
+            // Применить стиль для кнопок главного окна
+            Grid mainContainer = (Grid)window.Content;
+            foreach (UIElement currentElement in mainContainer.Children)
+            {
+                if (currentElement is Button)
+                    ((Button)currentElement).Style = st;
+            }
+        }
+    }
+}

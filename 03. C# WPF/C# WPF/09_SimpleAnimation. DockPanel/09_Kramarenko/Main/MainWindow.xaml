@@ -1,0 +1,27 @@
+﻿<Window x:Class="Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Main"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        MinHeight="200" MinWidth="300">
+    
+    <Grid x:Name="mainGrid" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Menu x:Name="menu" Margin="0" Background="LightGray">
+            <MenuItem Header="Background" FontSize="15" Margin="2" Click="MenuItemBackground_Click"/>
+        </Menu>
+        
+        <Canvas x:Name="canvas" Margin="0" Grid.Row="1" MouseDown="canvas_MouseDown">
+            <Canvas.Background>
+                <SolidColorBrush x:Name="canvasBrush" Color="White"></SolidColorBrush>
+            </Canvas.Background>
+        </Canvas>
+    </Grid>
+</Window>

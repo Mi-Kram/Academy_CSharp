@@ -1,0 +1,33 @@
+﻿<Window x:Class="WPF_TabControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_TabControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Grid>
+        <TabControl Margin="61,46,132,45" Name="tabControl1" SelectedIndex="3" SelectionChanged="tabControl1_SelectionChanged" TabStripPlacement="Bottom">
+            <TabItem IsSelected="True" IsEnabled="True">
+                <TabItem.Header>
+                    <StackPanel>
+                        <Button Margin="0,0,0,0" Name="button44">Button</Button>
+                        <Button Margin="0,0,0,0" Name="button54">Button</Button>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tab2" IsTabStop="True">
+                <Canvas Name="canvas1">
+                    <Button Canvas.Left="100" Canvas.Top="42" Height="94" Name="button2" Width="217">Button</Button>
+                </Canvas>
+            </TabItem>
+        </TabControl>
+        <Button Height="23" Margin="0,46,40,0" x:Name="button6" VerticalAlignment="Top" Click="button6_Click" Content="Add tab" HorizontalAlignment="Right" Width="75"/>
+        <Button Content="Remove tab" Margin="0,74,40,0" VerticalAlignment="Top" Click="Button_Click" HorizontalAlignment="Right" Width="75"/>
+        <Button Content="Switch tab" Margin="0,101,40,0" VerticalAlignment="Top" Click="Button_Click_1" HorizontalAlignment="Right" Width="75"/>
+    </Grid>
+
+</Window>

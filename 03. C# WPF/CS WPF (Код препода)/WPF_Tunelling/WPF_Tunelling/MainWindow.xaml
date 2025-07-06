@@ -1,0 +1,22 @@
+﻿<Window x:Class="WPF_Tunelling.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Tunelling"
+        mc:Ignorable="d"
+        PreviewMouseRightButtonDown="Window_PreviewMouseRightButtonDown" MouseRightButtonDown="Window_MouseRightButtonDown"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <Grid>
+        <Button MouseRightButtonDown="button1_MouseRightButtonDown" PreviewMouseRightButtonDown="button1_PreviewMouseRightButtonDown" 
+                Click="button1_Click" Margin="35,31,0,0" Name="button1" 
+                HorizontalAlignment="Left" Width="169" Height="98" VerticalAlignment="Top">
+            
+            <Button MouseRightButtonDown="button2_MouseRightButtonDown" PreviewMouseRightButtonDown="button2_PreviewMouseRightButtonDown" 
+                    Click="button2_Click" Height="23" HorizontalAlignment="Left" 
+                    Name="button2" VerticalAlignment="Top" Width="75">Button</Button>
+        </Button>
+        <ListBox HorizontalAlignment="Right" Name="listBox1" Width="342" />
+    </Grid>
+</Window>

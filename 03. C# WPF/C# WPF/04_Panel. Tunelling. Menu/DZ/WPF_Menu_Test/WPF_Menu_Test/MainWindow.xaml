@@ -1,0 +1,161 @@
+﻿<Window x:Class="WPF_Menu_Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Menu_Test"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+        <Grid Background="Beige">
+
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Copy"></MenuItem>
+                <MenuItem Header="Paste"></MenuItem>
+                <MenuItem Header="Cut"></MenuItem>
+                <MenuItem Header="Delete"></MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
+
+            <Menu Name="menu1" Height="26" VerticalAlignment="Top" Margin="0,0,0,0">
+                <MenuItem Header="File">
+                    <MenuItem Header="New" Click="MenuItem_Click" />
+                    <MenuItem Header="Open"/>
+                    <Separator/>
+                    <MenuItem Header="submenu">
+                        <MenuItem Header="submenuitem1"/>
+                        <MenuItem Header="submenuitem2">
+                            <MenuItem Header="submenuitem2.1"/>
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="MenuItem" HorizontalAlignment="Left" Height="100" Width="145"/>
+                </MenuItem>
+                <MenuItem Header="View">
+                    <MenuItem Header="Source"/>
+                </MenuItem>
+
+                <MenuItem Header="One">
+                    <MenuItem Header="Sub One" />
+                    <MenuItem IsCheckable="True">
+                        <MenuItem.Header>
+                            Sub Two (With an Icon)
+                        </MenuItem.Header>
+                        <MenuItem.Icon>
+                            <Ellipse Width="16" Height="16" Fill="LightBlue" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Sub Three" />
+                    <Separator />
+                    <MenuItem Header="Sub Four">
+                        <MenuItem Header="Sub One" />
+                        <MenuItem Header="Sub Two" />
+                        <MenuItem Header="Sub Three" />
+                    </MenuItem>
+                    <MenuItem Header="Sub Five" />
+                </MenuItem>
+                <MenuItem Header="Two">
+                    <MenuItem Header="Sub One" />
+                    <MenuItem Header="Sub Tow (Checkable)" IsCheckable="True" />
+                    <MenuItem Header="Sub Three" />
+                    <Separator />
+                    <MenuItem Header="Sub Four">
+                        <MenuItem Header="Sub One" />
+                        <MenuItem Header="Sub Two" />
+                        <MenuItem Header="Sub Three" />
+                    </MenuItem>
+                    <MenuItem Header="Sub Five" />
+                </MenuItem>
+                <MenuItem Header="Three" >
+                    <MenuItem Header="Sub One" />
+                    <MenuItem Header="Sub Two" />
+                    <MenuItem Header="Sub Three" />
+                    <Separator />
+                    <MenuItem Header="Sub Five" />
+                </MenuItem>
+            </Menu>
+
+            <Button Content="Add item" HorizontalAlignment="Left" Margin="21,46,0,0"
+                VerticalAlignment="Top" Width="75" Click="Button_Click" Name="addButton">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="One"></MenuItem>
+                    <MenuItem Header="Two"></MenuItem>
+                    <MenuItem Header="Three"></MenuItem>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+
+            <Menu Height="27" VerticalAlignment="Center" Margin="0,0,0,0">
+                <MenuItem Header="First" Height="27" />
+                <MenuItem Height="27">
+                    <MenuItem.Header>
+                        <Button Content="Button" VerticalAlignment="Top" Width="75"/>
+                    </MenuItem.Header>
+                </MenuItem>
+                <Button Content="Button" VerticalAlignment="Top" Width="75"/>
+            </Menu>
+
+            <Menu VerticalAlignment="Bottom">
+                <MenuItem Width="80" Header="Test">
+                    <MenuItem Header="A"/>
+                    <Separator></Separator>
+                    <MenuItem Header="B">
+                        <ScrollViewer VerticalScrollBarVisibility="Visible" Height="100">
+                            <StackPanel>
+                                <MenuItem Header="B1"></MenuItem>
+                                <MenuItem Header="B2"></MenuItem>
+                                <MenuItem Header="B3"></MenuItem>
+                                <MenuItem Header="B4"></MenuItem>
+                                <MenuItem Header="B5"></MenuItem>
+                                <MenuItem Header="B6"></MenuItem>
+                                <MenuItem Header="B7"></MenuItem>
+                                <MenuItem Header="B8"></MenuItem>
+                                <MenuItem Header="B9"></MenuItem>
+                                <MenuItem Header="B10"></MenuItem>
+                                <MenuItem Header="B11"></MenuItem>
+                                <MenuItem Header="B12"></MenuItem>
+                                <MenuItem Header="B13"></MenuItem>
+                                <MenuItem Header="B14"></MenuItem>
+                                <MenuItem Header="B15"></MenuItem>
+                                <MenuItem Header="B16"></MenuItem>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </MenuItem>
+                    <MenuItem Header="C">
+                        <ScrollViewer VerticalScrollBarVisibility="Visible" Height="100">
+                            <StackPanel>
+                                <MenuItem Header="C1"></MenuItem>
+                                <MenuItem Header="C2"></MenuItem>
+                                <MenuItem Header="C3"></MenuItem>
+                                <MenuItem Header="C4"></MenuItem>
+                                <MenuItem Header="C5"></MenuItem>
+                                <MenuItem Header="C6"></MenuItem>
+                                <MenuItem Header="C7"></MenuItem>
+                                <MenuItem Header="C8"></MenuItem>
+                                <MenuItem Header="C9"></MenuItem>
+                                <MenuItem Header="C10"></MenuItem>
+                                <MenuItem Header="C11"></MenuItem>
+                                <MenuItem Header="C12"></MenuItem>
+                                <MenuItem Header="C13"></MenuItem>
+                                <MenuItem Header="C14"></MenuItem>
+                                <MenuItem Header="C15"></MenuItem>
+                                <MenuItem Header="C16"></MenuItem>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </MenuItem>
+                    <MenuItem Header="D"/>
+                    <MenuItem Header="F"/>
+                    <MenuItem Header="G"/>
+                    <MenuItem Header="H"/>
+                    <MenuItem Header="I"/>
+                    <MenuItem Header="J"/>
+                    <MenuItem Header="K"/>
+
+                </MenuItem>
+            </Menu>
+        </Grid>
+    </ScrollViewer>
+</Window>

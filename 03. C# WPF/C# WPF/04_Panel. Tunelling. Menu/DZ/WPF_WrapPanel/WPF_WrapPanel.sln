@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_WrapPanel", "WPF_WrapPanel\WPF_WrapPanel.csproj", "{448C07E9-8F00-4134-B4DD-16E63F10B182}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{448C07E9-8F00-4134-B4DD-16E63F10B182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{448C07E9-8F00-4134-B4DD-16E63F10B182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{448C07E9-8F00-4134-B4DD-16E63F10B182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{448C07E9-8F00-4134-B4DD-16E63F10B182}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B802237-B37F-4DAE-8BD4-B8941D7C87C2}
+	EndGlobalSection
+EndGlobal

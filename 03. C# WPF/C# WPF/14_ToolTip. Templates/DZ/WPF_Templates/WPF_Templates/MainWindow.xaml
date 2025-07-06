@@ -1,0 +1,303 @@
+﻿<Window x:Class="WPF_Templates.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Templates"
+        mc:Ignorable="d"
+        Template="{StaticResource win1}"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Resources>
+
+            <ControlTemplate x:Key="newradio" TargetType="{x:Type RadioButton}">
+
+                <Border Name="border" Background="{TemplateBinding Background}" BorderBrush="Black" Padding="10" CornerRadius="10">
+                    <ContentPresenter />
+                </Border>
+
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="border" Property="BorderThickness" Value="2" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="check1" TargetType="{x:Type CheckBox}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Border Width="96" Height="48" BorderBrush="Black" BorderThickness="1">
+                        <Canvas Background="LightGray">
+                            <TextBlock Canvas.Left="0" Canvas.Top="0" Foreground="Black" Text="Off" Margin="2" />
+                            <TextBlock Canvas.Right="0" Canvas.Top="0" Foreground="Black" Text="On" Margin="2" />
+                            <Line Name="lineOff" StrokeThickness="8" Stroke="Black" X1="48" Y1="40" X2="20" Y2="16" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+                            <Line Name="lineOn"  StrokeThickness="8" Stroke="Black" X1="48" Y1="40" X2="76" Y2="16" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Visibility="Hidden" />
+                        </Canvas>
+                    </Border>
+
+                    <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" HorizontalAlignment="Center" />
+                </Grid>
+
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="lineOff" Property="Visibility" Value="Hidden" />
+                        <Setter TargetName="lineOn" Property="Visibility" Value="Visible" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="B4Templ" TargetType="{x:Type Button}">
+                <Grid>
+                    <Path Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000" Data="M78.000736,96.999954 C230.00074,66.999954 190.00037,2.9992553 212,118 235.59981,241.36551 -11.999264,121.99981 78.000736,96.999748"/>
+                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsFocused" Value="True"/>
+                    <Trigger Property="IsDefaulted" Value="True"/>
+                    <Trigger Property="IsMouseOver" Value="True"/>
+                    <Trigger Property="IsPressed" Value="True"/>
+                    <Trigger Property="IsEnabled" Value="False"/>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="B3Templ" TargetType="{x:Type Button}">
+                <Grid>
+                    <Path Stretch="Fill" Stroke="#FF000000" Data="M45,5 Q50,-15 55,5 L75,75 L70,90 L30,90 L25,75 L45,5">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="Beige"/>
+                                <GradientStop Offset="1" Color="Green"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+                    </Path>
+
+                    <Path Stretch="Fill" Stroke="#FF000000" Data="M50,0 L100,100 L0,100 L50,0">
+                        <Path.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="Green"/>
+                                <GradientStop Offset="1" Color="Beige"/>
+                            </LinearGradientBrush>
+                        </Path.Fill>
+
+                        <Path.RenderTransform>
+                            <ScaleTransform ScaleX="0.6" ScaleY="0.6" />
+                        </Path.RenderTransform>
+
+                        <Path.RenderTransformOrigin>
+                            <Point X="0.5" Y="0.6" />
+                        </Path.RenderTransformOrigin>
+                    </Path>
+                </Grid>
+
+                <ControlTemplate.Triggers>
+
+                    <Trigger Property="Button.IsPressed" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX=".9" ScaleY=".9"/>
+                                    <RotateTransform Angle="45" />
+                                </TransformGroup>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                    </Trigger>
+
+                </ControlTemplate.Triggers>
+
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="B2Templ" TargetType="{x:Type Button}">
+                <Grid>
+                    <Rectangle x:Name="rect1" RadiusX="10" RadiusY="10" Fill="Blue" Stroke="DarkBlue" Width="{TemplateBinding Button.Width}" Height="{TemplateBinding Button.Height}" StrokeThickness="2">
+                        <Rectangle.RenderTransformOrigin>
+                            <Point X="0.5" Y="0.5"/>
+                        </Rectangle.RenderTransformOrigin>
+
+                        <Rectangle.RenderTransform>
+                            <ScaleTransform x:Name="st1" ScaleX="1" ScaleY="1"/>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <ContentPresenter Margin="{TemplateBinding Button.Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Button.Content}"/>
+                </Grid>
+
+                <ControlTemplate.Triggers>
+
+                    <!--<Trigger Property="Button.IsMouseOver" Value="True">
+                        <Setter TargetName="rect1" Property="Fill" Value="Red"/>
+                    </Trigger>
+                    
+                    <Trigger Property="Button.IsPressed" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX=".9" ScaleY=".9"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                    </Trigger>-->
+
+                    <EventTrigger RoutedEvent="Button.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="st1"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="0.7" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+
+                    <EventTrigger RoutedEvent="Button.MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="st1"
+                                                 Storyboard.TargetProperty="ScaleX"
+                                                 To="1" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+
+                </ControlTemplate.Triggers>
+
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="buttonTemplate" TargetType="{x:Type Button}">
+                <Grid>
+                    <Ellipse x:Name="outerCircle" Width="{TemplateBinding Button.Width}" Height="{TemplateBinding Button.Height}">
+                        <Ellipse.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="Blue"/>
+                                <GradientStop Offset="1" Color="Red"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <Ellipse x:Name="innerCircle" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+
+                        <Ellipse.RenderTransformOrigin>
+                            <Point X="0.5" Y="0.5"/>
+                        </Ellipse.RenderTransformOrigin>
+
+                        <Ellipse.RenderTransform>
+                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                        </Ellipse.RenderTransform>
+                        <Ellipse.Fill>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="White"/>
+                                <GradientStop Offset="1" Color="Transparent"/>
+                            </LinearGradientBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
+                    <!--<TextBlock HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Text="{TemplateBinding Content}" />-->
+
+                    <ContentPresenter HorizontalAlignment="Right" 
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0,22,13,22"/>
+
+                </Grid>
+
+                <ControlTemplate.Triggers>
+
+                    <Trigger Property="Button.IsMouseOver" Value="True">
+                        <Setter TargetName="outerCircle" Property="Fill" Value="Orange"/>
+                    </Trigger>
+
+                    <Trigger Property="Button.IsPressed" Value="True">
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX=".9" ScaleY=".9"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+                    </Trigger>
+
+                </ControlTemplate.Triggers>
+
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="shadowButtonTemplate" TargetType="{x:Type Button}">
+                <Grid>
+                    <Rectangle x:Name="rect1" RadiusX="10" RadiusY="10" Fill="LightBlue" Stroke="DarkBlue" Width="{TemplateBinding Button.Width}" Height="{TemplateBinding Button.Height}" StrokeThickness="2">
+                        <Rectangle.RenderTransformOrigin>
+                            <Point X="0.5" Y="0.5"/>
+                        </Rectangle.RenderTransformOrigin>
+
+                        <Rectangle.RenderTransform>
+                            <ScaleTransform x:Name="st1" ScaleX="1" ScaleY="1"/>
+                        </Rectangle.RenderTransform>
+
+                        <Rectangle.Effect>
+                            <DropShadowEffect x:Name="shadow1" Opacity="1" BlurRadius="50" />
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding Button.Content}" />
+                </Grid>
+
+                <ControlTemplate.Triggers>
+
+                    <Trigger Property="Button.IsPressed" Value="True">
+
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <ScaleTransform ScaleX=".9" ScaleY=".9"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="RenderTransformOrigin" Value=".5,.5"/>
+
+                        <!-- Триггер срабатывает на нажатие на кнопку -->
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="shadow1"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0" Duration="0:0:0.1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+
+                        <!-- Триггер срабатывает на отжатие кнопки -->
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="shadow1"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1" Duration="0:0:0.1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+
+                </ControlTemplate.Triggers>
+
+            </ControlTemplate>
+        </Grid.Resources>
+
+        <Button Template="{StaticResource shadowButtonTemplate}" FontSize="20" Margin="20,13,0,0" HorizontalAlignment="Left" Width="193.8" Background="Beige" Height="159.12" VerticalAlignment="Top">
+            Shadow button
+        </Button>
+
+        <RadioButton Template="{StaticResource newradio}" Height="36" Margin="0,16,41,0" Name="radioButton1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135" GroupName="group1" IsChecked="True" Background="Gold">RadioButton</RadioButton>
+        <RadioButton Template="{StaticResource newradio}" Height="36" HorizontalAlignment="Right" Margin="0,58,41,0" Name="radioButton2" VerticalAlignment="Top" Width="135" GroupName="group1" Background="Bisque">RadioButton</RadioButton>
+        <RadioButton Template="{StaticResource newradio}" HorizontalAlignment="Right" Margin="0,100,41,0" Name="radioButton3" Width="135" GroupName="group1" Background="LightBlue" Height="37" VerticalAlignment="Top">RadioButton</RadioButton>
+        <CheckBox Template="{StaticResource check1}" HorizontalAlignment="Right" Margin="0,0,70,87" Name="checkBox1" Width="106" Height="21" VerticalAlignment="Bottom">CheckBox</CheckBox>
+        <CheckBox Template="{StaticResource check1}" Height="58.638" Margin="0,0,70,21.362" Name="checkBox2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="106">CheckBox</CheckBox>
+        
+        <Button Click="button1_Click" Template="{StaticResource B2Templ}" Margin="28,329.638,0,0" Name="button1" HorizontalAlignment="Left" Width="139" Height="78" VerticalAlignment="Top">
+            <Button Background="red">Hello</Button>
+        </Button>
+
+        <Button Template="{StaticResource buttonTemplate}" Margin="250,329.638,0,0" Name="button2"
+                Height="65.775" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70.48">
+            Testing
+        </Button>
+
+        <Button Template="{StaticResource B2Templ}" Margin="376.24,315.383,0,0" Name="testing" HorizontalAlignment="Left" Width="81.375" Height="80.03" VerticalAlignment="Top">test</Button>
+        <Button Template="{StaticResource B3Templ}" Margin="265,16,201.84,190.84" Name="button4">test2</Button>
+    </Grid>
+</Window>
